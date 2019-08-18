@@ -10,9 +10,9 @@
           <mdb-col md="4" class="mb-5" v-for="product in products" :key="product.id">
             <mdb-card class="animated fadeIn">
               <mdb-card-body>
-              <carousel :perPage="1">
+              <carousel :perPage="1" >
               <slide v-for="(image, index) in product.images" :key="index.id">
-              <mdb-card-image :src="image" alt="Card image cap"></mdb-card-image>
+              <mdb-card-image :src="image" alt="Card image cap" style="max-width:100%"></mdb-card-image>
               </slide>
             </carousel>
                 <mdb-card-title class="d-flex justify-content-between">

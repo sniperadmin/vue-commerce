@@ -16,6 +16,8 @@ import Orders from './components/admin/Orders';
 import Profile from './components/admin/Profile';
 // Checkout
 import Checkout from './components/Checkout';
+// Users
+import Users from './components/admin/Users';
 
 import {fbAuth} from './assets/js/firebase';
 //*********************************************************************** */
@@ -89,6 +91,12 @@ export default new Router({
           path: "profile",
           name: "profile",
           component: Profile,
+          meta: { hideNavigation: true },
+        },
+        {
+          path: "users",
+          name: "users",
+          component: Users,
           meta: { hideNavigation: true },
         },
       ],

@@ -17,6 +17,7 @@ import Vue2TouchEvents from 'vue2-touch-events';
 import LoadScript from 'vue-plugin-load-script';
 import {fbAuth} from './assets/js/firebase';
 import VueFirestore from 'vue-firestore';
+import FontAwesome from '@fortawesome/fontawesome-free';
 
 window.jQuery = jQuery;
 Vue.use(Vue2TouchEvents);
@@ -30,7 +31,7 @@ require('./assets/js/admin');
 import Swal from 'sweetalert2'
 
 window.Swal = Swal;
-
+window.FontAwesome = FontAwesome;
 const toast = Swal.mixin({
   toast: true,
   position: 'top-end',
@@ -52,7 +53,7 @@ Vue.component('product-list', require('./components/ProductList.vue').default);
 
 let app = '';
 
-fbAuth.auth().onAuthStateChanged(function(user) {
+fbAuth.auth().onAuthStateChanged(user => {
   if (!app) {
     /* eslint-disable no-new */
     new Vue({

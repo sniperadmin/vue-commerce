@@ -21,5 +21,6 @@ const firebaseConfig = {
 
 const fbAuth = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-export {fbAuth, db}
+const functions = firebase.functions();
+export {fbAuth, db, functions}
 // export default fbAuth;

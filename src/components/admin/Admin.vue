@@ -50,7 +50,7 @@
                         <li class="header-menu">
                             <span>General</span>
                         </li>
-                        <li class="sidebar">
+                        <li class="sidebar" v-if="isAdmin">
                             <router-link to="/admin/overview">
                                 <i class="fa fa-tachometer-alt"></i>
                                 <span class="menu-text">Overview</span>
@@ -74,6 +74,12 @@
                             <router-link to="/admin/profile">
                                 <i class="far fa-user"></i>
                                 <span class="menu-text">Profile</span>
+                            </router-link>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <router-link to="/admin/users">
+                                <i class="far fa-users"></i>
+                                <span class="menu-text">Users</span>
                             </router-link>
                         </li>
                         <li class="sidebar">
@@ -118,6 +124,7 @@ export default {
           acting: true,
           name: null,
           email: null,
+          isAdmin: null,
       }
   },
     methods: {
@@ -137,8 +144,17 @@ export default {
         },
     },
     created() {
-        var user = fbAuth.auth().currentUser;
-        this.email = user.email;
+        fbAuth.auth().onAuthStateChanged(user => {
+          if(user) {
+              user.getIdTokenResult().then(idTokenResult => {
+                  user.admin = idTokenResult.claims.admin;
+                  this.isAdmin = user.admin
+                  console.log(this.isAdmin)
+              });
+              var userInfo = fbAuth.auth().currentUser;
+              this.email = userInfo.email;
+          }
+        });
     }
 };
 </script>

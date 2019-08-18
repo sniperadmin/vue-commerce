@@ -19,6 +19,7 @@
         <div class="col-md-3">
           <h3 class="h3-responsive">Total Price:</h3>
           <h3 class="h3-responsive">{{ totalPrice | currency }}</h3>
+          <b-button @click="payment" variant="warning">Checkout</b-button>
         </div>
       </div>
     </div>
@@ -26,15 +27,58 @@
 </template>
 
 <script>
+import axios from 'axios';
+const stripe = Stripe("pk_test_EkgRdwSuRpwR0FUEsUSMJVCw00HJk4Sukt");
+
 export default {
   name: "checkout",
   props: {
     msg: String
   },
+  data() {
+    return {
+      sessionId: ''
+    } 
+  },
+  methods: {
+    payment() {
+
+      let purchases = this.$store.state.cart.map(item => ({ [item.productId] : item.productQuantity }));
+      purchases = Object.assign({}, ...purchases);
+      console.log(purchases)
+
+      axios.get('http://localhost:5000/vue-shop-e3547/us-central1/checkoutSession', {
+        params: {
+          products: purchases
+        }
+      })
+          .then(response => {
+            this.sessionId = response.data;
+            console.log('response: ' + response.data);
+          })
+          .catch(err => {
+            console.log('Catch! :' + err);
+          });
+
+      stripe.redirectToCheckout({
+        // Make the id field from the Checkout Session creation API response
+        // available to this file, so you can provide it as parameter here
+        // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
+        sessionId: this.sessionId.id,
+      }).then((result) => {
+        // If `redirectToCheckout` fails due to a browser or network
+        // error, display the localized error message to your customer
+        // using `result.error.message`.
+      });
+    }
+  },
   computed: {
     totalPrice() {
       return this.$store.getters.totalPrice;
     }
+  },
+  created() {
+  
   }
 };
 </script>

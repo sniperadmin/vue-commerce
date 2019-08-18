@@ -7,15 +7,11 @@
       <mdb-navbar-toggler>
         <mdb-navbar-nav right>
           <mdb-nav-item exact to="/"><strong>Home</strong></mdb-nav-item>
-          <mdb-nav-item to="/css"><strong>About</strong></mdb-nav-item>
-          <mdb-nav-item to="/components"><strong>Vuejs Components</strong></mdb-nav-item>
-          <mdb-nav-item to="/advanced"><strong>Advanced</strong></mdb-nav-item>
-          <mdb-nav-item to="/navigation"><strong>Navigation</strong></mdb-nav-item>
-          <mdb-nav-item to="/forms"><strong>Forms</strong></mdb-nav-item>
+          <!-- <mdb-nav-item to="/css"><strong>About</strong></mdb-nav-item> -->
           <mdb-nav-item v-b-modal.modal-1><strong>
-          Launch demo modal
+          Login/Register
           </strong></mdb-nav-item>
-          <mdb-nav-item to="/modals"><strong>Modals</strong></mdb-nav-item>
+          <mdb-nav-item to="/checkout"><i class="fas fa-cart-plus"></i><strong>Cart</strong></mdb-nav-item>
         </mdb-navbar-nav>
       </mdb-navbar-toggler>
     </mdb-navbar>

@@ -169,7 +169,6 @@
             alert(error);
             // [END_EXCLUDE]
         });
-
       },
       register() {
         // Sign in with email and pass.
@@ -194,6 +193,9 @@
                 phone: null,
                 address: null,
                 postcode: null,
+                id: user.user.uid,
+                email: this.email,
+                
               })
               .then(() => {
                   console.log("Document written with ID: ");

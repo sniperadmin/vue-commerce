@@ -78,27 +78,27 @@
                   <b-col md="6"><!-- col-2 -->
                     <b-form-group id="fieldset-horizontal" 
                       description="email">
-                      <b-form-input id="input2-horizontal"></b-form-input>
+                      <b-form-input v-model="account.email" id="input2-horizontal"></b-form-input>
                     </b-form-group>
                   </b-col><!-- ./col-2 -->
                 </b-row><!-- row-1 second tab [Account Settings] -->
 
-                <b-row><!-- row-2 second tab [Account Settings] -->
-                  <b-col md="6"><!-- col-1 -->
+                <!-- <b-row>
+                  <b-col md="6">
                     <b-form-group id="fieldset-horizontal"
                       description="New password"
                       label-for="input-horizontal">
                       <b-form-input id="input-horizontal"></b-form-input>
                     </b-form-group>
-                  </b-col><!-- ./col-1 -->
+                  </b-col>
 
-                  <b-col md="6"><!-- col-2 -->
+                  <b-col md="6">
                     <b-form-group id="fieldset-horizontal"  
                       description="Confirm password">
                       <b-form-input id="input2-horizontal"></b-form-input>
                     </b-form-group>
-                  </b-col><!-- ./col-2 -->
-                </b-row><!-- ./row-2 second tab [Account Settings] -->
+                  </b-col>
+                </b-row> -->
 
                 <b-row><!-- row-3 second tab [Account Settings] -->
                   <b-col md="5"><!-- col-1 -->
@@ -143,18 +143,17 @@ import { fbAuth, db } from '../../assets/js/firebase';
           name: null,
           email: null,
           photoUrl: null,
-          emailVerified: null,
-          password: null,
-          confirmPassword: null,
+          // emailVerified: null,
+          // password: null,
+          // confirmPassword: null,
           uid: null,
         },
-        user: {id: null}
       }
     },
     firestore() {
       const user = fbAuth.auth().currentUser;
       return {
-        profiles: db.collection('profiles'),
+        // profiles: db.collection('profiles'),
         profile: db.collection('profiles').doc(user.uid)
       }
     },

@@ -1,5 +1,5 @@
 <template>
-  <div class="Products">
+  <div class="orders">
     <div class="container h-100">
       <div class="intro h-100">
         <div class="row h-100 align-items-center">
