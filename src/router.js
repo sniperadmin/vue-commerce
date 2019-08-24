@@ -13,13 +13,19 @@ import Products from './components/admin/Products';
 // Orders
 import Orders from './components/admin/Orders';
 //Users
-import Profile from './components/admin/Profile';
+import Profile from './components/Profile';
 // Checkout
 import Checkout from './components/Checkout';
 // Users
 import Users from './components/admin/Users';
+// MyBoard
+import MyBoard from './components/MyBoard';
+// AdminLogin
+import AdminLogin from './components/admin/AdminLogin';
 
 import {fbAuth} from './assets/js/firebase';
+
+import i18n from './i18n';
 //*********************************************************************** */
 
 // use router
@@ -30,76 +36,123 @@ export default new Router({
   base: process.env.BASE_URL,
 
   routes: [
-  // homepage
     {
-      path: "/",
-      name: "home",
-      component: HomePage
+      path: '/',
+      redirect: `/${i18n.locale}`
     },
-    // Checkout
-    {
-      path: "/checkout",
-      name: "checkout",
-      component: Checkout
-    },
-    // Admin page
-    {
-      path: "/admin",
-      name: "admin",
-      component: Admin,
-      meta: { hideNavigation: true,
-        requiresAuth: true },
-      beforeEnter: (to, from, next) => {
-        const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-        const currentUser = fbAuth.auth().currentUser;
-
-        if (requiresAuth && !currentUser) {
-
-          // eslint-disable-next-line callback-return
-          next({
-            path: '/',
-            query: { redirect: to.fullPath },
-          })
-        }
-        else if (requiresAuth && currentUser) {
-          // eslint-disable-next-line callback-return
-          next()
-        }
+    { 
+      path: '/:lang',
+      component: {
+        render(c) {return c('router-view')}
       },
-
-      // Admin Children
       children: [
+        // homepage
         {
-          path: "overview",
-          name: "overview",
-          component: Overview,
-          meta: { hideNavigation: true },
+          path: "/",
+          name: "home",
+          component: HomePage
         },
+        // AdminLogin
         {
-          path: "products",
-          name: "products",
-          component: Products,
-          meta: { hideNavigation: true },
+          path: "adminlogin",
+          name: "adminlogin",
+          component: AdminLogin
         },
+        // myboard
         {
-          path: "orders",
-          name: "orders",
-          component: Orders,
-          meta: { hideNavigation: true },
+          path: "myboard",
+          name: "myboard",
+          component: MyBoard,
+          meta: {
+            requiresAuth: true,
+          },
+          beforeEnter: (to, from, next) => {
+            // setting rules to guard the route
+            const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+            const currentUser = fbAuth.auth().currentUser;
+            // conditions
+            if (requiresAuth && !currentUser) {
+
+              // eslint-disable-next-line callback-return
+              next({
+                path: '/',
+                query: { redirect: to.fullPath },
+              });
+            }
+            else if (requiresAuth && currentUser) {
+              // eslint-disable-next-line callback-return
+              next()
+            } 
+          },
         },
+        // Checkout
         {
-          path: "profile",
-          name: "profile",
-          component: Profile,
-          meta: { hideNavigation: true },
+          path: "checkout",
+          name: "checkout",
+          component: Checkout
         },
+        // Admin page
         {
-          path: "users",
-          name: "users",
-          component: Users,
-          meta: { hideNavigation: true },
+          path: "admin",
+          name: "admin",
+          component: Admin,
+          meta: { hideNavigation: true,
+            requiresAuth: true },
+          beforeEnter: (to, from, next) => {
+            // setting rules to guard the route
+            const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+            const currentUser = fbAuth.auth().currentUser;
+            // let isAdmin = currentUser.getIdTokenResult().then(idTokenResult => {
+            //   currentUser.admin = idTokenResult.claims.admin; console.log(currentUser.admin)})
+            //   .catch((err, response) => {response.status(500).send(err); console.log(err)});
+            // conditions
+            if (requiresAuth && !currentUser) {
+              // eslint-disable-next-line callback-return
+              next({
+                path: '/',
+                query: { redirect: to.fullPath },
+              });
+            }
+            else if (requiresAuth && currentUser) {
+              // eslint-disable-next-line callback-return
+              next()
+            } 
+          },
+          // Admin Children [ The guard takes care of them automatically! ]
+          children: [
+            {
+              path: "overview",
+              name: "overview",
+              component: Overview,
+              meta: { hideNavigation: true },
+            },
+            {
+              path: "products",
+              name: "products",
+              component: Products,
+              meta: { hideNavigation: true },
+            },
+            {
+              path: "orders",
+              name: "orders",
+              component: Orders,
+              meta: { hideNavigation: true },
+            },
+            {
+              path: "profile",
+              name: "profile",
+              component: Profile,
+              meta: { hideNavigation: true },
+            },
+            {
+              path: "users",
+              name: "users",
+              component: Users,
+              meta: { hideNavigation: true },
+            },
+          ],
         },
-      ],
-    },
+      ]
+    }
   ]
 });

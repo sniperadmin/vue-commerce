@@ -6,20 +6,47 @@
       </mdb-navbar-brand>
       <mdb-navbar-toggler>
         <mdb-navbar-nav right>
-          <mdb-nav-item exact to="/"><strong>Home</strong></mdb-nav-item>
+          <mdb-nav-item exact :to="`/${$i18n.locale}`"><strong>{{ $t('nav.home') }}</strong></mdb-nav-item>
           <!-- <mdb-nav-item to="/css"><strong>About</strong></mdb-nav-item> -->
-          <mdb-nav-item v-b-modal.modal-1><strong>
+          <mdb-nav-item v-b-modal.modal-1 v-if="!session"><strong>
           Login/Register
           </strong></mdb-nav-item>
-          <mdb-nav-item to="/checkout"><i class="fas fa-cart-plus"></i><strong>Cart</strong></mdb-nav-item>
+          
+          <mdb-dropdown tag="li" class="nav-item">
+          <mdb-dropdown-toggle v-if="session" tag="a" navLink slot="toggle" waves-fixed><strong>
+          {{name}}
+          </strong></mdb-dropdown-toggle>
+          <mdb-dropdown-menu>
+            <mdb-dropdown-item>Profile Settings</mdb-dropdown-item>
+            <mdb-dropdown-item>Custom action</mdb-dropdown-item>
+            <mdb-dropdown-item @click="logout">Logout</mdb-dropdown-item>
+          </mdb-dropdown-menu>
+          </mdb-dropdown>
+          <mdb-nav-item :to="`/${$i18n.locale}/checkout`"><i class="fas fa-cart-plus"></i><strong>{{ $t('nav.cart') }}</strong></mdb-nav-item>
+          <mdb-nav-item to="/adminlogin" v-if="!session"><strong>Admin Access</strong></mdb-nav-item>
+          
+          <!-- <div class="locale-changer">
+            <select v-model="$i18n.locale">
+              <option v-for="(lang, i) in $i18n.availableLocales" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
+            </select>
+          </div> -->
+
+          <mdb-dropdown tag="li" class="nav-item">
+            <mdb-dropdown-toggle tag="a" navLink slot="toggle" waves-fixed><strong>{{ $i18n.locale }}</strong></mdb-dropdown-toggle>
+            <mdb-dropdown-menu dropleft>
+              <mdb-dropdown-item @click.prevent="setLocale(lang)" v-for="(lang, i) in $i18n.availableLocales" :key="`Lang${i}`" :value="lang">{{ lang }}</mdb-dropdown-item>
+            </mdb-dropdown-menu>
+          </mdb-dropdown>
+
         </mdb-navbar-nav>
       </mdb-navbar-toggler>
     </mdb-navbar>
     
     <main>
       <transition name="fade" mode="out-in">
-        <router-view></router-view>
+          <router-view></router-view>
       </transition>
+      <vue-progress-bar></vue-progress-bar>
         <register></register>
     </main>
     <mdb-footer v-if="!$route.meta.hideNavigation" color="stylish-color">
@@ -31,6 +58,7 @@
 </template>
 
 <script>
+import {fbAuth} from '../src/assets/js/firebase';
 import { 
   mdbNavbar, 
   mdbNavItem, 
@@ -38,6 +66,10 @@ import {
   mdbNavbarToggler, 
   mdbNavbarBrand, 
   mdbFooter,
+  mdbDropdown, 
+  mdbDropdownMenu, 
+  mdbDropdownToggle,
+  mdbDropdownItem,
   } from 'mdbvue';
 
 import register from './components/Register';
@@ -51,13 +83,59 @@ export default {
     mdbNavbarToggler,
     mdbNavbarBrand,
     mdbFooter,
-    register
+    register,
+    mdbDropdown, 
+    mdbDropdownMenu, 
+    mdbDropdownToggle,
+    mdbDropdownItem,
   },
+  data() {
+    return {
+      session: null,
+      name: null,
+      // langs: ['en', 'ar']
+    }
+  },
+  methods: {
+      logout() {
+            fbAuth.auth().signOut()
+                .then(() => {
+                toast.fire({
+                  type: 'success',
+                  title: 'Logged out Successfully'
+                });
+                this.$router.replace('/');
+                })
+            .catch((response, err) => {
+                console.log(err);
+                response.status(500).send(err);
+            });
+        },
+        setLocale(locale) {
+          this.$i18n.locale = locale;
+          this.$router.push({
+            params: { lang: locale }
+          });
+        }
+  },
+  created() {
+    fbAuth.auth().onAuthStateChanged(user => {
+          if(user) {
+            const logged = fbAuth.auth().currentUser;
+            this.session = logged;
+            let username = logged.email;
+            this.name = username;
+          }
+        });
+  }
 };
 
 </script>
 
 <style>
+* {
+  text-transform: capitalize;
+}
 .flyout {
 	display:flex;
 	flex-direction: column;

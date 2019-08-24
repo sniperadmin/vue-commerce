@@ -1,0 +1,8 @@
+{
+    "message": "مرحبا i18n !!",
+    "nav" : {
+        "logo" : "vue-commerce",
+        "home" : "الرئيسية",
+        "cart" : "تسوق"
+      }
+}

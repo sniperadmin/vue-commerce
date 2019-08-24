@@ -126,7 +126,7 @@
   </div>
 </template>
 <script>
-import { fbAuth, db } from '../../assets/js/firebase';
+import { fbAuth, db } from '../assets/js/firebase';
   export default {
     name: "users",
     props: {},
@@ -146,7 +146,7 @@ import { fbAuth, db } from '../../assets/js/firebase';
           // emailVerified: null,
           // password: null,
           // confirmPassword: null,
-          uid: null,
+          // uid: null,
         },
       }
     },
@@ -159,12 +159,18 @@ import { fbAuth, db } from '../../assets/js/firebase';
     },
     methods:{
       updateProfile() {
-          this.$firestore.profiles.doc(this.profile.id).update(this.profile).then(() => {
+        const user = fbAuth.auth().currentUser;
+          db.collection('profiles').doc(user.uid).update(this.profile).then(() => {
              toast.fire({
                   type: 'success',
                   title: 'Updated successfully'
               });
-        }).catch(err => {console.error(err)});
+        }).catch(err => {
+          toast.fire({
+                type: 'error',
+                title: 'Something wrong!'
+            });
+          });
       },
       resetPassword() {
         const auth = fbAuth.auth();

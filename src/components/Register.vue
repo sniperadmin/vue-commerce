@@ -7,9 +7,12 @@
           <b-card-text>
             <form @submit.prevent="login" autocomplete="off">
               <div class="grey-text">
+                
                 <mdb-input v-model="email" label="Your email" icon="envelope" type="email" />
+
                 <mdb-input v-model="password" label="Your password" icon="lock" type="password" />
               </div>
+              <small class="text-danger" v-if="boo">{{ boo }}</small>
               <div class="text-center">
                 <mdb-btn >Login</mdb-btn>
               </div>
@@ -34,30 +37,29 @@
               <p class="divider-text">
                 <span>OR</span>
               </p>
-              <form @submit.prevent="register" autocomplete="off">
-                <div class="form-group input-group">
+              <form @submit.stop.prevent="register" autocomplete="off">
 
-                  <!-- Error validation -->
-                  <!-- <p v-if="errors.length">
-                    <b>Please correct the following error(s):</b>
-                    <ul>
-                      <li v-for="(error, index) in errors"
-                      :key="index"
-                      >{{ error }}</li>
-                    </ul>
-                  </p> -->
+                  <b-form-group id="example-input-group-1" label="Email:" label-for="email-form"
+                    label-cols-sm="3"
+                    label-cols-lg="3">
+                    <b-form-input
+                      id="email-form"
+                      name="email-form"
+                      v-model="$v.email.$model"
+                      :state="$v.email.$touch ? !$v.email.$error : null"
+                      aria-describedby="email-live-feedback"
+                    >
+                    </b-form-input>
+                    <b-form-invalid-feedback id="email-live-feedback" v-if="$v.email.email">
+                         This is a required field.
+                      </b-form-invalid-feedback>
+                    <b-form-invalid-feedback id="email-live-feedback" v-if="$v.email.required">
+                         must be a valid email.
+                    </b-form-invalid-feedback>
+                  
+                    <b-form-valid-feedback id="email-live-feedback">Looks good!</b-form-valid-feedback>
+                  </b-form-group>
 
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                  </div>
-                  <input v-model="name" class="form-control" type="text" placeholder="Full name" autocomplete="off">
-                </div> <!-- form-group// -->
-                <div class="form-group input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-                  </div>
-                  <input v-model="email" class="form-control" type="email" placeholder="Email address">
-                </div> <!-- form-group// -->
                 <!-- <div class="form-group input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
@@ -81,25 +83,36 @@
                     <option>Accaunting</option>
                   </select>
                 </div> form-group end.// -->
-                <div class="form-group input-group">
-                  <!-- <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                  </div>
-                  <input class="form-control" type="password" placeholder="Create password"> -->
-                </div> <!-- form-group// -->
-                <div class="form-group input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                  </div>
-                  <input v-model="password" class="form-control" type="password" placeholder="Repeat password">
-                </div> <!-- form-group// -->
+               
+               <b-form-group id="example-input-group-1" label="Password: " label-for="password-form"
+                label-cols-sm="3"
+                label-cols-lg="3">
+                    <b-form-input
+                      id="password-form"
+                      name="password-form"
+                      type="password"
+                      v-model="$v.password.$model"
+                      :state="$v.password.$touch ? !$v.password.$error : null"
+                      aria-describedby="password-live-feedback"
+                    >
+                    </b-form-input>
+                    <b-form-invalid-feedback id="password-live-feedback" v-if="$v.password.minLength">
+                         This is a required field.
+                      </b-form-invalid-feedback>
+                    <b-form-invalid-feedback id="password-live-feedback" v-if="$v.password.required">
+                        Field must be {{ $v.password.$params.minLength.min }} characters.
+                    </b-form-invalid-feedback>
+                  
+                    <b-form-valid-feedback id="password-live-feedback">Looks good!</b-form-valid-feedback>
+                  </b-form-group>
+
                 <div class="form-group">
-                  <button class="btn btn-primary btn-block" type="submit">Create Account</button>
+                  <button class="btn btn-primary btn-block" type="submit" :disabled="$v.$invalid">Create Account</button>
                 </div> <!-- form-group// -->
                 <p class="text-center">Have an account? <a href="">Log In</a> </p>
               </form>
+              <p v-if="boo">{{ boo }}</p>
             </article>
-
           </b-card-text>
         </b-tab>
       </b-tabs>
@@ -116,6 +129,9 @@
 
 <script>
   import {fbAuth, db} from '../assets/js/firebase';
+    import { validationMixin } from 'vuelidate';
+  import { required, minLength, email } from 'vuelidate/lib/validators';
+
   import {
     mdbTabs,
     mdbInput,
@@ -123,6 +139,7 @@
     mdbRow
   } from 'mdbvue';
   export default {
+    mixins: [validationMixin],
     name: "register",
     props: {
       msg: String
@@ -138,8 +155,19 @@
         // errors:[],
         name: null,
         email: null,
-        password: null
+        password: null,
+        boo: ''
       }
+    },
+    validations: {
+        email: {
+          required,
+          email,
+        },
+        password: {
+          required,
+          minLength: minLength(8),
+        }
     },
     methods: {
       hideModal() {
@@ -149,24 +177,36 @@
         let email = this.email,
             password = this.password;
         
+        this.$Progress.start();
+        
         fbAuth.auth().signInWithEmailAndPassword(email, password)
           .then(()=> {
+            this.$Progress.finish();
+
             this.hideModal();
-            this.$router.replace('admin');
-          })
-          .catch(function(error) {
+
+            Swal.fire({
+            position: 'top-end',
+            type: 'success',
+            title: 'Logged in successfully',
+            showConfirmButton: false,
+            timer: 1500
+          });
+
+        })
+          .catch(error => {
           // Handle Errors here
           var errorCode = error.code;
           var errorMessage = error.message;
+          this.$Progress.fail();
           // ...
           // [START_EXCLUDE]
             if (errorCode == 'auth/weak-password') {
               alert('The password is too weak.');
               } else {
-              alert(errorMessage);
+              this.boo = errorMessage;
               }
             // console.log(error);
-            alert(error);
             // [END_EXCLUDE]
         });
       },
@@ -176,12 +216,10 @@
           let email = this.email,
               password = this.password;
 
-          this.errors = [];
-
-          if((name) && (email)) {return true;}
-            
-          if (name == !name) { return false; this.errors.push('Name empty!');}
-          if (email == !email) { return false; this.errors.push('Email Required!');}
+          this.$v.$touch()
+          if (this.$v.$anyError) {
+            return
+          }
 
           fbAuth.auth().createUserWithEmailAndPassword(email, password)
             .then(user => {
@@ -215,7 +253,7 @@
             if (errorCode == 'auth/weak-password') {
               alert('The password is too weak.');
               } else {
-                alert(errorMessage);
+              this.boo = errorMessage;
               }
             // console.log(error);
             alert(error);

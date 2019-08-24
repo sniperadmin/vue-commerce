@@ -21,25 +21,33 @@
                 <b-button @click="addAmin" variant="success">
                     Make Admin
                 </b-button> -->
+        
 
         </div>
     </div>
 </template>
 <script>
-    export default {
-        name: 'users',
-        data() {
-            return {
-                email: null,
+import { validationMixin } from 'vuelidate'
+import { required, minLength } from 'vuelidate/lib/validators'
+export default {
+    name: 'users',
+    data() {
+        return {
+            email: null,
+            foods: ['apple', 'orange'],
+                name: null,
+                food: null
             }
         },
-        methods: {
-            addAmin() {
-                const makeAdmin = functions.httpsCallable('addAdminRole');
-                makeAdmin({email: this.email}).then(result => {
-                    console.log(result);
-                })
-            }
-        }
-    }
+    methods: {
+        addAmin() {
+            const makeAdmin = functions.httpsCallable('addAdminRole');
+            makeAdmin({email: this.email}).then(result => {
+                console.log(result);
+            })
+        },
+    },
+    created() {},
+
+}
 </script>

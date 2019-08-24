@@ -57,14 +57,14 @@
                                 <span class="badge badge-pill badge-warning">New</span>
                             </router-link>
                         </li>
-                        <li class="sidebar">
+                        <li class="sidebar" v-if="isAdmin">
                             <router-link to="/admin/products">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span class="menu-text">Products</span>
                                 <span class="badge badge-pill badge-danger">3</span>
                             </router-link>
                         </li>
-                        <li class="sidebar">
+                        <li class="sidebar" v-if="isAdmin">
                             <router-link to="/admin/orders">
                                 <i class="far fa-gem"></i>
                                 <span class="menu-text">Orders</span>
@@ -79,7 +79,7 @@
                         <li class="sidebar-dropdown">
                             <router-link to="/admin/users">
                                 <i class="far fa-users"></i>
-                                <span class="menu-text">Users</span>
+                                <span class="menu-text" v-if="isAdmin">Users</span>
                             </router-link>
                         </li>
                         <li class="sidebar">
@@ -133,8 +133,9 @@ export default {
                 .then(() => {
                 this.$router.replace('/');
                 })
-            .catch((err) => {
+            .catch((response, err) => {
                 console.log(err);
+                response.status(500).send(err);
             });
         },
         toggleMenu() {
@@ -151,9 +152,9 @@ export default {
                   this.isAdmin = user.admin
                   console.log(this.isAdmin)
               });
+          }
               var userInfo = fbAuth.auth().currentUser;
               this.email = userInfo.email;
-          }
         });
     }
 };

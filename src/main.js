@@ -44,12 +44,35 @@ window.toast = toast;
 import store from './store';
 
 import Vue2Filters from 'vue2-filters';
- 
+
 Vue.use(Vue2Filters);
 
 Vue.component('add-to-cart', require('./components/AddToCart.vue').default);
 Vue.component('mini-cart', require('./components/MiniCart.vue').default);
 Vue.component('product-list', require('./components/ProductList.vue').default);
+
+import Vuelidate from 'vuelidate';
+Vue.use(Vuelidate);
+
+import VueProgressBar from 'vue-progressbar';
+import i18n from './i18n'
+
+Vue.use(VueProgressBar, {
+  color: 'rgb(143, 255, 199)',
+  failedColor: 'red',
+  height: '5px'
+});
+
+router.beforeEach((to, from, next) => {
+  // use language from param
+  let language = to.params.lang;
+  if (!language) {
+    language = 'en';
+  }
+  // set current language
+  i18n.locale = language;
+  next();
+});
 
 let app = '';
 
@@ -61,6 +84,7 @@ fbAuth.auth().onAuthStateChanged(user => {
       router,
       store,
       template: '<App/>',
+      i18n,
       components: { App }
     });
   }

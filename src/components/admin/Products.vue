@@ -272,7 +272,6 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-
           this.$firestore.products.doc(doc.id).delete();
 
               toast.fire({

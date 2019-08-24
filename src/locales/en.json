@@ -1,0 +1,8 @@
+{
+  "message": "hello i18n !!",
+  "nav" : {
+    "logo" : "vue-commerce",
+    "home" : "home",
+    "cart" : "cart"
+  }
+}
