@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-  <div  class="page-wrapper default-theme sidebar-bg bg1 " :class="{ active : isActive, 'toggled' : acting}">
+  <div  class="page-wrapper default-theme sidebar-bg bg1 " :class="{ active : isActive, 'toggled' : acting}" v-if="isAdmin">
     <!-- toggler -->
             <b-button class="btn btn-sm btn-dark" @click="acting = !acting">
             <i class="fas fa-bars"></i>
@@ -51,33 +51,33 @@
                             <span>General</span>
                         </li>
                         <li class="sidebar" v-if="isAdmin">
-                            <router-link to="/admin/overview">
+                            <router-link :to="`/${$i18n.locale}/admin/overview`">
                                 <i class="fa fa-tachometer-alt"></i>
                                 <span class="menu-text">Overview</span>
                                 <span class="badge badge-pill badge-warning">New</span>
                             </router-link>
                         </li>
                         <li class="sidebar" v-if="isAdmin">
-                            <router-link to="/admin/products">
+                            <router-link :to="`/${$i18n.locale}/admin/products`">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span class="menu-text">Products</span>
                                 <span class="badge badge-pill badge-danger">3</span>
                             </router-link>
                         </li>
                         <li class="sidebar" v-if="isAdmin">
-                            <router-link to="/admin/orders">
+                            <router-link :to="`/${$i18n.locale}/admin/orders`">
                                 <i class="far fa-gem"></i>
                                 <span class="menu-text">Orders</span>
                             </router-link>
                         </li>
                         <li class="sidebar-dropdown">
-                            <router-link to="/admin/profile">
+                            <router-link :to="`/${$i18n.locale}/admin/profile`">
                                 <i class="far fa-user"></i>
                                 <span class="menu-text">Profile</span>
                             </router-link>
                         </li>
                         <li class="sidebar-dropdown">
-                            <router-link to="/admin/users">
+                            <router-link :to="`/${$i18n.locale}/admin/users`">
                                 <i class="far fa-users"></i>
                                 <span class="menu-text" v-if="isAdmin">Users</span>
                             </router-link>
@@ -151,10 +151,14 @@ export default {
                   user.admin = idTokenResult.claims.admin;
                   this.isAdmin = user.admin
                   console.log(this.isAdmin)
+                  if (user.admin != true) {
+                      this.$router.push('/')
+                  } else {
+                      var userInfo = fbAuth.auth().currentUser;
+                      this.email = userInfo.email;
+                  }
               });
           }
-              var userInfo = fbAuth.auth().currentUser;
-              this.email = userInfo.email;
         });
     }
 };

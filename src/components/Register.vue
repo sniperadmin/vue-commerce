@@ -156,7 +156,7 @@
         name: null,
         email: null,
         password: null,
-        boo: ''
+        boo: '',
       }
     },
     validations: {
@@ -224,7 +224,13 @@
           fbAuth.auth().createUserWithEmailAndPassword(email, password)
             .then(user => {
               this.hideModal();
-              
+
+              fbAuth.auth().currentUser.sendEmailVerification().then(function() {
+                alert('Ver sent')
+              }).catch(function(error) {
+                console.log(error)
+              });
+
               // Add a new document with a generated id.
               db.collection("profiles").doc(user.user.uid).set({
                 name: this.name,
@@ -233,16 +239,15 @@
                 postcode: null,
                 id: user.user.uid,
                 email: this.email,
-                
               })
-              .then(() => {
-                  console.log("Document written with ID: ");
+              .then(user => {
+                  console.log("Document written with ID: ", user);
               })
               .catch(error => {
                   console.error("Error adding document: ", error);
               });
 
-              this.$router.replace('admin');
+            this.$router.replace('/');
             })
             .catch(error => {
             // Handle Errors here.

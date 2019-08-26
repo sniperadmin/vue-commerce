@@ -4,5 +4,14 @@
     "logo" : "vue-commerce",
     "home" : "home",
     "cart" : "cart"
+  },
+  "jumbotron": {
+    "title" : "create your special e-shop now!",
+    "body" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem, optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos. Odit sed qui, dolorum! ",
+    "button": "view project"
+  },
+  "intro" : {
+    "title": "Why is it so great?",
+    "body" : "I have designed a Material Design to make the web more beautiful and more user-friendly. Twitter has created a Bootstrap to support you in faster and easier development of responsive and effective websites. I present you a web app containing the best features of both of them - Material Design for Bootstrap."
   }
 }

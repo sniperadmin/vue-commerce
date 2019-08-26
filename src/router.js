@@ -52,12 +52,7 @@ export default new Router({
           name: "home",
           component: HomePage
         },
-        // AdminLogin
-        {
-          path: "adminlogin",
-          name: "adminlogin",
-          component: AdminLogin
-        },
+        
         // myboard
         {
           path: "myboard",
@@ -85,11 +80,22 @@ export default new Router({
             } 
           },
         },
+        {
+          path: "profile",
+          name: "profile",
+          component: Profile,
+        },
         // Checkout
         {
           path: "checkout",
           name: "checkout",
           component: Checkout
+        },
+        // AdminLogin
+        {
+          path: "adminlogin",
+          name: "adminlogin",
+          component: AdminLogin,
         },
         // Admin page
         {
@@ -102,9 +108,9 @@ export default new Router({
             // setting rules to guard the route
             const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
             const currentUser = fbAuth.auth().currentUser;
-            // let isAdmin = currentUser.getIdTokenResult().then(idTokenResult => {
-            //   currentUser.admin = idTokenResult.claims.admin; console.log(currentUser.admin)})
-            //   .catch((err, response) => {response.status(500).send(err); console.log(err)});
+            let isAdmin = currentUser.getIdTokenResult().then(idTokenResult => {
+              currentUser.admin = idTokenResult.claims.admin; console.log(currentUser.admin)})
+              .catch(err => {console.log(err)});
             // conditions
             if (requiresAuth && !currentUser) {
               // eslint-disable-next-line callback-return
@@ -113,13 +119,14 @@ export default new Router({
                 query: { redirect: to.fullPath },
               });
             }
-            else if (requiresAuth && currentUser) {
+            else if (requiresAuth && isAdmin) {
               // eslint-disable-next-line callback-return
               next()
             } 
           },
           // Admin Children [ The guard takes care of them automatically! ]
           children: [
+            
             {
               path: "overview",
               name: "overview",

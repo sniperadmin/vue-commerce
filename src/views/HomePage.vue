@@ -4,14 +4,12 @@
         <div class="text-white text-center py-5 px-4 my-5">
           <div>
             <p>{{ $t('message') }}</p>
-            <h2 class="card-title h1-responsive pt-3 mb-5 font-bold mt-5"><strong>Create your Special E-Shop Now!</strong></h2>
-            <p class="mx-5 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-              optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos. Odit sed qui, dolorum!
-            </p>
-            <mdb-btn outline="white" size="md" icon="clone">View project</mdb-btn>
+            <h2 class="card-title h1-responsive pt-3 mb-5 font-bold mt-5"><strong>{{ $t('jumbotron.title') }}</strong></h2>
+            <h4 class="mx-5 mb-5">{{ $t('jumbotron.body') }}</h4>
+            <mdb-btn outline="white" size="md" icon="clone">{{ $t('jumbotron.button') }}</mdb-btn>
           </div>
         </div>
-      </mdb-card>
+    </mdb-card>
       
       <product-list></product-list>
 

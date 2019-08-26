@@ -1,13 +1,11 @@
 <template>
     <mdb-container>
-        <h2 class="text-center mt-5 font-weight-bold">Why is it so great?</h2>
+        <h2 class="text-center mt-5 font-weight-bold">{{ $t('intro.title') }}</h2>
         <mdb-col md="10" class="mx-auto text-center text-muted mb-5">
-          <p>I have designed a Material Design to make the web more beautiful and more user-friendly.<br>
-          Twitter has created a Bootstrap to support you in faster and easier development of responsive and effective websites.<br>
-          I present you a web app containing the best features of both of them - Material Design for Bootstrap.</p>
+          <p>{{ $t('intro.body') }}</p>
         </mdb-col>
         <mdb-row>
-          <mdb-col md="4" class="mb-5" v-for="product in products" :key="product.id">
+          <mdb-col md="3" class="mb-5" v-for="product in products" :key="product.id">
             <mdb-card class="animated fadeIn">
               <mdb-card-body>
               <carousel :perPage="1" >

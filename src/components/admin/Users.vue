@@ -4,7 +4,7 @@
             <div class="intro h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-md-6">
-                        <h1>Users Page</h1>
+                        <h1>Users Management</h1>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Quaerat quae quisquam quos necessitatibus, nisi, mollitia
                             temporibus expedita aliquam itaque exercitationem qui fugit

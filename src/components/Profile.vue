@@ -7,6 +7,8 @@
             <h1>Profile settings</h1> <!-- Title -->
             <p>Update and change your settings here</p><!-- sub -->
           </div>
+
+          
           <div class="col-md-6">
             <img src="@/assets/img/profile.svg" class="img-fluid" alt="overview image"><!-- cover -->
           </div><!-- ./col-md-6 -->
@@ -15,6 +17,12 @@
     </div><!-- ./container -->
 
     <div class="container-fluid"><!-- main contents -->
+          <mdb-alert color="success" v-if="!verified">
+              <h4 class="alert-heading">verify your email address!</h4>
+              <p>For your safety, we have sent you a verification email with a confirmation link.</p>
+              <hr>
+              <p class="mb-0">make sure that you do confirm your email, so that you can use our sevices.</p>
+            </mdb-alert>
       <b-card no-body><!-- card -->
         <b-tabs pills card justified><!-- tabs -->
           <b-tab title="Profile" active><!-- tab title -->
@@ -127,9 +135,13 @@
 </template>
 <script>
 import { fbAuth, db } from '../assets/js/firebase';
+  import { mdbAlert } from 'mdbvue';
+
   export default {
     name: "users",
-    props: {},
+    components: {
+      mdbAlert
+    },
     data() {
       return {
         profileFile: null,
@@ -143,11 +155,8 @@ import { fbAuth, db } from '../assets/js/firebase';
           name: null,
           email: null,
           photoUrl: null,
-          // emailVerified: null,
-          // password: null,
-          // confirmPassword: null,
-          // uid: null,
         },
+        verified: null
       }
     },
     firestore() {
@@ -187,6 +196,11 @@ import { fbAuth, db } from '../assets/js/firebase';
               });
         });
       },
+    },
+    created() {
+      fbAuth.auth().onAuthStateChanged(user => { 
+        this.verified = user.emailVerified;
+      });
     }
   }
 </script>

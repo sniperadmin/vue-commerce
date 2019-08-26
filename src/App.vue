@@ -17,13 +17,16 @@
           {{name}}
           </strong></mdb-dropdown-toggle>
           <mdb-dropdown-menu>
-            <mdb-dropdown-item>Profile Settings</mdb-dropdown-item>
-            <mdb-dropdown-item>Custom action</mdb-dropdown-item>
+            <mdb-dropdown-item color="cyan">
+              <mdb-nav-item anchorClass="black-text" :to="`/${$i18n.locale}/profile`">
+                profile settings
+              </mdb-nav-item>
+            </mdb-dropdown-item>
             <mdb-dropdown-item @click="logout">Logout</mdb-dropdown-item>
           </mdb-dropdown-menu>
           </mdb-dropdown>
           <mdb-nav-item :to="`/${$i18n.locale}/checkout`"><i class="fas fa-cart-plus"></i><strong>{{ $t('nav.cart') }}</strong></mdb-nav-item>
-          <mdb-nav-item to="/adminlogin" v-if="!session"><strong>Admin Access</strong></mdb-nav-item>
+          <mdb-nav-item :to="`/${$i18n.locale}/adminlogin`"><strong>Admin Access</strong></mdb-nav-item>
           
           <!-- <div class="locale-changer">
             <select v-model="$i18n.locale">
@@ -41,7 +44,7 @@
         </mdb-navbar-nav>
       </mdb-navbar-toggler>
     </mdb-navbar>
-    
+
     <main>
       <transition name="fade" mode="out-in">
           <router-view></router-view>

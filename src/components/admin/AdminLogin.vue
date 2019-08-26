@@ -1,19 +1,139 @@
 <template>
-  <div class="adminlogin mt-5 pt-5">
-    Admin Login
+  <div class="adminlogin mt-5 pt-5 h-100 container">
+
+    <section class="form-gradient">
+      <mdb-row class="justify-content-md-center">
+        <mdb-col md="5">
+          <mdb-card>
+            <div class="header pt-3 peach-gradient">
+              <mdb-row class="d-flex justify-content-center">
+                <h3 class="white-text mb-3 pt-3 font-weight-bold"> admin Log in</h3>
+              </mdb-row>
+            </div>
+            <mdb-card-body class="mx-4 mt-4">
+              <mdb-input v-model="email" label="Your email" type="email"/>
+              <mdb-input v-model="password" label="Your password" type="password" containerClass="mb-0"/>
+              <mdb-row class="d-flex align-items-center mb-4 mt-5">
+                <mdb-col md="5" class="d-flex align-items-start">
+                  <div class="text-center">
+                    <mdb-btn @click="login" color="grey" rounded type="button" class="z-depth-1a">Log in</mdb-btn>
+                  </div>
+                </mdb-col>
+                <mdb-col md="7" class="d-flex justify-content-end">
+                </mdb-col>
+              </mdb-row>
+                <p class="red-text">{{ boo }}</p>
+            </mdb-card-body>
+          </mdb-card>
+        </mdb-col>
+      </mdb-row>
+    </section>
+
   </div>
 </template>
 
 <script>
-export default {
-  name: "adminlogin",
-  props: {
-    msg: String
-  }
-};
+  import {
+    fbAuth
+  } from '../../assets/js/firebase';
+  import i18n from '../../i18n';
+  import {
+    mdbRow,
+    mdbCol,
+    mdbCard,
+    mdbCardBody,
+    mdbInput,
+    mdbBtn,
+    mdbIcon
+  } from 'mdbvue';
+  export default {
+    name: "adminlogin",
+    props: {
+      msg: String
+    },
+    components: {
+      mdbRow,
+      mdbCol,
+      mdbCard,
+      mdbCardBody,
+      mdbInput,
+      mdbBtn,
+      mdbIcon
+    },
+    data() {
+      return {
+        email: null,
+        password: null,
+        isAdmin: false,
+        boo: '',
+      }
+    },
+    methods: {
+      login() {
+        this.$Progress.start();
+        let email = this.email,
+          password = this.password;
+        console.log(email)
+
+        fbAuth.auth().signInWithEmailAndPassword(email, password)
+          .then((user) => {
+            console.log(user)
+            this.$router.push(`/${i18n.locale}/admin`)
+            this.$Progress.finish();
+            //   Swal.fire({
+            //   position: 'top-end',
+            //   type: 'success',
+            //   title: 'Logged in successfully',
+            //   showConfirmButton: false,
+            //   timer: 1500
+            // });
+
+          })
+          .catch(error => {
+            // Handle Errors here
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            this.$Progress.fail();
+
+            // this.boo = errorMessage;
+            // ...
+            // [START_EXCLUDE]
+            if (errorCode == 'auth/weak-password') {
+              alert('The password is too weak.');
+            } else {
+              this.boo = errorMessage;
+            }
+            console.log(error);
+            // [END_EXCLUDE]
+          });
+      },
+    }
+  };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style scoped>
+
+  .form-gradient .font-small {
+    font-size: 0.8rem; }
+
+  .form-gradient .header {
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem; }
+
+  .form-gradient input[type=text]:focus:not([readonly]) {
+    border-bottom: 1px solid #fd9267;
+    -webkit-box-shadow: 0 1px 0 0 #fd9267;
+    box-shadow: 0 1px 0 0 #fd9267; }
+
+  .form-gradient input[type=text]:focus:not([readonly]) + label {
+    color: #4f4f4f; }
+
+  .form-gradient input[type=password]:focus:not([readonly]) {
+    border-bottom: 1px solid #fd9267;
+    -webkit-box-shadow: 0 1px 0 0 #fd9267;
+    box-shadow: 0 1px 0 0 #fd9267; }
+
+  .form-gradient input[type=password]:focus:not([readonly]) + label {
+    color: #4f4f4f; }
 
 </style>
