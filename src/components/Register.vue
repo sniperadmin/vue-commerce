@@ -1,45 +1,53 @@
 <template>
   <div class="register">
 
-    <b-modal ref="my-modal" id="modal-1" scrollable title="Bootstrap Vue Modal">
+    <b-modal ref="my-modal" id="modal-1" scrollable>
+
+      <template slot="modal-header" slot-scope="{ close }">
+        <h3>
+          {{ $t('modal.title') }}
+          </h3>
+        <b-button variant="outline-danger pt-1 pb-1 pr-1 pl-1">
+          <i class="fas fa-times" @click="close"></i>
+        </b-button>
+      </template>
+
       <b-tabs pills align="center" justified>
-        <b-tab title="Login" active>
+          <b-tab :title="$t('modal.tabs.login.title')" active>
           <b-card-text>
             <form @submit.prevent="login" autocomplete="off">
               <div class="grey-text">
                 
-                <mdb-input v-model="email" label="Your email" icon="envelope" type="email" />
+                <mdb-input v-model="email" :label="$t('modal.tabs.login.email')" icon="envelope" type="email" />
 
-                <mdb-input v-model="password" label="Your password" icon="lock" type="password" />
+                <mdb-input v-model="password" :label="$t('modal.tabs.login.password')" icon="lock" type="password" />
               </div>
               <small class="text-danger" v-if="boo">{{ boo }}</small>
               <div class="text-center">
-                <mdb-btn >Login</mdb-btn>
+                <mdb-btn >{{ $t('modal.tabs.login.button') }}</mdb-btn>
               </div>
             </form>
           </b-card-text>
         </b-tab>
 
-        <b-tab title="Register">
+        <b-tab :title="$t('modal.tabs.register.title')">
           <b-card-text>
 
             <!-- Code for Registration Form Here -->
 
             <article class="card-body mx-auto" style="max-width: 400px;">
-              <h4 class="card-title mt-3 text-center">Create Account</h4>
-              <p class="text-center">Get started with your free account</p>
+              <h4 class="card-title mt-3 text-center">{{ $t('modal.tabs.register.heading') }}</h4>
+              <p class="text-center">{{ $t('modal.tabs.register.sub-heading') }}</p>
               <p>
-                <a class="btn btn-block btn-twitter white-text" href=""> <i class="fab fa-twitter"></i> &nbsp; Login via
-                  Twitter</a>
-                <a class="btn btn-block btn-facebook white-text" href=""> <i class="fab fa-facebook-f"></i> &nbsp; Login
-                  via facebook</a>
+                <a class="btn btn-block btn-twitter white-text" href=""> <i class="fab fa-twitter"></i> &nbsp; {{ $t('modal.tabs.register.twitter') }}</a>
+                <a class="btn btn-block btn-facebook white-text" href=""> <i class="fab fa-facebook-f"></i> &nbsp; {{ $t('modal.tabs.register.facebook') }}</a>
               </p>
               <p class="divider-text">
-                <span>OR</span>
+                <span>{{ $t('modal.tabs.register.or') }}</span>
               </p>
               <form @submit.stop.prevent="register" autocomplete="off">
 
-                  <b-form-group id="example-input-group-1" label="Email:" label-for="email-form"
+                  <b-form-group id="example-input-group-1" :label="$t('modal.tabs.register.email')" label-for="email-form"
                     label-cols-sm="3"
                     label-cols-lg="3">
                     <b-form-input
@@ -51,13 +59,13 @@
                     >
                     </b-form-input>
                     <b-form-invalid-feedback id="email-live-feedback" v-if="$v.email.email">
-                         This is a required field.
+                         {{ $t('modal.tabs.register.email-invalid-1') }}
                       </b-form-invalid-feedback>
                     <b-form-invalid-feedback id="email-live-feedback" v-if="$v.email.required">
-                         must be a valid email.
+                          {{ $t('modal.tabs.register.email-invalid-2') }}
                     </b-form-invalid-feedback>
                   
-                    <b-form-valid-feedback id="email-live-feedback">Looks good!</b-form-valid-feedback>
+                    <b-form-valid-feedback id="email-live-feedback">  {{ $t('modal.tabs.register.email-valid') }}</b-form-valid-feedback>
                   </b-form-group>
 
                 <!-- <div class="form-group input-group">
@@ -84,7 +92,7 @@
                   </select>
                 </div> form-group end.// -->
                
-               <b-form-group id="example-input-group-1" label="Password: " label-for="password-form"
+               <b-form-group id="example-input-group-1" :label="$t('modal.tabs.register.password')" label-for="password-form"
                 label-cols-sm="3"
                 label-cols-lg="3">
                     <b-form-input
@@ -97,19 +105,19 @@
                     >
                     </b-form-input>
                     <b-form-invalid-feedback id="password-live-feedback" v-if="$v.password.minLength">
-                         This is a required field.
+                         {{ $t('modal.tabs.register.password-invalid-1') }}
                       </b-form-invalid-feedback>
                     <b-form-invalid-feedback id="password-live-feedback" v-if="$v.password.required">
-                        Field must be {{ $v.password.$params.minLength.min }} characters.
+                        {{ $t('modal.tabs.register.password-invalid-2') }} {{ $v.password.$params.minLength.min }} {{ $t('modal.tabs.register.characters') }}
                     </b-form-invalid-feedback>
                   
-                    <b-form-valid-feedback id="password-live-feedback">Looks good!</b-form-valid-feedback>
+                    <b-form-valid-feedback id="password-live-feedback">{{ $t('modal.tabs.register.password-valid') }} </b-form-valid-feedback>
                   </b-form-group>
 
                 <div class="form-group">
-                  <button class="btn btn-primary btn-block" type="submit" :disabled="$v.$invalid">Create Account</button>
+                  <button class="btn btn-primary btn-block" type="submit" :disabled="$v.$invalid">{{ $t('modal.tabs.register.button') }}</button>
                 </div> <!-- form-group// -->
-                <p class="text-center">Have an account? <a href="">Log In</a> </p>
+                <p class="text-center">{{ $t('modal.tabs.register.option') }} <span>{{ $t('modal.tabs.register.link') }}</span> </p>
               </form>
               <p v-if="boo">{{ boo }}</p>
             </article>
@@ -117,9 +125,9 @@
         </b-tab>
       </b-tabs>
       <div slot="modal-footer" class="w-100">
-        <span>Nasr Galal Designs</span>
+        <span>{{ $t('modal.footer') }}</span>
         <b-button variant="primary" size="sm" class="float-right" @click="hideModal">
-          Close
+          {{ $t('modal.close') }}
         </b-button>
       </div>
 
@@ -128,11 +136,11 @@
 </template>
 
 <script>
-  import {fbAuth, db} from '../assets/js/firebase';
-    import { validationMixin } from 'vuelidate';
-  import { required, minLength, email } from 'vuelidate/lib/validators';
-
-  import {
+import {fbAuth, db} from '../assets/js/firebase';
+import { validationMixin } from 'vuelidate';
+import { required, minLength, email } from 'vuelidate/lib/validators';
+import i18n from '../i18n';
+import {
     mdbTabs,
     mdbInput,
     mdbBtn,
@@ -142,7 +150,7 @@
     mixins: [validationMixin],
     name: "register",
     props: {
-      msg: String
+      msg: String,
     },
     components: {
       mdbTabs,
@@ -199,6 +207,7 @@
           var errorCode = error.code;
           var errorMessage = error.message;
           this.$Progress.fail();
+          this.boo = errorMessage;
           // ...
           // [START_EXCLUDE]
             if (errorCode == 'auth/weak-password') {

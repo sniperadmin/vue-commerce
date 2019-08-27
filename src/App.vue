@@ -9,7 +9,7 @@
           <mdb-nav-item exact :to="`/${$i18n.locale}`"><strong>{{ $t('nav.home') }}</strong></mdb-nav-item>
           <!-- <mdb-nav-item to="/css"><strong>About</strong></mdb-nav-item> -->
           <mdb-nav-item v-b-modal.modal-1 v-if="!session"><strong>
-          Login/Register
+          {{ $t('nav.login') }}
           </strong></mdb-nav-item>
           
           <mdb-dropdown tag="li" class="nav-item">
@@ -17,16 +17,16 @@
           {{name}}
           </strong></mdb-dropdown-toggle>
           <mdb-dropdown-menu>
-            <mdb-dropdown-item color="cyan">
-              <mdb-nav-item anchorClass="black-text" :to="`/${$i18n.locale}/profile`">
-                profile settings
+            <mdb-dropdown-item>
+              <mdb-nav-item anchorClass="black-text" :to="`/${$i18n.locale}/profile`"><i class="fas fa-wrench mr-2"></i> 
+              {{ $t('nav.dropdown.settings') }}
               </mdb-nav-item>
             </mdb-dropdown-item>
-            <mdb-dropdown-item @click="logout">Logout</mdb-dropdown-item>
+            <mdb-dropdown-item @click="logout"><i class="fas fa-power-off mr-2"></i> {{ $t('nav.dropdown.logout') }}</mdb-dropdown-item>
           </mdb-dropdown-menu>
           </mdb-dropdown>
           <mdb-nav-item :to="`/${$i18n.locale}/checkout`"><i class="fas fa-cart-plus"></i><strong>{{ $t('nav.cart') }}</strong></mdb-nav-item>
-          <mdb-nav-item :to="`/${$i18n.locale}/adminlogin`"><strong>Admin Access</strong></mdb-nav-item>
+          <mdb-nav-item :to="`/${$i18n.locale}/adminlogin`"><strong>{{ $t('nav.admin') }}</strong></mdb-nav-item>
           
           <!-- <div class="locale-changer">
             <select v-model="$i18n.locale">
@@ -54,7 +54,7 @@
     </main>
     <mdb-footer v-if="!$route.meta.hideNavigation" color="stylish-color">
       <p class="footer-copyright mb-0 py-3 text-center">
-        &copy; {{new Date().getFullYear()}} Copyright: <a href="https://forums.coretabs.net/sniperadmin"> Nasr Galal</a>
+        &copy; {{new Date().getFullYear()}} {{ $t('footer.copyright')}}: <a href="https://forums.coretabs.net/sniperadmin"> {{ $t('footer.name') }} </a>
       </p>
     </mdb-footer>
   </div>

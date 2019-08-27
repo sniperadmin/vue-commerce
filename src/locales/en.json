@@ -3,15 +3,58 @@
   "nav" : {
     "logo" : "vue-commerce",
     "home" : "home",
-    "cart" : "cart"
+    "login" : "login/register",
+    "dropdown" : {
+      "settings" : "profile settings",
+      "logout" : "logout"
+    },
+    "cart" : "cart",
+    "admin" : "admin access"
   },
   "jumbotron": {
     "title" : "create your special e-shop now!",
     "body" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem, optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos. Odit sed qui, dolorum! ",
     "button": "view project"
   },
+  "modal" : {
+    "title" : "login/register",
+    "tabs" : {
+      "login" : {
+        "title" : "login",
+        "email": "email",
+        "password" : "password",
+        "button" : "login"
+      },
+      "register" : {
+        "title" : "register",
+        "heading": "create account",
+        "sub-heading": "get started with your free account",
+        "twitter": "login via twitter",
+        "facebook": "login via facebook",
+        "or" : "or",
+        "email" : "email",
+        "email-invalid-1": "This is a required field.",
+        "email-invalid-2": "must be a valid email.",
+        "email-valid": "looks good!",
+        "password" : "password",
+        "password-invalid-1": "This is a required field.",
+        "password-invalid-2": "Field must be",
+        "characters" : "characters",
+        "password-valid": "looks good!",
+        "button" : "create account",
+        "option" : "have an account?",
+        "link" : "login"
+      }
+    },
+    "footer" : "nasr galal designs",
+    "close" : "close"
+  },
   "intro" : {
     "title": "Why is it so great?",
     "body" : "I have designed a Material Design to make the web more beautiful and more user-friendly. Twitter has created a Bootstrap to support you in faster and easier development of responsive and effective websites. I present you a web app containing the best features of both of them - Material Design for Bootstrap."
+  },
+  "footer" :{
+    "name" : "Nasr Galal",
+    "copyright" : "copyright"
   }
 }

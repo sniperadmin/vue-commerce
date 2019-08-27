@@ -1,14 +1,14 @@
-const functions = require('firebase-functions');
-const {Storage} = require('@google-cloud/storage');
-const projectId = 'vue-shop-e3547';
-let gcs = new Storage({ projectId });
-const os = require('os');
-const path = require('path');
+// const {Storage} = require('@google-cloud/storage');
+// const projectId = 'vue-shop-e3547';
+// let gcs = new Storage({ projectId });
+// const os = require('os');
+// const path = require('path');
+// const spawn = require('child-process-promise').spawn;
 
+const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp();
 
-// const spawn = require('child-process-promise').spawn;
 const stripe = require("stripe")("pk_test_EkgRdwSuRpwR0FUEsUSMJVCw00HJk4Sukt");
 const cors = require('cors')({origin: true});
 
@@ -17,31 +17,31 @@ const cors = require('cors')({origin: true});
 //
 
 // test a rename functionality for pictures on firestore
-exports.onFileChange = functions.storage.object().onFinalize(event => {
-  const bucket = event.bucket;
-  const contentType = event.contentType;
-  const filepath = event.name;
-  console.log('change detected');
+// exports.onFileChange = functions.storage.object().onFinalize(event => {
+//   const bucket = event.bucket;
+//   const contentType = event.contentType;
+//   const filepath = event.name;
+//   console.log('change detected');
 
-  if (path.basename(filepath).startsWith('renamed-')) {
-    console.log('file already renamed');
-    return;
-  }
+//   if (path.basename(filepath).startsWith('renamed-')) {
+//     console.log('file already renamed');
+//     return;
+//   }
 
-  const destBucket = gcs.bucket(bucket);
-  const tmpFilePath = path.join(os.tmpdir(), path.basename(filepath));
-  const metadata = { contentType };
+//   const destBucket = gcs.bucket(bucket);
+//   const tmpFilePath = path.join(os.tmpdir(), path.basename(filepath));
+//   const metadata = { contentType };
 
-  return destBucket.file(filepath).download({
-    destination: tmpFilePath
-  })
-    .then(() => {
-      return destBucket.upload(tmpFilePath, {
-        destination: 'renamed-' + path.basename(filepath),
-        metadata
-      })
-    })
-});
+//   return destBucket.file(filepath).download({
+//     destination: tmpFilePath
+//   })
+//     .then(() => {
+//       return destBucket.upload(tmpFilePath, {
+//         destination: 'renamed-' + path.basename(filepath),
+//         metadata
+//       })
+//     })
+// });
 
 /* ---- Setting User Privilages
 
@@ -95,26 +95,6 @@ exports.addAdminRole = functions.https.onCall((data, context) => {
         });
     });
 });
-
-// eslint-disable-next-line func-style
-function listAllUsers(nextPageToken) {
-  // List batch of users, 1000 at a time.
-  admin.auth().listUsers(1000, nextPageToken)
-    .then(function(listUsersResult) {
-      listUsersResult.users.forEach(function(userRecord) {
-        console.log('user', userRecord.toJSON());
-      });
-      if (listUsersResult.pageToken) {
-        // List next batch of users.
-        listAllUsers(listUsersResult.pageToken);
-      }
-    })
-    .catch(function(error) {
-      console.log('Error listing users:', error);
-    });
-}
-// Start listing users from the beginning, 1000 at a time.
-listAllUsers();
 
 // Checkout
 exports.checkoutSession = functions.https.onRequest((request, response) => {
