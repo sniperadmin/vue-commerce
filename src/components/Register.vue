@@ -7,7 +7,7 @@
         <h3>
           {{ $t('modal.title') }}
           </h3>
-        <b-button variant="outline-danger pt-1 pb-1 pr-1 pl-1">
+        <b-button variant="outline-danger pt-1 pb-1 pr-2 pl-2">
           <i class="fas fa-times" @click="close"></i>
         </b-button>
       </template>

@@ -20,6 +20,8 @@ import Checkout from './components/Checkout';
 import Users from './components/admin/Users';
 // MyBoard
 import MyBoard from './components/MyBoard';
+// about
+import About from './components/About';
 // AdminLogin
 import AdminLogin from './components/admin/AdminLogin';
 
@@ -52,7 +54,12 @@ export default new Router({
           name: "home",
           component: HomePage
         },
-        
+        // about
+        {
+          path: "about",
+          name: "about",
+          component: About
+        },
         // myboard
         {
           path: "myboard",

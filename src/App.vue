@@ -1,13 +1,15 @@
 <template>
   <div id="app" class="flyout">
     <mdb-navbar v-if="!$route.meta.hideNavigation" id="main-navbar" dark position="top" color="stylish" scrolling :scrollingOffset="20">
+      <!-- logo -->
       <mdb-navbar-brand to="/" waves class="font-weight-bold">
         Vue-Commerce
       </mdb-navbar-brand>
       <mdb-navbar-toggler>
         <mdb-navbar-nav right>
+          <!-- navbar -->
           <mdb-nav-item exact :to="`/${$i18n.locale}`"><strong>{{ $t('nav.home') }}</strong></mdb-nav-item>
-          <!-- <mdb-nav-item to="/css"><strong>About</strong></mdb-nav-item> -->
+          <mdb-nav-item :to="`/${$i18n.locale}/about`"><strong>About</strong></mdb-nav-item>
           <mdb-nav-item v-b-modal.modal-1 v-if="!session"><strong>
           {{ $t('nav.login') }}
           </strong></mdb-nav-item>

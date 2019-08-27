@@ -1,6 +1,6 @@
 <template>
-  <div class="profile">
-    <div class="container h-100">
+  <div class="profile mt-4 pt-4">
+    <div class="container h-100 mt-4">
       <div class="intro h-100">
         <div class="row h-100 align-items-center">
           <div class="col-md-6">
