@@ -3,19 +3,19 @@
     <div class="container mt-5 pt-5">
       <div class="row">
         <div class="col-md-9 mb-4">
-          <h2 class="h2-responsive">Checkout Page</h2>
+          <h2 class="h2-responsive">{{ $t('cart.title') }}</h2>
 
           <transition name="slide">
             <mdb-alert color="warning" v-if="logged && !verified">
-              <h4 class="alert-heading">verify your email address!</h4>
+              <h4 class="alert-heading">{{ $t('alerts.verify') }}</h4>
               <hr>
-              <p class="mb-0">make sure that you do confirm your email, so that you can use our sevices.</p>
+              <p class="mb-0">{{ $t('alerts.verify-p') }}</p>
             </mdb-alert>
 
             <mdb-alert color="info" v-if="!logged && !verified">
-              <h4 class="alert-heading">login/signup and start buying!</h4>
+              <h4 class="alert-heading">{{ $t('alerts.login') }}</h4>
               <hr>
-              <p class="mb-0">make sure that you do confirm your email, so that you can use our sevices.</p>
+              <p class="mb-0">{{ $t('alerts.login-p') }}</p>
             </mdb-alert>
           </transition>
 
@@ -31,12 +31,12 @@
 
         </div>
         <div class="col-md-3">
-          <h3 class="h3-responsive">Total Price:</h3>
+          <h3 class="h3-responsive">{{ $t('cart.total') }}</h3>
           <h3 class="h3-responsive">{{ totalPrice | currency }}</h3>
           <b-button disabled="disabled" @click="payment" variant="warning" v-if="logged && verified">Checkout</b-button>
-          <b-button disabled="disabled" variant="warning" v-if="logged && !verified">verify e-mail to checkout
+          <b-button disabled="disabled" variant="warning" v-if="logged && !verified">{{ $t('alerts.verify-button') }}
           </b-button>
-          <b-button disabled="disabled" variant="warning" v-if="!logged && !verified">Login/signup to checkout
+          <b-button disabled="disabled" variant="warning" v-if="!logged && !verified">{{ $t('alerts.login-button') }}
           </b-button>
         </div>
       </div>

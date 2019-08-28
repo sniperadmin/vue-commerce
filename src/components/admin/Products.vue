@@ -90,11 +90,12 @@
                   <input type="file" @change="uploadImage" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                   <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                 </div> -->
-                <b-form-file class="mb-3" @change="uploadImage"
+                <b-form-file class="mb-3" accept="image/*" multiple @change="uploadImage"
                       placeholder="Choose a file..."
                       drop-placeholder="Drop file here..."
                     ></b-form-file>
               </div>
+              <!-- display images -->
               <div class="form-group d-flex pt-2">
                 <div class="p-1" v-for="(image, index) in product.images" :key="index">
                   <div class="img-small-wrap">
@@ -177,29 +178,40 @@ export default {
         this.tag = '';
         console.log(this.product.tags);
       },
-      uploadImage(e){
-        if (e.target.files[0]) {
-          let file = e.target.files[0];
-          var storageRef = fbAuth.storage().ref('products/' + file.name);
-  
-          var uploadTask = storageRef.put(file);
-  
-          uploadTask.on('state_changed', (snapshot) => {
-          
-          }, (error) => {
-            // Handle unsuccessful uploads
-          }, () => {
-            // Handle successful uploads on complete
-            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-            uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-              this.product.images = this.product.images || [];
-              this.product.images.push(downloadURL);
-              console.log('File available at', downloadURL);
-            });
+      uploadImage(e) {
+        if (e.target.files) {
 
-          });
+          for (var i in Object.entries(e.target.files)) {
+              let file = e.target.files[i];
+              console.log(file)
+              uploadMechanism(file)
+          }
+              
+          function  uploadMechanism(file) {
+              var storageRef = fbAuth.storage().ref('products/' + file.name);
+              var uploadTask = storageRef.put(file);
+          
+              uploadTask.on('state_changed', (snapshot) => {
+
+                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+
+              }, (error) => {
+                // Handle unsuccessful uploads
+              }, () => {
+                // Handle successful uploads on complete
+                uploadTask.snapshot.ref.getDownloadURL().then(() => {
+                  var downloadURL = uploadTask.snapshot.downloadURL;
+                  this.product.images = this.product.images || [];
+                  this.product.images.push(downloadURL);
+
+                  console.log('File available at', downloadURL);
+                }).catch((err) => console.log(err))
+              });
+          }
         }
-              // console.log(this.product.images)
+          // console.log(this.product.images)
       },
       deleteImage(img, index) {
         let image = fbAuth.storage().refFromURL(img)
@@ -270,9 +282,15 @@ export default {
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
+      }).then(result => {
         if (result.value) {
+
           this.$firestore.products.doc(doc.id).delete();
+          
+          for (var img in doc.images) {
+            fbAuth.storage().refFromURL(doc.images[img]).delete().then(() => {console.log('image deleted')}).catch((err) => {console.log(err)})
+            // console.log(doc.images[img])
+          }
 
               toast.fire({
                 type: 'success',

@@ -27,6 +27,7 @@
     "vue-carousel": "^0.18.0",
     "vue-firestore": "^0.3.22",
     "vue-i18n": "^8.0.0",
+    "vue-meta": "^2.2.1",
     "vue-progressbar": "^0.7.5",
     "vue-router": "^3.0.3",
     "vue2-editor": "^2.10.0",

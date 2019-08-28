@@ -7,16 +7,16 @@
           <mdb-card>
             <div class="header pt-3 peach-gradient">
               <mdb-row class="d-flex justify-content-center">
-                <h3 class="white-text mb-3 pt-3 font-weight-bold"> admin Log in</h3>
+                <h3 class="white-text mb-3 pt-3 font-weight-bold"> {{ $t('adminlogin.title') }}</h3>
               </mdb-row>
             </div>
             <mdb-card-body class="mx-4 mt-4">
-              <mdb-input v-model="email" label="Your email" type="email"/>
-              <mdb-input v-model="password" label="Your password" type="password" containerClass="mb-0"/>
+              <mdb-input v-model="email" :label="$t('adminlogin.email')" type="email"/>
+              <mdb-input v-model="password" :label="$t('adminlogin.password')" type="password" containerClass="mb-0"/>
               <mdb-row class="d-flex align-items-center mb-4 mt-5">
                 <mdb-col md="5" class="d-flex align-items-start">
                   <div class="text-center">
-                    <mdb-btn @click="login" color="grey" rounded type="button" class="z-depth-1a">Log in</mdb-btn>
+                    <mdb-btn @click="login" color="grey" rounded type="button" class="z-depth-1a">{{ $t('adminlogin.button') }}</mdb-btn>
                   </div>
                 </mdb-col>
                 <mdb-col md="7" class="d-flex justify-content-end">

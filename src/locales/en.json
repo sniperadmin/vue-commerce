@@ -3,6 +3,7 @@
   "nav" : {
     "logo" : "vue-commerce",
     "home" : "home",
+    "about" : "about",
     "login" : "login/register",
     "dropdown" : {
       "settings" : "profile settings",
@@ -53,8 +54,53 @@
     "title": "Why is it so great?",
     "body" : "I have designed a Material Design to make the web more beautiful and more user-friendly. Twitter has created a Bootstrap to support you in faster and easier development of responsive and effective websites. I present you a web app containing the best features of both of them - Material Design for Bootstrap."
   },
-  "footer" :{
+  "alerts": {
+    "verify" : "verify your email address!",
+    "verify-p" : "make sure that you do confirm your email, so that you can use our sevices.",
+    "verify-button" : "verify e-mail to checkout",
+    "login" : "login/signup and start buying!",
+    "login-p" : "make sure that you do confirm your email, so that you can use our sevices.",
+    "login-button" : "verify e-mail to checkout"
+  },
+  "footer" : {
     "name" : "Nasr Galal",
     "copyright" : "copyright"
+  },
+  "about" : {
+    "title" : "about us",
+    "content": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque sunt iure perspiciatis est veniam, voluptates maiores vitae? Sunt, perspiciatis iusto? Minus provident quisquam quibusdam natus illo, inventore cumque quos placeat."
+  },
+  "cart" : {
+    "title" : "checkout page",
+    "total" : "total price"
+  },
+  "profile" : {
+    "title" : "profile settings",
+    "text" : "Update and change your settings here",
+    "tabs" : {
+      "profile" : {
+        "title" : "profile",
+        "name" : "your name",
+        "address" : "address",
+        "postcode": "postcode",
+        "phone" : "phone number",
+        "button" : "save changes"
+      },
+      "account" : {
+        "title" : "account settings",
+        "username": "username",
+        "email" : "email",
+        "browse" : "browse",
+        "choose" : "choose file",
+        "button-1" : "save changes",
+        "button-2" : "reset password"
+      }
+    }
+  },
+  "adminlogin": {
+    "title" : "admin login",
+    "email" : "your email",
+    "password" : "your password",
+    "button" : "login" 
   }
 }

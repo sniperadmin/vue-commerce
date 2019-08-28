@@ -1,20 +1,37 @@
 <template>
-  <div id="app" class="flyout">
-    <mdb-navbar v-if="!$route.meta.hideNavigation" id="main-navbar" dark position="top" color="stylish" scrolling :scrollingOffset="20">
+  <div id="app" class="flyout" v-dir>
+    <mdb-navbar class="justify-content-between" v-if="!$route.meta.hideNavigation" dark position="top" color="stylish" scrolling :scrollingOffset="20">
       <!-- logo -->
       <mdb-navbar-brand to="/" waves class="font-weight-bold">
         Vue-Commerce
       </mdb-navbar-brand>
       <mdb-navbar-toggler>
-        <mdb-navbar-nav right>
+        <mdb-navbar-nav >
           <!-- navbar -->
           <mdb-nav-item exact :to="`/${$i18n.locale}`"><strong>{{ $t('nav.home') }}</strong></mdb-nav-item>
-          <mdb-nav-item :to="`/${$i18n.locale}/about`"><strong>About</strong></mdb-nav-item>
+          <mdb-nav-item :to="`/${$i18n.locale}/about`"><strong>{{ $t('nav.about') }}</strong></mdb-nav-item>
           <mdb-nav-item v-b-modal.modal-1 v-if="!session"><strong>
           {{ $t('nav.login') }}
           </strong></mdb-nav-item>
+            
+          <!-- cart -->
+          <mdb-nav-item :to="`/${$i18n.locale}/checkout`"><i class="fas fa-cart-plus"></i><strong>{{ $t('nav.cart') }}</strong></mdb-nav-item>
           
+          <!-- <div class="locale-changer">
+            <select v-model="$i18n.locale">
+              <option v-for="(lang, i) in $i18n.availableLocales" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
+            </select>
+          </div> -->
           <mdb-dropdown tag="li" class="nav-item">
+            <mdb-dropdown-toggle tag="a" navLink slot="toggle" waves-fixed><strong>{{ $i18n.locale }}</strong></mdb-dropdown-toggle>
+            <mdb-dropdown-menu >
+              <mdb-dropdown-item @click.prevent="setLocale(lang)" v-for="(lang, i) in $i18n.availableLocales" :key="`Lang${i}`" :value="lang">{{ lang }}</mdb-dropdown-item>
+            </mdb-dropdown-menu>
+          </mdb-dropdown>
+        </mdb-navbar-nav> 
+
+          <!-- dropdown -->
+          <mdb-dropdown tag="li" class="nav-item text-white">
           <mdb-dropdown-toggle v-if="session" tag="a" navLink slot="toggle" waves-fixed><strong>
           {{name}}
           </strong></mdb-dropdown-toggle>
@@ -26,24 +43,10 @@
             </mdb-dropdown-item>
             <mdb-dropdown-item @click="logout"><i class="fas fa-power-off mr-2"></i> {{ $t('nav.dropdown.logout') }}</mdb-dropdown-item>
           </mdb-dropdown-menu>
-          </mdb-dropdown>
-          <mdb-nav-item :to="`/${$i18n.locale}/checkout`"><i class="fas fa-cart-plus"></i><strong>{{ $t('nav.cart') }}</strong></mdb-nav-item>
-          <mdb-nav-item :to="`/${$i18n.locale}/adminlogin`"><strong>{{ $t('nav.admin') }}</strong></mdb-nav-item>
-          
-          <!-- <div class="locale-changer">
-            <select v-model="$i18n.locale">
-              <option v-for="(lang, i) in $i18n.availableLocales" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
-            </select>
-          </div> -->
-
-          <mdb-dropdown tag="li" class="nav-item">
-            <mdb-dropdown-toggle tag="a" navLink slot="toggle" waves-fixed><strong>{{ $i18n.locale }}</strong></mdb-dropdown-toggle>
-            <mdb-dropdown-menu dropleft>
-              <mdb-dropdown-item @click.prevent="setLocale(lang)" v-for="(lang, i) in $i18n.availableLocales" :key="`Lang${i}`" :value="lang">{{ lang }}</mdb-dropdown-item>
-            </mdb-dropdown-menu>
-          </mdb-dropdown>
-
-        </mdb-navbar-nav>
+          </mdb-dropdown><!-- ./dropdown -->
+        
+          <mdb-nav-item waves waves-fixed :to="`/${$i18n.locale}/adminlogin`"><strong class="text-white">{{ $t('nav.admin') }}</strong></mdb-nav-item>
+      
       </mdb-navbar-toggler>
     </mdb-navbar>
 
@@ -56,7 +59,7 @@
     </main>
     <mdb-footer v-if="!$route.meta.hideNavigation" color="stylish-color">
       <p class="footer-copyright mb-0 py-3 text-center">
-        &copy; {{new Date().getFullYear()}} {{ $t('footer.copyright')}}: <a href="https://forums.coretabs.net/sniperadmin"> {{ $t('footer.name') }} </a>
+         {{new Date().getFullYear()}} &copy; {{ $t('footer.copyright')}}: <a href="https://forums.coretabs.net/sniperadmin"> {{ $t('footer.name') }} </a>
       </p>
     </mdb-footer>
   </div>
@@ -64,6 +67,7 @@
 
 <script>
 import {fbAuth} from '../src/assets/js/firebase';
+import i18n from './i18n';
 import { 
   mdbNavbar, 
   mdbNavItem, 
@@ -98,6 +102,7 @@ export default {
     return {
       session: null,
       name: null,
+      reverse: false,
       // langs: ['en', 'ar']
     }
   },
@@ -123,6 +128,18 @@ export default {
           });
         }
   },
+  directives: {
+    dir: el => {
+      if (i18n.locale === 'ar') {
+          el.style.direction = "rtl";
+          el.style.textAlign = "right"
+          
+        } else if (i18n.locale === 'en') {
+          el.style.direction = "ltr"
+          el.style.textAlign = "left"
+        }
+    }
+  },
   created() {
     fbAuth.auth().onAuthStateChanged(user => {
           if(user) {
@@ -130,14 +147,15 @@ export default {
             this.session = logged;
             let username = logged.email;
             this.name = username;
-          }
-        });
+        }
+    });
   }
 };
 
 </script>
 
 <style>
+
 * {
   text-transform: capitalize;
 }

@@ -32,6 +32,7 @@ import i18n from './i18n';
 
 // use router
 Vue.use(Router);
+
 // exporting router function 
 export default new Router({
   mode: "history",

@@ -4,8 +4,8 @@
       <div class="intro h-100">
         <div class="row h-100 align-items-center">
           <div class="col-md-6">
-            <h1>Profile settings</h1> <!-- Title -->
-            <p>Update and change your settings here</p><!-- sub -->
+            <h1>{{ $t('profile.title') }}</h1> <!-- Title -->
+            <p>{{ $t('profile.text') }}</p><!-- sub -->
           </div>
 
           
@@ -18,27 +18,26 @@
 
     <div class="container-fluid"><!-- main contents -->
           <mdb-alert color="success" v-if="!verified">
-              <h4 class="alert-heading">verify your email address!</h4>
-              <p>For your safety, we have sent you a verification email with a confirmation link.</p>
+              <h4 class="alert-heading">{{ $t('alerts.verify') }}</h4>
               <hr>
-              <p class="mb-0">make sure that you do confirm your email, so that you can use our sevices.</p>
+              <p>{{ $t('alerts.verify-p') }}</p>
             </mdb-alert>
       <b-card no-body><!-- card -->
         <b-tabs pills card justified><!-- tabs -->
-          <b-tab title="Profile" active><!-- tab title -->
+          <b-tab :title="$t('profile.tabs.profile.title')" active><!-- tab title -->
             <b-card-text><!-- contents -->
               <b-container fluid>
                 <b-row><!-- first row -->
                   <b-col md="4"><!-- col-1 -->
                     <b-form-group id="fieldset-horizontal" label-cols-sm="3" label-cols-lg="3"
-                      description="Let us know your name." label="Your name" label-align="right"
+                      :description="$t('profile.tabs.profile.name')" :label="$t('profile.tabs.profile.name')" label-align="right"
                       label-for="input-horizontal">
                       <b-form-input v-model="profile.name" id="input-horizontal"></b-form-input>
                     </b-form-group>
                   </b-col><!-- ./col-1 -->
                   <b-col md="5"><!-- col-2 -->
                     <b-form-group id="fieldset-horizontal" label-cols-sm="3" label-cols-lg="3"
-                      description="Phone Number" label="Your Phone" label-align="right" label-for="input2-horizontal">
+                      :description="$t('profile.tabs.profile.phone')" :label="$t('profile.tabs.profile.phone')" label-align="right" label-for="input2-horizontal">
                       <b-form-input v-model="profile.phone" id="input2-horizontal"></b-form-input>
                     </b-form-group>
                   </b-col><!-- ./col-2 -->
@@ -47,7 +46,7 @@
                 <b-row><!-- row-2 -->
                   <b-col md="11"><!-- col -->
                     <b-form-group id="fieldset-horizontal" label-cols-sm="2" label-cols-lg="1"
-                      description="Full address here." label="Address" label-align-sm="left" label-align-lg="right"
+                      :description="$t('profile.tabs.profile.address')" :label="$t('profile.tabs.profile.address')" label-align-sm="left" label-align-lg="right"
                       label-for="input3-horizontal">
                       <b-form-input v-model="profile.address" id="input3-horizontal"></b-form-input>
                     </b-form-group>
@@ -57,27 +56,27 @@
                 <b-row><!-- row-3 -->
                   <b-col md="6"><!-- col-1 -->
                     <b-form-group id="fieldset-horizontal" label-cols-sm="2" label-cols-lg="2"
-                      description="Your postcode here." label="Postcode" label-align="right"
+                      :description="$t('profile.tabs.profile.postcode')" :label="$t('profile.tabs.profile.postcode')" label-align="right"
                       label-for="input-horizontal">
                       <b-form-input v-model="profile.postcode" id="input-horizontal"></b-form-input>
                     </b-form-group>
                   </b-col><!-- ./col-1 -->
 
                   <b-col md="3" offset-md="1"><!-- col-2 -->
-                    <b-button @click="updateProfile" block id="input2-horizontal">Save Changes</b-button>
+                    <b-button @click="updateProfile" block id="input2-horizontal">{{ $t('profile.tabs.profile.button') }}</b-button>
                   </b-col><!-- ./col-2 -->
                 </b-row><!-- row-3 -->
               </b-container>
             </b-card-text>
           </b-tab><!-- first tab -->
 
-          <b-tab title="Account Settings"><!-- second tab [Account Settings] -->
+          <b-tab :title="$t('profile.tabs.account.title')"><!-- second tab [Account Settings] -->
             <b-card-text>
               <b-container fluid>
                 <b-row><!-- row-1 second tab [Account Settings] -->
                   <b-col md="6"><!-- col-1 -->
                     <b-form-group id="fieldset-horizontal"
-                      description="Username"
+                      :description="$t('profile.tabs.account.username')"
                       label-for="input-horizontal">
                       <b-form-input id="input-horizontal"></b-form-input>
                     </b-form-group>
@@ -85,7 +84,7 @@
 
                   <b-col md="6"><!-- col-2 -->
                     <b-form-group id="fieldset-horizontal" 
-                      description="email">
+                      :description="$t('profile.tabs.account.email')">
                       <b-form-input v-model="account.email" id="input2-horizontal"></b-form-input>
                     </b-form-group>
                   </b-col><!-- ./col-2 -->
@@ -114,14 +113,14 @@
                     <b-form-file class="mb-3"
                       v-model="profileFile"
                       :state="Boolean(profileFile)"
-                      placeholder="Choose a file..."
-                      drop-placeholder="Drop file here..."
+                      :placeholder="$t('profile.tabs.account.choose')"
+                      :drop-placeholder="$t('profile.tabs.account.choose')"
                     ></b-form-file>
                   </b-col><!-- ./col-1 -->
 
                   <b-col md="5" class="ml-auto"><!-- col-2 -->
-                    <b-button id="input2-horizontal">Save Changes</b-button>
-                    <b-button @click="resetPassword" variant="success" id="input2-horizontal">Reset password</b-button>
+                    <b-button id="input2-horizontal">{{ $t('profile.tabs.account.button-1') }}</b-button>
+                    <b-button @click="resetPassword" variant="success" id="input2-horizontal">{{ $t('profile.tabs.account.button-2') }}</b-button>
                   </b-col><!-- ./col-2 -->
                 </b-row><!-- ./row-3 second tab [Account Settings] -->
               </b-container>

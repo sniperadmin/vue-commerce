@@ -1,6 +1,13 @@
 <template>
-  <div class="about">
-    
+  <div class="about mt-5 pt-5">
+    <div class="container h-100 pt-5">
+        <div class="h-100 align-items-center">
+            <h2>{{ $t('about.title') }}</h2>
+            <h5 class="h5-responsive">
+                {{ $t('about.content') }}
+            </h5>
+        </div>
+    </div>
   </div>
 </template>
 
