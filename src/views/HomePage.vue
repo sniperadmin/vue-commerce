@@ -3,7 +3,6 @@
     <mdb-card class="card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg)">
         <div class="text-white text-center py-5 px-4 my-5">
           <div>
-            <p>{{ $t('message') }}</p>
             <h2 class="card-title h1-responsive pt-3 mb-5 font-bold mt-5"><strong>{{ $t('jumbotron.title') }}</strong></h2>
             <h4 class="mx-5 mb-5">{{ $t('jumbotron.body') }}</h4>
             <mdb-btn outline="white" size="md" icon="clone">{{ $t('jumbotron.button') }}</mdb-btn>

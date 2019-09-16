@@ -2,7 +2,7 @@
   <div id="app" class="flyout" v-dir>
     <mdb-navbar class="justify-content-between" v-if="!$route.meta.hideNavigation" dark position="top" color="stylish" scrolling :scrollingOffset="20">
       <!-- logo -->
-      <mdb-navbar-brand to="/" waves class="font-weight-bold">
+      <mdb-navbar-brand to="/" waves class="font-weight-bold animated infinite pulse">
         Vue-Commerce
       </mdb-navbar-brand>
       <mdb-navbar-toggler>
@@ -45,7 +45,7 @@
           </mdb-dropdown-menu>
           </mdb-dropdown><!-- ./dropdown -->
         
-          <mdb-nav-item waves waves-fixed :to="`/${$i18n.locale}/adminlogin`"><strong class="text-white">{{ $t('nav.admin') }}</strong></mdb-nav-item>
+          <mdb-nav-item class="list" waves waves-fixed :to="`/${$i18n.locale}/adminlogin`"><strong class="text-white">{{ $t('nav.admin') }}</strong></mdb-nav-item>
       
       </mdb-navbar-toggler>
     </mdb-navbar>
@@ -126,19 +126,34 @@ export default {
           this.$router.push({
             params: { lang: locale }
           });
-        }
+        },
   },
   directives: {
     dir: el => {
       if (i18n.locale === 'ar') {
-          el.style.direction = "rtl";
-          el.style.textAlign = "right"
-          
-        } else if (i18n.locale === 'en') {
+        el.style.direction = "rtl";
+        el.style.textAlign = "right"
+
+        let car = el.getElementsByClassName('VueCarousel-inner');
+            setTimeout(()=>{ 
+              for (var i in car){
+                car[i].style.flexDirection = "row-reverse"
+              }
+            }, 3000)
+
+      } else if (i18n.locale === 'en') {
           el.style.direction = "ltr"
           el.style.textAlign = "left"
+        
+        let car = el.getElementsByClassName('VueCarousel-inner');
+           setTimeout(()=>{ 
+              for (var i in car){
+                car[i].style.flexDirection = "row"
+              }
+            }, 3000)
+
         }
-    }
+    },
   },
   created() {
     fbAuth.auth().onAuthStateChanged(user => {
@@ -149,6 +164,12 @@ export default {
             this.name = username;
         }
     });
+
+    // for (var i in this.moves){
+    //   this.chosen = this.moves[i]
+    //        console.log(this.chosen)
+    // }
+
   }
 };
 
@@ -196,5 +217,9 @@ export default {
 .fade-enter,
 .fade-leave-active {
   opacity: 0;
+}
+
+.list {
+  list-style: none !important;
 }
 </style>

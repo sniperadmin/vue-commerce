@@ -24,6 +24,8 @@ import MyBoard from './components/MyBoard';
 import About from './components/About';
 // AdminLogin
 import AdminLogin from './components/admin/AdminLogin';
+// categories
+import Categories from './components/admin/Categories';
 
 import {fbAuth} from './assets/js/firebase';
 
@@ -139,6 +141,12 @@ export default new Router({
               path: "overview",
               name: "overview",
               component: Overview,
+              meta: { hideNavigation: true },
+            },
+            {
+              path: "categories",
+              name: "categories",
+              component: Categories,
               meta: { hideNavigation: true },
             },
             {

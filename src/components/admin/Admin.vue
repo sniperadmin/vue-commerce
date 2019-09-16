@@ -21,13 +21,13 @@
                         <img class="img-responsive img-rounded" src="https://image.flaticon.com/icons/svg/236/236832.svg" alt="User picture">
                     </div>
                     <div class="user-info">
-                        <span class="user-name">Jhon
-                            <strong>Smith</strong>
+                        <span class="user-name">
+                            <strong>dynamic username</strong>
                         </span>
                         <span class="user-role">{{email}}</span>
                         <span class="user-status">
                             <i class="fa fa-circle"></i>
-                            <span>Online</span>
+                            <span class="mx-2">{{ $t('adminPage.menu.status') }}</span>
                         </span>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                 <div class="sidebar-item sidebar-search">
                     <div>
                         <div class="input-group">
-                            <input type="text" class="form-control search-menu" placeholder="Search...">
+                            <input type="text" class="form-control search-menu" :placeholder="$t('adminPage.menu.search')">
                             <div class="input-group-append">
                                 <span class="input-group-text">
                                     <i class="fa fa-search" aria-hidden="true"></i>
@@ -48,44 +48,53 @@
                 <div class=" sidebar-item sidebar-menu">
                     <ul>
                         <li class="header-menu">
-                            <span>General</span>
+                            <span>{{ $t('adminPage.menu.general') }}</span>
                         </li>
                         <li class="sidebar" v-if="isAdmin">
                             <router-link :to="`/${$i18n.locale}/admin/overview`">
                                 <i class="fa fa-tachometer-alt"></i>
-                                <span class="menu-text">Overview</span>
+                                <span class="menu-text mx-2">{{ $t('adminPage.menu.overview') }}</span>
                                 <span class="badge badge-pill badge-warning">New</span>
                             </router-link>
                         </li>
                         <li class="sidebar" v-if="isAdmin">
                             <router-link :to="`/${$i18n.locale}/admin/products`">
                                 <i class="fa fa-shopping-cart"></i>
-                                <span class="menu-text">Products</span>
+                                <span class="menu-text mx-2">{{ $t('adminPage.menu.products') }}</span>
                                 <span class="badge badge-pill badge-danger">3</span>
                             </router-link>
                         </li>
+                        
+                        <li class="sidebar" v-if="isAdmin">
+                            <router-link :to="`/${$i18n.locale}/admin/categories`">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span class="menu-text mx-2">categories</span>
+                                <span class="badge badge-pill badge-danger">3</span>
+                            </router-link>
+                        </li>
+
                         <li class="sidebar" v-if="isAdmin">
                             <router-link :to="`/${$i18n.locale}/admin/orders`">
                                 <i class="far fa-gem"></i>
-                                <span class="menu-text">Orders</span>
+                                <span class="menu-text mx-2">{{ $t('adminPage.menu.orders') }}</span>
                             </router-link>
                         </li>
                         <li class="sidebar-dropdown">
                             <router-link :to="`/${$i18n.locale}/admin/profile`">
                                 <i class="far fa-user"></i>
-                                <span class="menu-text">Profile</span>
+                                <span class="menu-text mx-2">{{ $t('adminPage.menu.profile') }}</span>
                             </router-link>
                         </li>
                         <li class="sidebar-dropdown">
                             <router-link :to="`/${$i18n.locale}/admin/users`">
-                                <i class="far fa-users"></i>
-                                <span class="menu-text" v-if="isAdmin">Users</span>
+                                <i class="fas fa-users"></i>
+                                <span class="menu-text mx-2" v-if="isAdmin">{{ $t('adminPage.menu.users') }}</span>
                             </router-link>
                         </li>
                         <li class="sidebar">
                             <a href="#" @click.prevent="logout">
                                 <i class="fa fa-power-off"></i>
-                                <span class="menu-text">Logout</span>
+                                <span class="menu-text mx-2">{{ $t('adminPage.menu.logout') }}</span>
                             </a>
                         </li>
                     </ul>

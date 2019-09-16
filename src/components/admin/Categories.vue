@@ -4,7 +4,7 @@
       <div class="intro h-100">
         <div class="row h-100 align-items-center">
           <div class="col-md-6">
-            <h1>{{ $t('adminPage.products.title') }}</h1>
+            <h1>categories page</h1>
             <p>{{ $t('adminPage.products.text') }}</p>
           </div>
           <div class="col-md-6">
@@ -14,16 +14,16 @@
         
         
           <div class="mt-2 mb-2 p-1 row justify-content-between">
-              <h3 class="d-inline-block">{{ $t('adminPage.products.list-title') }}</h3>
-              <b-button class="p-2 mt-0" variant="success" @click="createNew">{{ $t('adminPage.products.list-button') }}</b-button>
+              <h3 class="d-inline-block">categories list</h3>
+              <b-button class="p-2 mt-0" variant="success" @click="createNew">New category</b-button>
           </div>
           <div class="table-responsive table-bordered text-center">
           
           <table class="table p-0">
             <thead>
               <tr>
-                <th>{{ $t('adminPage.products.table.name') }}</th>
-                <th>{{ $t('adminPage.products.table.price') }}</th>
+                <th>category name</th>
+                <th>products</th>
                 <th>{{ $t('adminPage.products.table.modify.title') }}</th>
               </tr>
             </thead>
@@ -60,7 +60,7 @@
                   <select class="browser-default custom-select mb-2">
                     <option selected>Open this select menu</option>
                     <!-- <option>{{ category }}</option> -->
-                    <option>category</option>
+                    <option> category </option>
                   </select>
                   
                   <span><i class="fas fa-plus"></i></span>

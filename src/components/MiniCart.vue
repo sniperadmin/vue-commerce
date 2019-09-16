@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import i18n from '../i18n';
 export default {
   name: "mini-cart",
   props: {
@@ -35,7 +36,7 @@ export default {
   },
   methods: {
     checkOut(){
-      this.$router.push('/checkout');
+      this.$router.push(`/${i18n.locale}/checkout`);
     },
   }
 };

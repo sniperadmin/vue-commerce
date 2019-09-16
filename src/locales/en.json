@@ -17,6 +17,7 @@
     "body" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem, optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos. Odit sed qui, dolorum! ",
     "button": "view project"
   },
+  "addToCart": "add to cart",
   "modal" : {
     "title" : "login/register",
     "tabs" : {
@@ -102,5 +103,51 @@
     "email" : "your email",
     "password" : "your password",
     "button" : "login" 
+  },
+  "adminPage" : {
+    "menu" : {
+      "status" : "online",
+      "search" : "search...",
+      "general" : "general",
+      "overview" : "overview",
+      "products" : "products",
+      "orders" : "orders",
+      "profile" : "profile",
+      "users" : "users",
+      "logout" : "logout"
+    },
+    "overview": {
+      "title" : "overview page",
+      "text" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat quae quisquam quos necessitatibus, nisi, mollitia temporibus expedita aliquam itaque exercitationem qui fugit facere? Temporibus enim aperiam soluta ratione maxime beatae! "
+    },
+    "products" : {
+      "title" : "products page",
+      "text" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat quae quisquam quos necessitatibus, nisi, mollitia temporibus expedita aliquam itaque exercitationem qui fugit facere? Temporibus enim aperiam soluta ratione maxime beatae! ",
+      "list-title" : "products list",
+      "list-button" : "add product",
+      "table" : {
+        "name" : "name",
+        "price" : "price",
+        "modify" : {
+          "title": "modify",
+          "edit" : "edit",
+          "delete" : "delete"
+        }
+      },
+      "add-product": {
+        "new-title" : "new product",
+        "edit-title": "edit product",
+        "product-name" : "product name",
+        "product-details" : "product details",
+        "product-price" : "product price",
+        "tags" : "tags",
+        "choose" : "choose a file",
+        "browse" : "browse",
+        "create" : "create",
+        "save" : "save changes",
+        "cancel" : "cancel"
+      }
+    }
+
   }
 }

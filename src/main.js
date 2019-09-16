@@ -74,6 +74,15 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
+window.Fire = new Vue();
+
+import Vuesax from 'vuesax'
+import 'vuesax/dist/vuesax.css'
+Vue.use(Vuesax)
+
+import { VueSpinners } from '@saeris/vue-spinners'
+Vue.use(VueSpinners)
+
 let app = '';
 
 fbAuth.auth().onAuthStateChanged(user => {

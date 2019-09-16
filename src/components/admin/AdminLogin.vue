@@ -11,18 +11,21 @@
               </mdb-row>
             </div>
             <mdb-card-body class="mx-4 mt-4">
-              <mdb-input v-model="email" :label="$t('adminlogin.email')" type="email"/>
-              <mdb-input v-model="password" :label="$t('adminlogin.password')" type="password" containerClass="mb-0"/>
+              <form method="POST" @submit.prevent="login">
+
+              <mdb-input v-model="email" :placeholder="$t('adminlogin.email')" type="email" outline />
+              <mdb-input v-model="password" :placeholder="$t('adminlogin.password')" type="password" outline containerClass="mb-0"/>
               <mdb-row class="d-flex align-items-center mb-4 mt-5">
                 <mdb-col md="5" class="d-flex align-items-start">
                   <div class="text-center">
-                    <mdb-btn @click="login" color="grey" rounded type="button" class="z-depth-1a">{{ $t('adminlogin.button') }}</mdb-btn>
+                    <mdb-btn type="submit" color="grey" rounded class="z-depth-1a">{{ $t('adminlogin.button') }}</mdb-btn>
                   </div>
                 </mdb-col>
                 <mdb-col md="7" class="d-flex justify-content-end">
                 </mdb-col>
               </mdb-row>
                 <p class="red-text">{{ boo }}</p>
+              </form>
             </mdb-card-body>
           </mdb-card>
         </mdb-col>

@@ -96,6 +96,54 @@ exports.addAdminRole = functions.https.onCall((data, context) => {
     });
 });
 
+// getting users information
+exports.listUsers = functions.https.onRequest(async (req, res) => {
+  // eslint-disable-next-line no-empty-function
+  cors(req, res, () => {});
+  try {
+    let users = [];
+    const list = async nextPageToken => {
+      await admin.auth().listUsers(1000, nextPageToken)
+        .then(async result => {
+          result.users.forEach(userRecord => {
+            const user = userRecord;
+            users.push(user);
+            // console.log(userRecord);
+          });
+          if (result.pageToken) {
+            await list(result.pageToken)
+          }
+        })
+    };
+    await list()
+    res.status(200).send({
+      success: 'SUCCESS',
+      users
+    });
+  } catch (error) {
+    res.status(500).send({error});
+  }
+});
+
+// Creating users
+exports.makeNewUser = functions.https.onCall((data, context) => {
+  admin.auth().createUser({
+    email: data.email,
+    emailVerified: false,
+    password: null,
+    displayName: data.displayName,
+    disabled: false
+  })
+    .then(userRecord => {
+      // See the UserRecord reference doc for the contents of userRecord.
+      console.log('Successfully created new user:', userRecord.uid);
+    })
+    .catch(error => {
+      context.status(500).send(error);
+      console.log(error)
+    });
+});
+
 // Checkout
 exports.checkoutSession = functions.https.onRequest((request, response) => {
   

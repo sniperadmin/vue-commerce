@@ -54,7 +54,7 @@
                       id="email-form"
                       name="email-form"
                       v-model="$v.email.$model"
-                      :state="$v.email.$touch ? !$v.email.$error : null"
+                      :state="$v.email.$dirty ? !$v.email.$error : null"
                       aria-describedby="email-live-feedback"
                     >
                     </b-form-input>
@@ -100,7 +100,7 @@
                       name="password-form"
                       type="password"
                       v-model="$v.password.$model"
-                      :state="$v.password.$touch ? !$v.password.$error : null"
+                      :state="$v.password.$dirty ? !$v.password.$error : null"
                       aria-describedby="password-live-feedback"
                     >
                     </b-form-input>

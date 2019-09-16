@@ -15,7 +15,6 @@
         </div><!-- ./row -->
       </div><!-- ./intro -->
     </div><!-- ./container -->
-
     <div class="container-fluid"><!-- main contents -->
           <mdb-alert color="success" v-if="!verified">
               <h4 class="alert-heading">{{ $t('alerts.verify') }}</h4>
@@ -134,7 +133,7 @@
 </template>
 <script>
 import { fbAuth, db } from '../assets/js/firebase';
-  import { mdbAlert } from 'mdbvue';
+import { mdbAlert } from 'mdbvue';
 
   export default {
     name: "users",
@@ -149,6 +148,7 @@ import { fbAuth, db } from '../assets/js/firebase';
           phone: null,
           address: null,
           postcode: null,
+          isLoading: false,
         },
         account: {
           name: null,
@@ -197,6 +197,13 @@ import { fbAuth, db } from '../assets/js/firebase';
       },
     },
     created() {
+      this.$vs.loading({
+        type: 'material'
+      })
+      setTimeout( ()=> {
+        this.$vs.loading.close()
+      }, 1000);
+
       fbAuth.auth().onAuthStateChanged(user => { 
         this.verified = user.emailVerified;
       });
