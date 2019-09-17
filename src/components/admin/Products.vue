@@ -56,15 +56,21 @@
             <mdb-col lg="8">
               <mdb-input :label="$t('adminPage.products.add-product.product-name')" type="text" v-model="product.name"/>
                 
-                <div class="d-flex">
+                <!-- select category -->
+                <mdb-row  class="mt-1 mb-1">
+                <mdb-col lg="10">
                   <select class="browser-default custom-select mb-2">
                     <option selected>Open this select menu</option>
                     <!-- <option>{{ category }}</option> -->
-                    <option>category</option>
+                    <option> category </option>
                   </select>
-                  
-                  <span><i class="fas fa-plus"></i></span>
-                </div>
+                </mdb-col>
+                  <mdb-col lg="2">
+                    <b-button variant="outline-success" v-b-modal.add class="pt-1 pb-0 pr-1 pl-1"><i class="fas fa-plus"></i>
+                    <span class="ml-2">add</span>
+                    </b-button>
+                  </mdb-col>
+                </mdb-row><!-- ./select category -->
 
                 <div class="input-group">
                     <div class="input-group-prepend mb-4">
@@ -139,6 +145,10 @@
               <b-button variant="danger" @click="cancel()">{{ $t('adminPage.products.add-product.cancel') }}</b-button>
             </template>
           </b-modal>
+           <b-modal id="add" size="sm" title="Third Modal" centered ok-only>
+            <p class="my-1">Third Modal</p>
+          </b-modal>
+
         </div>
       </div>
     </div>

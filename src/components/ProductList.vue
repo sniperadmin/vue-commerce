@@ -10,7 +10,7 @@
           <mdb-card-body>
             <carousel :perPage="1" >
               <slide v-for="(image, index) in product.images" :key="index.id">
-                <mdb-card-image :src="image" alt="Card image cap"
+                <mdb-card-image :src="image" alt="Card image cap" v-if="product.images"
                   v-animateOnScroll="{ animation: 'fadeIn', delay: 1000 }"></mdb-card-image>
               </slide>
             </carousel>
@@ -104,6 +104,22 @@
       //   // console.log(images[0])
       // },
     },
+    created () {
+      let car = document.getElementsByClassName('VueCarousel-inner');
+         if (i18n.locale === 'ar') {
+            setTimeout(() => {
+              for (var i in car){
+                car[i].style.flexDirection = "row-reverse"
+              }
+            }, 3000)
+          } else {
+            setTimeout(() => {
+              for (var i in car){
+                car[i].style.flexDirection = "row"
+              }
+            }, 3000)
+          }
+    }
   }
 </script>
 

@@ -134,24 +134,21 @@ export default {
         el.style.direction = "rtl";
         el.style.textAlign = "right"
 
-        let car = el.getElementsByClassName('VueCarousel-inner');
-            setTimeout(()=>{ 
-              for (var i in car){
-                car[i].style.flexDirection = "row-reverse"
-              }
-            }, 3000)
+        // let car = el.getElementsByClassName('VueCarousel-inner');
+        //     if (car)
+        //       for (var i in car){
+        //         car[i].style.flexDirection = "row-reverse"
+        //       }
 
       } else if (i18n.locale === 'en') {
           el.style.direction = "ltr"
           el.style.textAlign = "left"
         
-        let car = el.getElementsByClassName('VueCarousel-inner');
-           setTimeout(()=>{ 
-              for (var i in car){
-                car[i].style.flexDirection = "row"
-              }
-            }, 3000)
-
+        // let car = el.getElementsByClassName('VueCarousel-inner');
+          //  if (car)
+          //     for (var i in car){
+          //       car[i].style.flexDirection = "row"
+          //     }
         }
     },
   },
@@ -164,11 +161,6 @@ export default {
             this.name = username;
         }
     });
-
-    // for (var i in this.moves){
-    //   this.chosen = this.moves[i]
-    //        console.log(this.chosen)
-    // }
 
   }
 };
