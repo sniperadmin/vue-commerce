@@ -47,7 +47,6 @@
     </section>
   </div>
 </template>
-
 <script>
   import {
     fbAuth

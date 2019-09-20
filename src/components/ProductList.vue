@@ -6,9 +6,9 @@
     </mdb-col>
     <mdb-row>
       <mdb-col md="3" class="mb-5" v-for="(product, index) in products" :key="index">
-        <mdb-card class="animated fadeIn" v-animateOnScroll="{ animation: 'fadeInLeft' }">
+        <mdb-card class="animated fadeIn" v-animateOnScroll="{ animation: 'fadeInLeft' }" @mouseenter="log(product)">
           <mdb-card-body>
-            <carousel :perPage="1" >
+            <carousel :perPage="1">
               <slide v-for="(image, index) in product.images" :key="index.id">
                 <mdb-card-image :src="image" alt="Card image cap" v-if="product.images"
                   v-animateOnScroll="{ animation: 'fadeIn', delay: 1000 }"></mdb-card-image>
@@ -19,13 +19,121 @@
               <mdb-badge color="warning">{{ product.price | currency }}</mdb-badge>
             </mdb-card-title>
             <!-- <mdb-card-text v-html="product.info"></mdb-card-text> -->
-            <add-to-cart :name="product.name" :price="product.price" :p-id="product.id"
-              :image="product.images[0]">
-            </add-to-cart>
+            <mdb-row class="justify-content-md-center">
+              <mdb-col md="auto">
+                <b-button variant="success" pill @click="info(product)">more details</b-button>
+              </mdb-col>
+                <add-to-cart :name="product.name" :price="product.price" :p-id="product.id" :image="product.images[0]"></add-to-cart>
+            </mdb-row>
           </mdb-card-body>
         </mdb-card>
       </mdb-col>
     </mdb-row>
+
+    <b-modal ref="test" id="modal-info" title="product details" size="xl" centered ok-only>
+      <div class="row no-gutters">
+        <aside class="col-sm-5 border-right">
+          <article class="gallery-wrap">
+            <div class="img-big-wrap">
+              <div><img :src="clickedSrc ? clickedSrc : chosenProduct.images[0]"></div>
+            </div> <!-- slider-product.// -->
+            <div class="img-small-wrap">
+                <div class="item-gallery" id="test" v-for="(image, index) in chosenProduct.images" :key="index" @click="maximize(image)">
+                  <img :src="image">
+                </div>
+            </div> <!-- slider-nav.// -->
+          </article> <!-- gallery-wrap .end// -->
+        </aside>
+        <aside class="col-sm-7">
+          <article class="p-5">
+            <h3 class="title mb-3">{{ chosenProduct.name }}</h3>
+
+            <div class="mb-3">
+              <var class="price h3 text-warning">
+                <span class="num">{{ chosenProduct.price | currency }}</span>
+              </var>
+              <!-- <span>/per kg</span> -->
+            </div> <!-- price-detail-wrap .// -->
+            <dl>
+              <dt>Description</dt>
+              <dd>
+                <p v-html="chosenProduct.info"></p>
+              </dd>
+            </dl>
+            <dl class="row">
+              <dt class="col-sm-3">Model#</dt>
+              <dd class="col-sm-9">12345611</dd>
+
+              <dt class="col-sm-3">Color</dt>
+              <dd class="col-sm-9">Black and white </dd>
+
+              <dt class="col-sm-3">Delivery</dt>
+              <dd class="col-sm-9">Russia, USA, and Europe </dd>
+            </dl>
+            <div class="rating-wrap">
+
+              <ul class="rating-stars mr-2">
+                <li class="stars-active" style="width:80%">
+                  <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </li>
+                <li>
+                  <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </li>
+              </ul>
+              <div class="label-rating">132 reviews</div>
+              <div class="label-rating">154 orders </div>
+            </div> <!-- rating-wrap.// -->
+            <hr>
+            <div class="row">
+              <div class="col-sm-5">
+                <dl class="dlist-inline">
+                  <dt>Quantity: </dt>
+                  <dd>
+                    <select class="form-control form-control-sm ml-2" style="width:70px;">
+                      <option> 1 </option>
+                      <option> 2 </option>
+                      <option> 3 </option>
+                    </select>
+                  </dd>
+                </dl> <!-- item-property .// -->
+              </div> <!-- col.// -->
+              <div class="col-sm-7">
+                <dl class="dlist-inline">
+                  <dt>Size: </dt>
+                  <dd>
+                    <label class="form-check form-check-inline ml-2">
+                      <input name="inlineRadioOptions" class="form-check-input" id="inlineRadio2" type="radio"
+                        value="option2">
+                      <span class="form-check-label">SM</span>
+                    </label>
+                    <label class="form-check form-check-inline">
+                      <input name="inlineRadioOptions" class="form-check-input" id="inlineRadio2" type="radio"
+                        value="option2">
+                      <span class="form-check-label">MD</span>
+                    </label>
+                    <label class="form-check form-check-inline">
+                      <input name="inlineRadioOptions" class="form-check-input" id="inlineRadio2" type="radio"
+                        value="option2">
+                      <span class="form-check-label">XXL</span>
+                    </label>
+                  </dd>
+                </dl> <!-- item-property .// -->
+              </div> <!-- col.// -->
+            </div> <!-- row.// -->
+            <hr>
+            <div class="d-inline-block">
+              <add-to-cart :name="chosenProduct.name" :price="chosenProduct.price" :p-id="chosenProduct.id" :image="chosenProduct.images[0]">
+            </add-to-cart>
+            </div>
+          </article> <!-- card-body.// -->
+        </aside> <!-- col.// -->
+      </div> <!-- row.// -->
+    </b-modal>
+
   </mdb-container>
 </template>
 
@@ -86,7 +194,17 @@
     },
     data() {
       return {
-        reversed: false
+        reversed: false,
+        chosenProduct: {
+          name: null,
+          category: null,
+          info: null,
+          price: null,
+          tags: [],
+          images: [],
+        },
+        clickedSrc: null,
+        clicked: false,
       }
     },
     directives: {
@@ -99,32 +217,39 @@
       }
     },
     methods: {
-      // getImage(images) {
-      //   images[0]
-      //   // console.log(images[0])
-      // },
+      info(x) {
+        // this.$bvModal.show('modal-info')
+        this.clickedSrc = null
+        this.$refs['test'].show()
+        this.chosenProduct = x;
+        console.log(this.chosenProduct)
+      },
+      maximize(y) {
+          this.clickedSrc = y
+          this.clicked = true
+      }
     },
-    created () {
+    created() {
       let car = document.getElementsByClassName('VueCarousel-inner');
-         if (i18n.locale === 'ar') {
-            setTimeout(() => {
-              for (var i in car){
-                car[i].style.flexDirection = "row-reverse"
-              }
-            }, 3000)
-          } else {
-            setTimeout(() => {
-              for (var i in car){
-                car[i].style.flexDirection = "row"
-              }
-            }, 3000)
+      if (i18n.locale === 'ar') {
+        setTimeout(() => {
+          for (var i in car) {
+            car[i].style.flexDirection = "row-reverse"
           }
+        }, 3000)
+      } else {
+        setTimeout(() => {
+          for (var i in car) {
+            car[i].style.flexDirection = "row"
+          }
+        }, 3000)
+      }
     }
   }
 </script>
 
-<style>
-/* .VueCarousel-inner {
-    direction: ltr !important;
-  } */
+<style scoped>
+  .customBorder {
+    border: 1px solid red;
+  }
 </style>

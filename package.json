@@ -39,6 +39,7 @@
         "vue-router": "^3.0.3",
         "vue2-editor": "^2.10.0",
         "vue2-filters": "^0.7.0",
+        "vue2-flip-countdown": "^0.9.3",
         "vuefire": "^2.1.0",
         "vuelidate": "^0.7.4",
         "vuesax": "^3.10.0",
