@@ -6,12 +6,12 @@
     </mdb-col>
     <mdb-row>
       <mdb-col md="3" class="mb-5" v-for="(product, index) in products" :key="index">
-        <mdb-card class="animated fadeIn" v-animateOnScroll="{ animation: 'fadeInLeft' }" @mouseenter="log(product)">
+        <mdb-card class="animated fadeIn">
           <mdb-card-body>
             <carousel :perPage="1">
               <slide v-for="(image, index) in product.images" :key="index.id">
                 <mdb-card-image :src="image" alt="Card image cap" v-if="product.images"
-                  v-animateOnScroll="{ animation: 'fadeIn', delay: 1000 }"></mdb-card-image>
+                  ></mdb-card-image>
               </slide>
             </carousel>
             <mdb-card-title class="d-flex justify-content-between">

@@ -152,7 +152,7 @@
 </template>
 
 <script>
-import { email } from 'vuelidate/lib/validators';
+    import { email } from 'vuelidate/lib/validators';
 
     import {
         BarLoader,

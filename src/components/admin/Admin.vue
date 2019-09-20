@@ -54,14 +54,14 @@
                             <router-link :to="`/${$i18n.locale}/admin/overview`">
                                 <i class="fa fa-tachometer-alt"></i>
                                 <span class="menu-text mx-2">{{ $t('adminPage.menu.overview') }}</span>
-                                <span class="badge badge-pill badge-warning">New</span>
+                                <span class="badge badge-pill badge-warning">under construction</span>
                             </router-link>
                         </li>
                         <li class="sidebar" v-if="isAdmin">
                             <router-link :to="`/${$i18n.locale}/admin/products`">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span class="menu-text mx-2">{{ $t('adminPage.menu.products') }}</span>
-                                <span class="badge badge-pill badge-danger">3</span>
+                                <span class="badge badge-pill badge-primary">{{ products.length }}</span>
                             </router-link>
                         </li>
                         
@@ -69,7 +69,7 @@
                             <router-link :to="`/${$i18n.locale}/admin/categories`">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span class="menu-text mx-2">categories</span>
-                                <span class="badge badge-pill badge-danger">3</span>
+                                <span class="badge badge-pill badge-danger"> still static => 3</span>
                             </router-link>
                         </li>
 
@@ -77,6 +77,7 @@
                             <router-link :to="`/${$i18n.locale}/admin/orders`">
                                 <i class="far fa-gem"></i>
                                 <span class="menu-text mx-2">{{ $t('adminPage.menu.orders') }}</span>
+                                <span class="badge badge-pill badge-warning">under construction</span>
                             </router-link>
                         </li>
                         <li class="sidebar-dropdown">
@@ -121,7 +122,7 @@
 
 <script>
 // global {$, jQuery}
-import {fbAuth} from '@/assets/js/firebase';
+import { db, fbAuth } from '@/assets/js/firebase';
 export default {
   name: "admin",
   props: {
@@ -134,6 +135,7 @@ export default {
           name: null,
           email: null,
           isAdmin: null,
+          products: [],
       }
   },
     methods: {
@@ -168,6 +170,14 @@ export default {
                   }
               });
           }
+        });
+
+        db.collection("products").onSnapshot(snapShot => {
+            snapShot.forEach(doc => {
+                this.products.push(doc.data())
+                console.log(this.products)
+            }); 
+        
         });
     }
 };

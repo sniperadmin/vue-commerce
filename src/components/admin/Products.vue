@@ -20,7 +20,7 @@
           <div class="table-responsive table-bordered text-center">
           
           <table class="table p-0">
-            <thead>
+            <thead class="thead-dark">
               <tr>
                 <th>{{ $t('adminPage.products.table.name') }}</th>
                 <th>{{ $t('adminPage.products.table.price') }}</th>
@@ -40,6 +40,9 @@
               
             </tbody>
           </table>
+          <!-- loader component -->
+            <bar-loader :loading="loading" :color="`#3C36D7`" :height="8" :sizeUnit="`px`" class="w-100"></bar-loader>
+            <!-- ./loader component -->
           </div> <!-- table -->
           
           <!-- loader component -->

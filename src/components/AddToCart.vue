@@ -1,6 +1,6 @@
 <template>
     <div class="add-to-cart">
-        <b-button variant="primary" pill @click="addToCart">{{ $t('addToCart') }}</b-button>
+        <b-button variant="primary" pill @click="addToCart"><i class="fas fa-cart-plus"></i> {{ $t('addToCart') }}</b-button>
     </div>
 </template>
 
