@@ -1,47 +1,9 @@
-// const {Storage} = require('@google-cloud/storage');
-// const projectId = 'vue-shop-e3547';
-// let gcs = new Storage({ projectId });
-// const os = require('os');
-// const path = require('path');
-// const spawn = require('child-process-promise').spawn;
-
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp();
 
 const stripe = require("stripe")("pk_test_EkgRdwSuRpwR0FUEsUSMJVCw00HJk4Sukt");
 const cors = require('cors')({origin: true});
-
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-
-// test a rename functionality for pictures on firestore
-// exports.onFileChange = functions.storage.object().onFinalize(event => {
-//   const bucket = event.bucket;
-//   const contentType = event.contentType;
-//   const filepath = event.name;
-//   console.log('change detected');
-
-//   if (path.basename(filepath).startsWith('renamed-')) {
-//     console.log('file already renamed');
-//     return;
-//   }
-
-//   const destBucket = gcs.bucket(bucket);
-//   const tmpFilePath = path.join(os.tmpdir(), path.basename(filepath));
-//   const metadata = { contentType };
-
-//   return destBucket.file(filepath).download({
-//     destination: tmpFilePath
-//   })
-//     .then(() => {
-//       return destBucket.upload(tmpFilePath, {
-//         destination: 'renamed-' + path.basename(filepath),
-//         metadata
-//       })
-//     })
-// });
 
 /* ---- Setting User Privilages
 
@@ -59,11 +21,11 @@ admin.auth().getUserByEmail('vue-commerce-admin@me.com')
       admin: true
     });
   })
-  .then(user => {
-    user.getIdTokenResult().then(idTokenResult => {
-      console.log(idTokenResult.claims.admin)
-    })
-  })
+  // .then(user => {
+  //   user.getIdTokenResult().then(idTokenResult => {
+  //     console.log(idTokenResult.claims.admin)
+  //   })
+  // })
   .catch(error => {
     console.log(error);
   });
@@ -126,12 +88,13 @@ exports.listUsers = functions.https.onRequest(async (req, res) => {
 });
 
 // Creating users
-exports.makeNewUser = functions.https.onCall((data, context) => {
+exports.makeNewUser = functions.https.onRequest((request, response) => {
+
   admin.auth().createUser({
-    email: data.email,
+    email: request.body.email,
     emailVerified: false,
-    password: null,
-    displayName: data.displayName,
+    password: request.body.password,
+    firstName: request.body.firstName,
     disabled: false
   })
     .then(userRecord => {
@@ -139,8 +102,20 @@ exports.makeNewUser = functions.https.onCall((data, context) => {
       console.log('Successfully created new user:', userRecord.uid);
     })
     .catch(error => {
+      response.status(500).send(error);
+      console.log('error! something happened', error)
+    });
+});
+
+// deleting user
+exports.deleteUser = functions.https.onCall((data, context) => {
+  admin.auth().deleteUser(data.uid)
+    .then(() => {
+      console.log('Successfully deleted user');
+    })
+    .catch(error => {
       context.status(500).send(error);
-      console.log(error)
+      console.log('Error deleting user:', error);
     });
 });
 

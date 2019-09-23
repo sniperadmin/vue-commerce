@@ -146,7 +146,6 @@ export default {
                 })
             .catch((response, err) => {
                 console.log(err);
-                response.status(500).send(err);
             });
         },
         toggleMenu() {
@@ -161,7 +160,6 @@ export default {
               user.getIdTokenResult().then(idTokenResult => {
                   user.admin = idTokenResult.claims.admin;
                   this.isAdmin = user.admin
-                  console.log(this.isAdmin)
                   if (user.admin != true) {
                       this.$router.push('/')
                   } else {
@@ -175,9 +173,7 @@ export default {
         db.collection("products").onSnapshot(snapShot => {
             snapShot.forEach(doc => {
                 this.products.push(doc.data())
-                console.log(this.products)
-            }); 
-        
+            });
         });
     }
 };

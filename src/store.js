@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
+
 Vue.use(Vuex);
 
 let cart = window.localStorage.getItem('cart');
@@ -7,6 +9,7 @@ let cart = window.localStorage.getItem('cart');
 const store = new Vuex.Store({
   state: {
     cart: cart ? JSON.parse(cart) : [],
+    users: [],
   },
   getters: {
     totalPrice: state => {
@@ -16,6 +19,18 @@ const store = new Vuex.Store({
       });
       return total;
     }
+  },
+  actions: {
+    listAllUsers(context) {
+      this.loading = true
+      axios.get('https://us-central1-vue-shop-e3547.cloudfunctions.net/listUsers')
+        .then(response => {
+          // console.log(response.data.users)
+          context.commit('loadUserData', response.data.users)
+          // state.users.push(response.data.users)
+        })
+        .catch(err => console.log(err))
+    },
   },
   mutations: {
     addToCart(state, item) {
@@ -37,7 +52,10 @@ const store = new Vuex.Store({
       let index = state.cart.indexOf(item);
       state.cart.splice(index, 1);
       this.commit('saveData');
-    }
+    },
+    loadUserData(state, payload) {
+      state.users = payload;
+    },
   }
 });
 

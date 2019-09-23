@@ -222,7 +222,6 @@
         this.clickedSrc = null
         this.$refs['test'].show()
         this.chosenProduct = x;
-        console.log(this.chosenProduct)
       },
       maximize(y) {
           this.clickedSrc = y

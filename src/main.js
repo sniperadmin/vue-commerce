@@ -94,7 +94,7 @@ fbAuth.auth().onAuthStateChanged(user => {
       store,
       template: '<App/>',
       i18n,
-      components: { App }
+      components: { App },
     });
   }
 });

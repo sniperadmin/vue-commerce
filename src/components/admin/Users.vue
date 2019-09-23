@@ -17,11 +17,11 @@
                     </div>
                 </div><!-- ./top-intro -->
             </div>
-            
+
             <!-- body-title -->
             <b-row class="my-2 justify-content-between">
                 <h2 class="d-inline-block h2-responsive">users list</h2>
-                <b-button class="p-2 mt-0" variant="success" @click="createNew" disabled>create user</b-button>
+                <b-button class="p-2 mt-0" variant="success" @click="createNew">create user</b-button>
             </b-row><!-- ./body-title -->
 
             <!-- row -->
@@ -54,7 +54,7 @@
                 </b-col><!-- col-2 -->
 
             </b-row><!-- ./row -->
-            
+
             <!-- pagination -->
             <b-pagination v-model="currentPage" :total-rows="totalRows" :per-page="perPage" align="fill"
                 class="my-2 border heavy-rain-gradient" first-text="First" prev-text="Prev" next-text="Next"
@@ -68,7 +68,7 @@
                     <b-button variant="primary" disabled>edit</b-button>
                     <b-button variant="success" v-if="!row.item.customClaims && row.item.emailVerified"
                         @click="addAdmin(row.item.email)" disabled>make admin</b-button>
-                    <b-button variant="danger" v-if="!row.item.customClaims" disabled>delete</b-button>
+                    <b-button variant="danger" @click="deleteUser(row.item.uid)" v-if="!row.item.customClaims">delete</b-button>
                 </template>
             </b-table><!-- ./table -->
 
@@ -82,69 +82,59 @@
                 last-text="Last">
             </b-pagination><!-- ./pagination -->
 
-              <b-modal centered ref="modal" id="create">
+            <b-modal centered ref="modal" id="create">
                 <div slot="modal-title">
                     <h3 v-if="modal === 'new'">create user</h3>
                     <h3 v-if="modal === 'edit'">edit user</h3>
                 </div>
 
-                <form @submit.prevent="newUser" autocomplete="off">
+                <form @submit.prevent="newUser" method="POST">
+                    <b-form-group id="example-input-group-1" label="email" label-for="email-form" label-cols-sm="3"
+                        label-cols-lg="3">
+                        <b-form-input id="email-form" name="email-form" v-model="$v.email.$model"
+                            :state="$v.email.$dirty ? !$v.email.$error : null" aria-describedby="email-live-feedback">
+                        </b-form-input>
+                        <b-form-invalid-feedback id="email-live-feedback" v-if="$v.email.email">
+                            this field is required
+                        </b-form-invalid-feedback>
+                        <b-form-invalid-feedback id="email-live-feedback" v-if="$v.email.required">
+                            should be a valid email
+                        </b-form-invalid-feedback>
 
-                <b-form-group id="example-input-group-1" label="email" label-for="email-form"
-                    label-cols-sm="3"
-                    label-cols-lg="3">
-                    <b-form-input
-                      id="email-form"
-                      name="email-form"
-                      v-model="$v.email.$model"
-                      :state="$v.email.$dirty ? !$v.email.$error : null"
-                      aria-describedby="email-live-feedback"
-                    >
-                    </b-form-input>
-                    <b-form-invalid-feedback id="email-live-feedback" v-if="$v.email.email">
-                         this field is required
-                      </b-form-invalid-feedback>
-                    <b-form-invalid-feedback id="email-live-feedback" v-if="$v.email.required">
-                          should be a valid email
-                    </b-form-invalid-feedback>
-                  
-                    <b-form-valid-feedback id="email-live-feedback">looks good</b-form-valid-feedback>
-                  </b-form-group>
+                        <b-form-valid-feedback id="email-live-feedback">looks good</b-form-valid-feedback>
+                    </b-form-group>
 
-                  <b-form-group id="example-input-group-1" label="display name" label-for="displayName-form"
-                label-cols-sm="3"
-                label-cols-lg="3">
-                    <b-form-input
-                      id="displayName-form"
-                      name="displayName-form"
-                      type="text"
-                      v-model="$v.displayName.$model"
-                      :state="$v.displayName.$dirty ? !$v.displayName.$error : null"
-                      aria-describedby="password-live-feedback"
-                    >
-                    </b-form-input>
-                    <b-form-invalid-feedback id="password-live-feedback" v-if="$v.displayName.minLength">
-                        this is a required field
-                      </b-form-invalid-feedback>
-                    <b-form-invalid-feedback id="password-live-feedback" v-if="$v.displayName.required">
-                        name should be at least {{ $v.displayName.$params.minLength.min }} chars
-                    </b-form-invalid-feedback>
-                  
-                    <b-form-valid-feedback id="password-live-feedback">{{ $t('modal.tabs.register.password-valid') }} </b-form-valid-feedback>
-                  </b-form-group>
+                    <b-form-group id="example-input-group-1" label="display name" label-for="displayName-form"
+                        label-cols-sm="3" label-cols-lg="3">
+                        <b-form-input id="displayName-form" name="displayName-form" type="text"
+                            v-model="$v.displayName.$model"
+                            :state="$v.displayName.$dirty ? !$v.displayName.$error : null"
+                            aria-describedby="password-live-feedback">
+                        </b-form-input>
+                        <b-form-invalid-feedback id="password-live-feedback" v-if="$v.displayName.minLength">
+                            this is a required field
+                        </b-form-invalid-feedback>
+                        <b-form-invalid-feedback id="password-live-feedback" v-if="$v.displayName.required">
+                            name should be at least {{ $v.displayName.$params.minLength.min }} chars
+                        </b-form-invalid-feedback>
 
-                <div class="form-group">
-                  <button class="btn btn-primary btn-block" type="submit" :disabled="!$v.$invalid">create</button>
-                </div> <!-- form-group// -->
-            </form>
-            <p v-if="boo">{{ boo }}</p>
+                        <b-form-valid-feedback id="password-live-feedback">
+                            {{ $t('modal.tabs.register.password-valid') }} </b-form-valid-feedback>
+                    </b-form-group>
 
-            <div slot="modal-footer" class="w-100" slot-scope="{cancel}">
-                <span>designs by/ Nasr Galal</span>
-                <b-button variant="primary" size="sm" class="float-right" @click="cancel()">
-                    cancel
-                </b-button>
-            </div>
+                    <b-row class="justify-content-center">
+                        <b-button variant="success" type="submit">create</b-button>
+                    </b-row>
+                </form>
+
+                    <p v-if="boo">{{ boo }}</p>
+
+                <div slot="modal-footer" class="w-100" slot-scope="{cancel}">
+                    <span>designs by/ Nasr Galal</span>
+                    <b-button variant="primary" size="sm" class="float-right" @click="cancel()">
+                        cancel
+                    </b-button>
+                </div>
             </b-modal>
 
         </div>
@@ -152,7 +142,12 @@
 </template>
 
 <script>
-    import { email } from 'vuelidate/lib/validators';
+    import firebase from 'firebase';
+    const functions = firebase.functions();
+    import { mapGetters, mapState } from 'vuex';
+    import {
+        email
+    } from 'vuelidate/lib/validators';
 
     import {
         BarLoader,
@@ -214,26 +209,33 @@
                 phoneNumber: null,
                 password: null,
                 displayName: null,
-                disabled: false,
                 // error reporting
                 boo: ''
             }
         },
         validations: {
-        email: {
-          required,
-          email,
+            email: {
+                required,
+                email,
+            },
+            password: {
+                required,
+                minLength: minLength(8),
+            },
+            displayName: {
+                required,
+                minLength: minLength(4)
+            }
         },
-        password: {
-          required,
-          minLength: minLength(8),
-        },
-        displayName: {
-            required,
-            minLength: minLength(4)
-        }
-    },
         methods: {
+            listAllUsers() {
+                this.loading = true
+                axios.get('https://us-central1-vue-shop-e3547.cloudfunctions.net/listUsers').then(response => {
+                    this.users = response.data.users
+                    this.loading = false
+                    return this.totalRows = this.users.length;
+                }).catch(err => console.log(err))
+            },
             addAdmin(value) {
                 console.log(value)
                 const makeAdmin = functions.httpsCallable('addAdminRole');
@@ -257,28 +259,55 @@
                 this.$v.$touch()
                 if (this.$v.$anyError) {
                     return
-                }
-                const createProcess = functions.httpsCallable('makeNewUser');
-                createProcess({
-                    email: data.email,
-                    emailVerified: false,
+                } else if (!this.$v.$anyError) {
+
+                    axios.post('https://us-central1-vue-shop-e3547.cloudfunctions.net/makeNewUser', {
+                        email: this.email,
                     password: 12345678,
-                    displayName: data.displayName,
-                    disabled: false
-                }).then(() => {console.log('nice')})
-                .catch(() => {console.log('error')})
-                
+                    firstName: this.displayName,
+                }).then(r => {
+                    toast.fire({
+                        type: 'success',
+                        title: 'created new user successfully'
+                    });
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+                this.listAllUsers();
+                }
+            },
+            deleteUser(x) {
+                this.$Progress.start()
+                const deleting = functions.httpsCallable('deleteUser');
+                deleting({uid: x}).then(result => {
+                    toast.fire({
+                        type: 'success',
+                        title: 'deleted user successfully'
+                    });
+                    this.listAllUsers();
+                    this.$Progress.finish(); 
+                }).catch(err => {
+                    this.$Progress.fail()
+                     console.log(err)
+                });
             },
         },
-        created() {
-            this.loading = true
-            axios.get('https://us-central1-vue-shop-e3547.cloudfunctions.net/listUsers').then(response => {
-                this.users = response.data.users
-                console.log(Object.entries(this.users))
-                this.loading = false
-                return this.totalRows = this.users.length;
+        // if using vuex instead
+        // computed: 
+        //     mapState({ users: state => state.users }),
 
-            }).catch((err) => console.log(err))
+        created() {
+            this.listAllUsers();
+            // Fire.$on('done', () => {
+            // })
+
+            // if wanted to use vuex instead
+            // this.loading = true
+            // this.$store.dispatch('listAllUsers').then(() => {
+            //     this.loading = false
+            //     return this.totalRows = this.users.length;
+            // })
         },
     }
 </script>

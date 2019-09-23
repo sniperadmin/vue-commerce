@@ -299,10 +299,10 @@ export default {
         // this.$firestore.products.doc(this.product['.key']).set(this.product).then(() => {
         //   this.$firestore.products.doc(this.activeItem).delete()}).then(()=>{
             // this.$refs.edit.hide()
-            //   toast.fire({
-            //       type: 'success',
-            //       title: 'Updated successfully'
-            //   });
+              // toast.fire({
+              //     type: 'success',
+              //     title: 'Updated successfully'
+              // });
         //   });
 
         this.$firestore.products.doc(this.product.id).update(this.product).then(() => {
@@ -312,7 +312,6 @@ export default {
                   title: 'Updated successfully'
               });
           });
-        
       },
       deleteProduct(doc) {
         Swal.fire({
