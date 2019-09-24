@@ -33,8 +33,8 @@
                 <td>{{product.name}}</td>
                 <td>{{product.price}}</td>
                 <td>
-                  <b-button variant="primary" @click="editProduct(product)">{{ $t('adminPage.products.table.modify.edit') }}</b-button>
-                  <b-button variant="danger" @click="deleteProduct(product)">{{ $t('adminPage.products.table.modify.delete') }}</b-button>
+                  <b-button variant="primary" @click="editProduct(product)"><i class="fas fa-edit"></i></b-button>
+                  <b-button variant="danger" @click="deleteProduct(product)"><i class="fas fa-trash"></i></b-button>
                 </td>
               </tr>
               
@@ -158,6 +158,7 @@
 </template>
 <script>
 // Advanced Use - Hook into Quill's API for Custom Functionality
+
 import { BarLoader } from '@saeris/vue-spinners';
 import { VueEditor } from "vue2-editor";
 import { fbAuth, db } from "@/assets/js/firebase";

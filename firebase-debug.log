@@ -1,0 +1,164 @@
+[debug] [2019-09-24T19:42:28.126Z] ----------------------------------------------------------------------
+[debug] [2019-09-24T19:42:28.128Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Nasr\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2019-09-24T19:42:28.128Z] CLI Version:   7.3.2
+[debug] [2019-09-24T19:42:28.129Z] Platform:      win32
+[debug] [2019-09-24T19:42:28.129Z] Node Version:  v10.16.3
+[debug] [2019-09-24T19:42:28.130Z] Time:          Tue Sep 24 2019 21:42:28 GMT+0200 (Eastern European Standard Time)
+[debug] [2019-09-24T19:42:28.130Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-09-24T19:42:28.148Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-09-24T19:42:28.149Z] > authorizing via signed-in user
+[debug] [2019-09-24T19:42:28.149Z] [iam] checking project vue-shop-e3547 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2019-09-24T19:42:28.151Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-09-24T19:42:28.152Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-09-24T19:42:28.667Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-24T19:42:28.689Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/vue-shop-e3547:testIamPermissions  
+
+[debug] [2019-09-24T19:42:29.863Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-24T19:42:29.867Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/vue-shop-e3547  
+ 
+[debug] [2019-09-24T19:42:30.423Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'vue-shop-e3547'...
+[info] 
+[info] i  deploying storage, firestore, functions, hosting
+[debug] [2019-09-24T19:42:33.329Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/vue-shop-e3547  
+ 
+[debug] [2019-09-24T19:42:34.863Z] <<< HTTP RESPONSE 200
+[info] i  storage: checking storage.rules for compilation errors...
+[debug] [2019-09-24T19:42:34.877Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/vue-shop-e3547:test  
+
+[debug] [2019-09-24T19:42:47.949Z] Error: Client network socket disconnected before secure TLS connection was established
+    at TLSSocket.onConnectEnd (_tls_wrap.js:1095:19)
+    at Object.onceWrapper (events.js:286:20)
+    at TLSSocket.emit (events.js:203:15)
+    at TLSSocket.EventEmitter.emit (domain.js:448:20)
+    at endReadableNT (_stream_readable.js:1145:12)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+[error] 
+[error] Error: Server Error. Client network socket disconnected before secure TLS connection was established
+[debug] [2019-09-24T19:43:26.336Z] ----------------------------------------------------------------------
+[debug] [2019-09-24T19:43:26.339Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Nasr\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2019-09-24T19:43:26.339Z] CLI Version:   7.3.2
+[debug] [2019-09-24T19:43:26.339Z] Platform:      win32
+[debug] [2019-09-24T19:43:26.339Z] Node Version:  v10.16.3
+[debug] [2019-09-24T19:43:26.340Z] Time:          Tue Sep 24 2019 21:43:26 GMT+0200 (Eastern European Standard Time)
+[debug] [2019-09-24T19:43:26.340Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-09-24T19:43:26.353Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-09-24T19:43:26.354Z] > authorizing via signed-in user
+[debug] [2019-09-24T19:43:26.354Z] [iam] checking project vue-shop-e3547 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2019-09-24T19:43:26.356Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/vue-shop-e3547:testIamPermissions  
+
+[debug] [2019-09-24T19:43:27.621Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-24T19:43:27.627Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/vue-shop-e3547  
+ 
+[debug] [2019-09-24T19:43:28.143Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'vue-shop-e3547'...
+[info] 
+[info] i  deploying storage, firestore, functions, hosting
+[debug] [2019-09-24T19:43:31.295Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/vue-shop-e3547  
+ 
+[debug] [2019-09-24T19:43:32.531Z] <<< HTTP RESPONSE 200
+[info] i  storage: checking storage.rules for compilation errors...
+[debug] [2019-09-24T19:43:32.536Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/vue-shop-e3547:test  
+
+[debug] [2019-09-24T19:43:35.786Z] <<< HTTP RESPONSE 200
+[info] +  storage: rules file storage.rules compiled successfully
+[info] i  firestore: checking firestore.rules for compilation errors...
+[info] i  firestore: reading indexes from firestore.indexes.json...
+[debug] [2019-09-24T19:43:35.796Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/vue-shop-e3547:test  
+
+[debug] [2019-09-24T19:43:38.163Z] <<< HTTP RESPONSE 200
+[info] +  firestore: rules file firestore.rules compiled successfully
+[debug] [2019-09-24T19:43:38.172Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase serve --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "10"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^3.1.0",
+    "child-process-promise": "^2.2.1",
+    "express": "^4.17.1",
+    "firebase-admin": "^8.0.0",
+    "firebase-functions": "^3.1.0",
+    "sharp": "^0.23.0",
+    "stripe": "^7.8.0"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^0.1.6"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2019-09-24T19:43:38.232Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/vue-shop-e3547/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2019-09-24T19:43:38.232Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/vue-shop-e3547/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2019-09-24T19:43:39.495Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-24T19:43:41.234Z] <<< HTTP RESPONSE 200
+[info] +  functions: all necessary APIs are enabled
+[debug] [2019-09-24T19:43:41.236Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/vue-shop-e3547/adminSdkConfig  
+ 
+[debug] [2019-09-24T19:43:41.603Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-24T19:43:41.606Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/vue-shop-e3547/versions  
+
+[debug] [2019-09-24T19:43:43.470Z] <<< HTTP RESPONSE 200
+[info] i  storage: uploading rules storage.rules...
+[debug] [2019-09-24T19:43:43.473Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/vue-shop-e3547/rulesets  
+
+[debug] [2019-09-24T19:43:44.614Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-24T19:43:44.614Z] [rules] created ruleset projects/vue-shop-e3547/rulesets/e69ba57a-51bb-40a9-811c-ca54fc9720d7
+[info] i  firestore: uploading rules firestore.rules...
+[debug] [2019-09-24T19:43:44.620Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/vue-shop-e3547/rulesets  
+
+[debug] [2019-09-24T19:43:44.622Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1beta2/projects/vue-shop-e3547/databases/(default)/collectionGroups/-/indexes  
+ 
+[debug] [2019-09-24T19:43:45.510Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-24T19:43:45.511Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1beta2/projects/vue-shop-e3547/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false  
+ 
+[debug] [2019-09-24T19:43:45.669Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-24T19:43:45.669Z] [rules] created ruleset projects/vue-shop-e3547/rulesets/ca10ad71-3c09-4a03-b509-f48c04e32b0b
+[debug] [2019-09-24T19:43:46.048Z] <<< HTTP RESPONSE 200
+[info] +  firestore: deployed indexes in firestore.indexes.json successfully
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2019-09-24T19:43:46.095Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/vue-shop-e3547/configs  
+ 
+[debug] [2019-09-24T19:43:46.864Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-24T19:43:46.866Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/vue-shop-e3547/configs/stripe/variables  
+ 
+[debug] [2019-09-24T19:43:48.198Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-24T19:43:48.200Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/vue-shop-e3547/configs/stripe/variables/secret  
+ 
+[debug] [2019-09-24T19:43:48.200Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/vue-shop-e3547/configs/stripe/variables/token  
+ 
+[debug] [2019-09-24T19:43:48.580Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-24T19:43:49.448Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (32.69 KB) for uploading
+[debug] [2019-09-24T19:43:49.975Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/vue-shop-e3547/locations/us-central1/functions:generateUploadUrl  
+ 
+[debug] [2019-09-24T19:43:51.166Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-24T19:43:51.168Z] >>> HTTP REQUEST PUT https://storage.googleapis.com/gcf-upload-us-central1-286ee748-c80c-4fcd-a315-34b9c22c9db7/e126ca87-c65c-45e8-b856-61b248f1e46d.zip?GoogleAccessId=service-10671603786@gcf-admin-robot.iam.gserviceaccount.com&Expires=1569356031&Signature=TYl7r1VyqUT7DqnRf5CCvtDTNH%2FVkB9gZxyVmUuACQm1r23FkdDPvEZ0JW2kZVRCTc0Rl%2Brh%2FoLrD0B3%2FzkcJKNY%2BioWcar8mosWNj23%2F9r6edjNiII%2FRgxiJZuBrhaemxzOIW%2Fcd0oaW4WQsB7mpcaC2Er7KbtY13zZku1phReB2VYrWCZqaDAUJYzTieKzAONwOhcZKKOjMTL1VHhdOIlPTfEiJoRkVUZD6o5jctrO%2F4sV6uKk3LHwM3ikdV5YTuczZ5hr1nOCMZIj%2BNnkLZpbcoNsjEdBk%2FPp0X5f1aPLkhp0N5XnRUekyZYMaJpsYTd%2FhFYXGpUBnDwTETM2RQ%3D%3D  
+ <request body omitted>
+[debug] [2019-09-24T19:43:52.394Z] <<< HTTP RESPONSE 200
+[info] +  functions: functions folder uploaded successfully
+[info] i  hosting[vue-shop-e3547]: beginning deploy...
+[info] i  hosting[vue-shop-e3547]: found 53 files in dist
+[debug] [2019-09-24T19:43:52.513Z] [hosting] hash cache [ZGlzdA] load error: lines is not defined
+[debug] [2019-09-24T19:43:55.229Z] [hosting] hash cache [ZGlzdA] stored for 53 files
+[debug] [2019-09-24T19:43:55.229Z] [hosting][hash queue][FINAL]
+[debug] [2019-09-24T19:43:55.229Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/vue-shop-e3547/versions/e2e143fbd79a8d24:populateFiles  
+ <request body omitted>
+[debug] [2019-09-24T19:43:57.721Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-24T19:43:57.731Z] [hosting][populate queue][FINAL]
+[debug] [2019-09-24T19:43:57.731Z] [hosting] uploads queued: 6

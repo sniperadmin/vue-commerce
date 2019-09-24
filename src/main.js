@@ -60,7 +60,7 @@ import i18n from './i18n'
 Vue.use(VueProgressBar, {
   color: 'rgb(143, 255, 199)',
   failedColor: 'red',
-  height: '5px'
+  height: '7px'
 });
 
 router.beforeEach((to, from, next) => {

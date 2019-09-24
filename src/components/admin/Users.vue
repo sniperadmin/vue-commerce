@@ -65,6 +65,11 @@
             <b-table id="my-table" class="text-center" bordered hover head-variant="dark" :items="users"
                 :fields="fields" :current-page="currentPage" :per-page="perPage" :filter="filter"
                 @filtered="onFiltered">
+
+                <template slot="userRole" slot-scope="row">
+                    <b-badge variant="primary" v-if="!row.item.customClaims">standard user</b-badge>
+                    <b-badge variant="success" v-else-if="row.item.customClaims">admin</b-badge>
+                </template>
                 
                 <template slot="status" slot-scope="row">
                     <b-badge v-if="row.item.disabled" variant="danger">disabled</b-badge>
@@ -85,12 +90,17 @@
                     </b-button>
                     
                     <!-- disable account -->
-                    <b-button variant="warning" class="pr-3 pl-3" v-if="!row.item.disabled" @click="disableAccount(row.item.uid)">
-                        <i class="fas fa-plug"></i>
+                    <b-button variant="warning" class="pr-3 pl-3" v-if="!row.item.disabled && !row.item.customClaims" @click="disableAccount(row.item.uid)">
+                        <i class="fas fa-plug"></i>                    
+                    </b-button>
+                    
+                    <!-- enable account -->
+                    <b-button variant="warning" class="pr-3 pl-3" v-if="row.item.disabled" @click="enableAccount(row.item.uid)">
+                        <span>enable</span>
                     </b-button>
 
                     <!-- delete user -->
-                    <b-button variant="danger" class="pr-3 pl-3" @click="deleteUser(row.item.uid)"
+                    <b-button variant="danger" class="pr-3 pl-3" v-b-tooltip.hover @click="deleteUser(row.item.uid)"
                         v-if="!row.item.customClaims">
                         <i class="fas fa-trash"></i>
                     </b-button>
@@ -181,7 +191,8 @@
 
     import {
         BarLoader,
-        ClipLoader
+        ClipLoader,
+        CircleLoader
     } from '@saeris/vue-spinners'
     import axios from 'axios'
     import {
@@ -195,7 +206,8 @@
         name: 'users',
         components: {
             BarLoader,
-            ClipLoader
+            ClipLoader,
+            CircleLoader
         },
         data() {
             return {
@@ -210,6 +222,12 @@
                     },
                     {
                         key: 'emailVerified',
+                        label: 'email verified',
+                        sortable: true
+                    },
+                     {
+                        key: 'userRole',
+                        label: 'user role',
                         sortable: true
                     },
                     {
@@ -316,15 +334,44 @@
             disableAccount(x) {
                 // .. callable function
                 const disable = functions.httpsCallable('disableAccount');
+                this.$Progress.start();
                 disable({
                     uid: x
-                }).then((x) => {
-                    this.$bvToast.toast(`disabled user ${x} successfully`, {
+                }).then(x => {
+                    this.$bvToast.toast(`disabled user successfully`, {
                         title: 'status update',
-                        autoHideDelay: 5000,
+                        variant: 'success',
+                        autoHideDelay: 10000,
                     });
+                    this.$Progress.finish();
+                    Fire.$emit('done');
                 })
                 .catch(err=> {
+                    this.$Progress.fail();
+                    this.$bvToast.toast(`${err}`, {
+                        title: 'error updating',
+                        variant: 'danger',
+                        autoHideDelay: 10000,
+                    });
+                });
+            },
+            enableAccount(x) {
+                // launch
+                const enable = functions.httpsCallable('enableAccount');
+                this.$Progress.start();
+                enable({
+                    uid: x
+                }).then(x => {
+                    this.$bvToast.toast(`enabled user successfully`, {
+                        title: 'status update',
+                        variant: 'success',
+                        autoHideDelay: 5000,
+                    });
+                    this.$Progress.finish();
+                    Fire.$emit('done');
+                })
+                .catch(err=> {
+                    this.$Progress.fail();
                     this.$bvToast.toast(`${err}`, {
                         title: 'status update',
                         autoHideDelay: 5000,
@@ -360,7 +407,7 @@
                         });
                     }
                 })
-            },
+            },  
         },
         // if using vuex instead
         // computed: 
@@ -378,7 +425,8 @@
         },
         mounted() {
             Fire.$on('done', () => {
-                this.listAllUsers
+                // this.users = []
+                this.listAllUsers()
             })
 
         }

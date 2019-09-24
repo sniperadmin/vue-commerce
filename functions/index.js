@@ -109,7 +109,6 @@ exports.makeNewUser = functions.https.onRequest((request, response) => {
 
 // disable account
 exports.disableAccount = functions.https.onCall((data, context) => {
-  // cors(data, context, () => {
   admin.auth().updateUser(data.uid, {
     disabled: true
   })
@@ -121,8 +120,22 @@ exports.disableAccount = functions.https.onCall((data, context) => {
       context.status(500).send(error);
       console.log('Error updating user:', error);
     });
-  // });
 });
+
+// enable account
+exports.enableAccount = functions.https.onCall((data, context) => {
+  admin.auth().updateUser(data.uid, {
+    disabled: false
+  })
+    .then(userRecord => {
+      // See the UserRecord reference doc for the contents of userRecord.
+      console.log('Successfully updated user', userRecord.toJSON());
+    })
+    .catch(error => {
+      context.status(500).send(error);
+      console.log('Error updating user:', error);
+    });
+})
 
 // deleting user
 exports.deleteUser = functions.https.onCall((data, context) => {
