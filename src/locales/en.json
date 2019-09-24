@@ -58,6 +58,7 @@
   "alerts": {
     "verify" : "verify your email address!",
     "verify-p" : "make sure that you do confirm your email, so that you can use our sevices.",
+    "send-mail": "send e-mail verification",
     "verify-button" : "verify e-mail to checkout",
     "login" : "login/signup and start buying!",
     "login-p" : "make sure that you do confirm your email, so that you can use our sevices.",

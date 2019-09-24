@@ -234,9 +234,9 @@ import {
             .then(user => {
               this.hideModal();
 
-              fbAuth.auth().currentUser.sendEmailVerification().then(function() {
-                alert('Ver sent')
-              }).catch(function(error) {
+              fbAuth.auth().currentUser.sendEmailVerification().then(() => {
+                alert('Verification sent')
+              }).catch(error => {
                 console.log(error)
               });
 

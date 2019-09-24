@@ -12,7 +12,7 @@
                             facere? Temporibus enim aperiam soluta ratione maxime beatae!
                         </p>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 align-content-center">
                         <img src="@/assets/img/orders.svg" class="img-fluid" alt="overview image">
                     </div>
                 </div><!-- ./top-intro -->
@@ -47,7 +47,8 @@
 
                 <!-- col-2 -->
                 <b-col cols="4">
-                    <h2 class="h2-responsive">total users <b-badge>{{ totalRows }}
+                    <h2 class="h2-responsive">total users
+                        <b-badge>{{ totalRows }}
                             <clip-loader :loading="loading" :color="`#fff`" :size="25"></clip-loader>
                         </b-badge>
                     </h2>
@@ -64,11 +65,36 @@
             <b-table id="my-table" class="text-center" bordered hover head-variant="dark" :items="users"
                 :fields="fields" :current-page="currentPage" :per-page="perPage" :filter="filter"
                 @filtered="onFiltered">
+                
+                <template slot="status" slot-scope="row">
+                    <b-badge v-if="row.item.disabled" variant="danger">disabled</b-badge>
+                    <b-badge v-if="!row.item.disabled" variant="success">enabled</b-badge>
+                </template>
+
                 <template slot="actions" slot-scope="row">
-                    <b-button variant="primary" disabled>edit</b-button>
-                    <b-button variant="success" v-if="!row.item.customClaims && row.item.emailVerified"
-                        @click="addAdmin(row.item.email)" disabled>make admin</b-button>
-                    <b-button variant="danger" @click="deleteUser(row.item.uid)" v-if="!row.item.customClaims">delete</b-button>
+                    <!-- edit user -->
+                    <b-button variant="primary" disabled class="pr-3 pl-3">
+                        <i class="fas fa-edit"></i>
+                    </b-button>
+
+                    <!-- make admin -->
+                    <b-button variant="success" class="pr-3 pl-3"
+                    v-if="!row.item.customClaims && row.item.emailVerified" @click="addAdmin(row.item.email)"
+                    disabled>
+                        make admin
+                    </b-button>
+                    
+                    <!-- disable account -->
+                    <b-button variant="warning" class="pr-3 pl-3" v-if="!row.item.disabled" @click="disableAccount(row.item.uid)">
+                        <i class="fas fa-plug"></i>
+                    </b-button>
+
+                    <!-- delete user -->
+                    <b-button variant="danger" class="pr-3 pl-3" @click="deleteUser(row.item.uid)"
+                        v-if="!row.item.customClaims">
+                        <i class="fas fa-trash"></i>
+                    </b-button>
+
                 </template>
             </b-table><!-- ./table -->
 
@@ -80,7 +106,8 @@
             <b-pagination v-model="currentPage" :total-rows="totalRows" :per-page="perPage" align="fill"
                 class="my-3 border heavy-rain-gradient" first-text="First" prev-text="Prev" next-text="Next"
                 last-text="Last">
-            </b-pagination><!-- ./pagination -->
+            </b-pagination>
+            <!-- ./pagination -->
 
             <b-modal centered ref="modal" id="create">
                 <div slot="modal-title">
@@ -127,7 +154,7 @@
                     </b-row>
                 </form>
 
-                    <p v-if="boo">{{ boo }}</p>
+                <p v-if="boo">{{ boo }}</p>
 
                 <div slot="modal-footer" class="w-100" slot-scope="{cancel}">
                     <span>designs by/ Nasr Galal</span>
@@ -144,7 +171,10 @@
 <script>
     import firebase from 'firebase';
     const functions = firebase.functions();
-    import { mapGetters, mapState } from 'vuex';
+    import {
+        mapGetters,
+        mapState
+    } from 'vuex';
     import {
         email
     } from 'vuelidate/lib/validators';
@@ -185,6 +215,11 @@
                     {
                         key: 'metadata.creationTime',
                         label: 'created at',
+                        sortable: true
+                    },
+                    {
+                        key: 'status',
+                        label: 'account status',
                         sortable: true
                     },
                     {
@@ -243,7 +278,9 @@
                     email: value
                 }).then(result => {
                     console.log(result);
-                })
+                }).catch(error => {
+                    console.log(error);
+                });
             },
             onFiltered(filteredItems) {
                 // Trigger pagination to update the number of buttons/pages due to filtering
@@ -260,37 +297,69 @@
                 if (this.$v.$anyError) {
                     return
                 } else if (!this.$v.$anyError) {
-
                     axios.post('https://us-central1-vue-shop-e3547.cloudfunctions.net/makeNewUser', {
-                        email: this.email,
-                    password: 12345678,
-                    firstName: this.displayName,
-                }).then(r => {
-                    toast.fire({
-                        type: 'success',
-                        title: 'created new user successfully'
-                    });
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-                this.listAllUsers();
+                            email: this.email,
+                            password: 12345678,
+                            firstName: this.displayName,
+                        }).then(r => {
+                            toast.fire({
+                                type: 'success',
+                                title: 'created new user successfully'
+                            });
+                        })
+                        .catch(err => {
+                            console.log(err)
+                        })
+                    Fire.$emit('done');
                 }
             },
-            deleteUser(x) {
-                this.$Progress.start()
-                const deleting = functions.httpsCallable('deleteUser');
-                deleting({uid: x}).then(result => {
-                    toast.fire({
-                        type: 'success',
-                        title: 'deleted user successfully'
+            disableAccount(x) {
+                // .. callable function
+                const disable = functions.httpsCallable('disableAccount');
+                disable({
+                    uid: x
+                }).then((x) => {
+                    this.$bvToast.toast(`disabled user ${x} successfully`, {
+                        title: 'status update',
+                        autoHideDelay: 5000,
                     });
-                    this.listAllUsers();
-                    this.$Progress.finish(); 
-                }).catch(err => {
-                    this.$Progress.fail()
-                     console.log(err)
+                })
+                .catch(err=> {
+                    this.$bvToast.toast(`${err}`, {
+                        title: 'status update',
+                        autoHideDelay: 5000,
+                    });
                 });
+            },
+            deleteUser(x) {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then(result => {
+                    if (result.value) {
+                        this.$Progress.start()
+                        const deleting = functions.httpsCallable('deleteUser');
+                        deleting({
+                            uid: x
+                        }).then(result => {
+                            toast.fire({
+                                type: 'success',
+                                title: 'deleted user successfully'
+                            });
+                            Fire.$emit('done');
+                            this.$Progress.finish();
+
+                        }).catch(err => {
+                            this.$Progress.fail()
+                            console.log(err)
+                        });
+                    }
+                })
             },
         },
         // if using vuex instead
@@ -299,8 +368,6 @@
 
         created() {
             this.listAllUsers();
-            // Fire.$on('done', () => {
-            // })
 
             // if wanted to use vuex instead
             // this.loading = true
@@ -309,5 +376,11 @@
             //     return this.totalRows = this.users.length;
             // })
         },
+        mounted() {
+            Fire.$on('done', () => {
+                this.listAllUsers
+            })
+
+        }
     }
 </script>

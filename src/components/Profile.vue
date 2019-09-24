@@ -15,11 +15,14 @@
         </div><!-- ./row -->
       </div><!-- ./intro -->
     </div><!-- ./container -->
+
     <div class="container-fluid"><!-- main contents -->
+          <!-- alerts -->
           <mdb-alert color="success" v-if="!verified">
               <h4 class="alert-heading">{{ $t('alerts.verify') }}</h4>
               <hr>
               <p>{{ $t('alerts.verify-p') }}</p>
+              <b-button variant="info" @click="verify">{{ $t('alerts.send-mail') }}</b-button>
             </mdb-alert>
       <b-card no-body><!-- card -->
         <b-tabs pills card justified><!-- tabs -->
@@ -195,6 +198,13 @@ import { mdbAlert } from 'mdbvue';
               });
         });
       },
+      verify() {
+        fbAuth.auth().currentUser.sendEmailVerification().then(() => {
+          alert('Verification sent')
+        }).catch(error => {
+            console.log(error)
+        });
+      }
     },
     created() {
       this.$vs.loading({

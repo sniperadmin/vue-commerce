@@ -26,6 +26,8 @@ import About from './components/About';
 import AdminLogin from './components/admin/AdminLogin';
 // categories
 import Categories from './components/admin/Categories';
+// notFound
+import NotFound from "./components/NotFound";
 
 import {fbAuth} from './assets/js/firebase';
 
@@ -174,6 +176,15 @@ export default new Router({
               meta: { hideNavigation: true },
             },
           ],
+          // ./admin-page
+        },
+        {
+          path: "*",
+          // name: "home",
+          component: NotFound,
+          meta: {
+            hideNavigation: true,
+          }
         },
       ]
     }
