@@ -11,6 +11,7 @@
                             temporibus expedita aliquam itaque exercitationem qui fugit
                             facere? Temporibus enim aperiam soluta ratione maxime beatae!
                         </p>
+                        <b-button id="toggle-sidebar">toggle</b-button>
                     </div>
                     <div class="col-md-6 align-content-center">
                         <img src="@/assets/img/orders.svg" class="img-fluid" alt="overview image">
@@ -64,45 +65,56 @@
             <!-- table -->
             <b-table id="my-table" class="text-center" bordered hover head-variant="dark" :items="users"
                 :fields="fields" :current-page="currentPage" :per-page="perPage" :filter="filter"
-                @filtered="onFiltered">
+                @filtered="onFiltered" small stacked="md" responsive striped :busy="busy" >
+
+                <template slot="emailVerified" slot-scope="row">
+                    <h5>
+                        <b-badge variant="success" v-if="row.item.emailVerified">verified account</b-badge>
+                        <b-badge variant="danger" v-if="!row.item.emailVerified">not verified</b-badge>
+                    </h5>
+                </template>
 
                 <template slot="userRole" slot-scope="row">
-                    <b-badge variant="primary" v-if="!row.item.customClaims">standard user</b-badge>
-                    <b-badge variant="success" v-else-if="row.item.customClaims">admin</b-badge>
+                    <h5>
+                        <b-badge variant="primary" v-if="!row.item.customClaims">standard user</b-badge>
+                        <b-badge variant="success" v-else-if="row.item.customClaims">admin</b-badge>
+                    </h5>
                 </template>
                 
                 <template slot="status" slot-scope="row">
-                    <b-badge v-if="row.item.disabled" variant="danger">disabled</b-badge>
-                    <b-badge v-if="!row.item.disabled" variant="success">enabled</b-badge>
+                    <h5>
+                        <b-badge v-if="row.item.disabled" variant="danger">disabled</b-badge>
+                        <b-badge v-if="!row.item.disabled" variant="success">enabled</b-badge>
+                    </h5>
                 </template>
 
                 <template slot="actions" slot-scope="row">
                     <!-- edit user -->
-                    <b-button variant="primary" disabled class="pr-3 pl-3">
-                        <i class="fas fa-edit"></i>
+                    <b-button data-toggle="tooltip" title="edit account" variant="primary" disabled class="p-2">
+                        <i class="fas fa-edit fa-sm"></i>
                     </b-button>
 
                     <!-- make admin -->
-                    <b-button variant="success" class="pr-3 pl-3"
+                    <b-button data-toggle="tooltip" title="make admin" variant="success" class="pr-3 pl-3"
                     v-if="!row.item.customClaims && row.item.emailVerified" @click="addAdmin(row.item.email)"
                     disabled>
                         make admin
                     </b-button>
                     
                     <!-- disable account -->
-                    <b-button variant="warning" class="pr-3 pl-3" v-if="!row.item.disabled && !row.item.customClaims" @click="disableAccount(row.item.uid)">
-                        <i class="fas fa-plug"></i>                    
+                    <b-button data-toggle="tooltip" title="disable account" variant="warning" class="p-2" v-if="!row.item.disabled && !row.item.customClaims" @click="disableAccount(row.item.uid)">
+                        <i class="fas fa-lock fa-sm"></i>
                     </b-button>
                     
                     <!-- enable account -->
-                    <b-button variant="warning" class="pr-3 pl-3" v-if="row.item.disabled" @click="enableAccount(row.item.uid)">
-                        <span>enable</span>
+                    <b-button data-toggle="tooltip" title="enable account" variant="warning" class="p-2" v-if="row.item.disabled" @click="enableAccount(row.item.uid)">
+                        <i class="fas fa-lock-open fa-sm"></i>
                     </b-button>
 
                     <!-- delete user -->
-                    <b-button variant="danger" class="pr-3 pl-3" v-b-tooltip.hover @click="deleteUser(row.item.uid)"
+                    <b-button data-toggle="tooltip" title="delete account" variant="danger" class="p-2" v-b-tooltip.hover @click="deleteUser(row.item.uid)"
                         v-if="!row.item.customClaims">
-                        <i class="fas fa-trash"></i>
+                        <i class="fas fa-trash fa-sm"></i>
                     </b-button>
 
                 </template>
@@ -216,7 +228,8 @@
                 currentPage: 1,
                 filter: null,
                 totalRows: null,
-                fields: [{
+                fields: [
+                    {
                         key: 'email',
                         sortable: true
                     },
@@ -256,6 +269,7 @@
                     }
                 ],
                 loading: false, // for the loading components
+                busy: false,
                 modal: null,
                 // form
                 email: null,
@@ -282,10 +296,12 @@
         },
         methods: {
             listAllUsers() {
-                this.loading = true
+                this.busy = true;
+                this.loading = true;
                 axios.get('https://us-central1-vue-shop-e3547.cloudfunctions.net/listUsers').then(response => {
                     this.users = response.data.users
-                    this.loading = false
+                    this.loading = false;
+                    this.busy = false;
                     return this.totalRows = this.users.length;
                 }).catch(err => console.log(err))
             },

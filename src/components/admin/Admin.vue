@@ -1,10 +1,7 @@
 <template>
   <div class="hello">
-  <div  class="page-wrapper default-theme sidebar-bg bg1 " :class="{ active : isActive, 'toggled' : acting}" v-if="isAdmin">
-    <!-- toggler -->
-            <b-button class="btn btn-sm btn-dark" @click="acting = !acting">
-            <i class="fas fa-bars"></i>
-            </b-button>
+  <div  class="page-wrapper default-theme sidebar-bg bg1" :class="{ active : isActive, 'toggled' : acting}" v-if="isAdmin">
+            
         <nav id="sidebar" class="sidebar-wrapper">
            
             <div class="sidebar-content">
@@ -109,7 +106,15 @@
           <div class="container-fluid">
             <div class="row">
               <div class="form-group col-md-12">
+                  <!-- toggler -->
+            <transition name="fade">
+                <b-button class="btn btn-sm btn-dark ml-0 mt-0 position-fixed" v-if="!acting" @click="acting = !acting">
+                    <i class="fas fa-bars"></i>
+                </b-button>
+            </transition>
+            <transition name="fade">
                 <router-view></router-view>
+            </transition>
               </div>
             </div>
           </div>
@@ -149,8 +154,20 @@ export default {
             });
         },
         toggleMenu() {
-            jQuery(function ($) {
-                $(".page-wrapper").toggleClass("toggled");
+            jQuery($ => {
+                //Pin sidebar
+                $(".page-wrapper").addClass("pinned");
+
+                $("#sidebar").hover(
+                    () => {
+                        console.log("mouseenter");
+                        $(".page-wrapper").addClass("sidebar-hovered");
+                    },
+                    () => {
+                        console.log("mouseout");
+                        $(".page-wrapper").removeClass("sidebar-hovered");
+                    }
+                )
             });
         },
     },
@@ -182,10 +199,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .custom {
-	position: fixed;
-	// right: -62px;
-  padding: .5rem 1.2rem;
-    // display: none;
+    left: 0;
 }
 
 </style>
