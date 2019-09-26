@@ -15,7 +15,7 @@
 
 
       <section class="text-center">
-        <h2 class="h1-responsive font-weight-bold my-5">Application Builder</h2>
+        <h2 class="h1-responsive font-weight-bold my-5">{{ $t('about.programmer') }}</h2>
     
         <!-- <p class="grey-text w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit,
           error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam eum porro a
@@ -25,9 +25,9 @@
           <mdb-col md="12" class="mb-lg-0 mb-5">
             <img tag="img" src="https://forums.coretabs.net/user_avatar/forums.coretabs.net/sniperadmin/120/2258_2.png"
               class="z-depth-1 rounded-circle" alt="Sample avatar" />
-            <h5 class="font-weight-bold mt-4 mb-3">Nasr Galal</h5>
-            <p class="text-uppercase blue-text">Full-Stack Developer</p>
-            <p class="grey-text"> the equation is simple "Patience + passion = something big"!</p>
+            <h5 class="font-weight-bold mt-4 mb-3">{{ $t('about.nasr') }}</h5>
+            <p class="text-uppercase blue-text">{{ $t('about.nasr-job') }}</p>
+            <p class="grey-text"> {{ $t('about.nasr-quote') }}</p>
             <ul class="list-unstyled mb-0">
               <a class="p-2 fa-lg" href="https://www.facebook.com/nasr.galal" target="_blank">
                 <mdb-icon fab icon="facebook" class="blue-text" data-toggle="tooltip" title="facebook" />
@@ -48,7 +48,7 @@
         
         <hr class="mt-4">
 
-        <h2 class="h1-responsive font-weight-bold my-5">Instructors who revised the content</h2>
+        <h2 class="h1-responsive font-weight-bold my-5">{{ $t('about.teachers') }}</h2>
         <!-- <p class="grey-text w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit,
           error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam eum porro a
           pariatur veniam.</p> -->
@@ -57,10 +57,9 @@
           <mdb-col md="6" class="mb-lg-0 mb-5">
             <img tag="img" src="https://forums.coretabs.net/user_avatar/forums.coretabs.net/yaseralnajjar/120/1862_2.png"
               class="z-depth-1 rounded-circle" alt="Sample avatar" />
-            <h5 class="font-weight-bold mt-4 mb-3">Yaser Alnajjar</h5>
-            <p class="text-uppercase blue-text">Software Architect & Co-Founder at Coretabs Academy</p>
-            <p class="grey-text">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-              sed quia non numquam modi tempora eius.</p>
+            <h5 class="font-weight-bold mt-4 mb-3">{{ $t('about.yaser') }}</h5>
+            <p class="text-uppercase blue-text">{{ $t('about.yaser-job') }}</p>
+            <p class="grey-text">{{ $t('about.yaser-quote') }}</p>
             <ul class="list-unstyled mb-0">
               <a class="p-2 fa-lg" href="https://www.facebook.com/yasser.alnajar.56" target="_blank">
                 <mdb-icon fab icon="facebook" class="blue-text" data-toggle="tooltip" title="facebook" />
@@ -81,10 +80,9 @@
           <mdb-col md="6" class="mb-lg-0 mb-5">
             <img tag="img" src="https://forums.coretabs.net/user_avatar/forums.coretabs.net/alhakem/120/2203_2.png"
               class="z-depth-1 rounded-circle" alt="Sample avatar" />
-            <h5 class="font-weight-bold mt-4 mb-3">Mohamed AlHakem</h5>
-            <p class="text-uppercase blue-text">FOUNDER AT CORETABS ACADEMY</p>
-            <p class="grey-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem ipsa accusantium
-              doloremque rem laudantium totam aperiam.</p>
+            <h5 class="font-weight-bold mt-4 mb-3">{{ $t('about.hakem') }}</h5>
+            <p class="text-uppercase blue-text">{{ $t('about.hakem-job') }}</p>
+            <p class="grey-text">{{ $t('about.yaser-quote') }}</p>
             <ul class="list-unstyled mb-0">
               <a class="p-2 fa-lg" href="https://www.facebook.com/mo.alhakem" target="_blank">
                 <mdb-icon fab icon="facebook" class="blue-text" />

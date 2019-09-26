@@ -82,7 +82,18 @@
   },
   "about" : {
     "title" : "about us",
-    "content": "I would like to give special thanks to the <strong>One Arab Million Coders</strong> who opened the gate for me to explore the world of web development and accomplish this result <strong>(Vue-Commerce)</strong>.<br><br> Special thanks to <strong>Coretabs academy</strong> for the courses and advices given to assist me building this thing. I have done it on my own <strong>(self-learning)</strong>. It still needs updates which I do work on this year and I am sure that I will produce a competitive content in the market soon."
+    "content": "I would like to give special thanks to the <strong>One Arab Million Coders</strong> who opened the gate for me to explore the world of web development and accomplish this result <strong>(Vue-Commerce)</strong>.<br><br> Special thanks to <strong>Coretabs academy</strong> for the courses and advices given to assist me building this thing. I have done it on my own <strong>(self-learning)</strong>. It still needs updates which I do work on this year and I am sure that I will produce a competitive content in the market soon.",
+    "programmer": "Application Builder",
+    "nasr": "Nasr Galal",
+    "nasr-job": "Full-Stack Developer",
+    "nasr-quote": "the equation is simple `Patience + passion = something big!`",
+    "teachers": "Instructors who revised the content",
+    "yaser": "Yaser Alnajjar",
+    "yaser-job": "Software Architect & Co-Founder at Coretabs Academy",
+    "yaser-quote": "Did you solve the bug? or still there?",
+    "hakem": "Mohamed AlHakem",
+    "hakem-job": "FOUNDER AT CORETABS ACADEMY",
+    "hakem-quote": "Patience is good"
   },
   "cart" : {
     "title" : "checkout page",
