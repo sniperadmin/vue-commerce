@@ -47,7 +47,7 @@
 <script>
   import {
     fbAuth
-  } from '../assets/js/firebase';
+  } from '../../assets/js/firebase';
   import axios from 'axios';
   const stripe = Stripe("pk_test_EkgRdwSuRpwR0FUEsUSMJVCw00HJk4Sukt");
   import {

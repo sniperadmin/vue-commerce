@@ -2,42 +2,55 @@
 import Vue from "vue";
 // Router
 import Router from "vue-router";
+
+// views folder
 // HomePage
 import HomePage from './views/HomePage';
+
+// admin folder
 // Admin
 import Admin from './components/admin/Admin';
+
 // Overview
 import Overview from './components/admin/Overview';
+
 // Products
 import Products from './components/admin/Products';
+
 // Orders
 import Orders from './components/admin/Orders';
-//Users
-import Profile from './components/Profile';
-// Checkout
-import Checkout from './components/Checkout';
+
 // Users
 import Users from './components/admin/Users';
-// MyBoard
-import MyBoard from './components/MyBoard';
-// about
-import About from './components/About';
+
 // AdminLogin
 import AdminLogin from './components/admin/AdminLogin';
+
 // categories
 import Categories from './components/admin/Categories';
+
+// app-views
+// Users
+import Profile from './components/Profile';
+
+// Checkout
+import Checkout from './components/app-views/Checkout';
+
+// about
+import About from './components/app-views/About';
+
 // notFound
-import NotFound from "./components/NotFound";
+import NotFound from "./components/app-views/NotFound";
 
+// others
 import {fbAuth} from './assets/js/firebase';
-
 import i18n from './i18n';
 //*********************************************************************** */
 
 // use router
 Vue.use(Router);
 
-// exporting router function 
+// exporting router function
 export default new Router({
   mode: "history",
   base: process.env.BASE_URL,
@@ -64,33 +77,6 @@ export default new Router({
           path: "about",
           name: "about",
           component: About
-        },
-        // myboard
-        {
-          path: "myboard",
-          name: "myboard",
-          component: MyBoard,
-          meta: {
-            requiresAuth: true,
-          },
-          beforeEnter: (to, from, next) => {
-            // setting rules to guard the route
-            const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-            const currentUser = fbAuth.auth().currentUser;
-            // conditions
-            if (requiresAuth && !currentUser) {
-
-              // eslint-disable-next-line callback-return
-              next({
-                path: '/',
-                query: { redirect: to.fullPath },
-              });
-            }
-            else if (requiresAuth && currentUser) {
-              // eslint-disable-next-line callback-return
-              next()
-            } 
-          },
         },
         {
           path: "profile",

@@ -65,12 +65,24 @@
     "login-button" : "verify e-mail to checkout"
   },
   "footer" : {
+    "get-connected": "Get connected with us on social networks!",
+    "comment": "This content is organized and designed by Nasr Galal.",
+    "plugins": "Plugins used",
+    "mdb": "MDBootstrap",
+    "bootstrapvue": "BootstrapVue",
+    "links": "Useful links",
+    "coretabs": "Coretabs academy",
+    "arabcoders": "One Million Arab Coders",
+    "contact": "Contact",
+    "country": "Egypt",
+    "email": "nasrbue@gmail.com",
+    "phone": "+ 20 114 884 3049",
     "name" : "Nasr Galal",
     "copyright" : "copyright"
   },
   "about" : {
     "title" : "about us",
-    "content": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque sunt iure perspiciatis est veniam, voluptates maiores vitae? Sunt, perspiciatis iusto? Minus provident quisquam quibusdam natus illo, inventore cumque quos placeat."
+    "content": "I would like to give special thanks to the <strong>One Arab Million Coders</strong> who opened the gate for me to explore the world of web development and accomplish this result <strong>(Vue-Commerce)</strong>.<br><br> Special thanks to <strong>Coretabs academy</strong> for the courses and advices given to assist me building this thing. I have done it on my own <strong>(self-learning)</strong>. It still needs updates which I do work on this year and I am sure that I will produce a competitive content in the market soon."
   },
   "cart" : {
     "title" : "checkout page",

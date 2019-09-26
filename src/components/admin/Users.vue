@@ -21,7 +21,7 @@
             <!-- body-title -->
             <b-row class="my-2 justify-content-between">
                 <h2 class="d-inline-block h2-responsive">users list</h2>
-                <b-button class="p-2 mt-0" variant="success" @click="createNew">create user</b-button>
+                <b-button class="p-2 mt-0" variant="success" disabled @click="createNew">create user</b-button>
             </b-row><!-- ./body-title -->
 
             <!-- row -->

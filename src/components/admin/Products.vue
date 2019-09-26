@@ -18,12 +18,14 @@
           <b-button class="p-2 mt-0" variant="success" @click="createNew">{{ $t('adminPage.products.list-button') }}</b-button>
         </div><!-- ./body -->
 
+        <b-row align-h="between">
+
           <!-- search -->
           <b-col md="5">
           <b-form-group label="Filter" label-cols-sm="3" label-align-sm="right" label-size="sm"
                         label-for="filterInput" class="mb-0">
               <b-input-group size="sm">
-                <b-form-input @input="searchNow" v-model="search" type="search" id="filterInput" placeholder="search feature under construction">
+                <b-form-input disabled @input="searchNow()" v-model="search" type="search" id="filterInput" placeholder="search feature under construction">
                   </b-form-input>
                     <b-input-group-append>
                       <b-button :disabled="!search" @click="search = ''">Clear</b-button>
@@ -32,7 +34,15 @@
           </b-form-group>
           </b-col><!-- ./search -->
 
-          <div class="table-responsive table-bordered text-center">
+          <b-col md="5">
+            <h5 class="h2-responsive">total products
+              <b-badge>{{ products.length }}</b-badge>
+            </h5>
+          </b-col>
+
+        </b-row>
+
+          <div class="table-responsive table-bordered text-center mt-4">
             <table class="table p-0">
               <thead class="thead-dark">
                 <tr>
@@ -44,7 +54,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="product in searchResults? searchResults : products" :key="product.id">
+                <tr v-for="(product, index) in products" :key="index">
                   <td>
                     <img v-for="(image) in product.images" :key="image.id" :src="image" alt="product images" class="img-fluid" style="width:80px">
                   </td>
@@ -383,32 +393,26 @@ export default {
       })
       },
       searchNow() {
-        // console.log(this.search);
-        // var inside = this;
-        this.searchResults = this.products.filter(product => {
-                if (
-                  product.name
-                    .toLowerCase()
-                    .indexOf(this.search.toLowerCase()) != "-1"
-                ) {
-                  return product;
-                }
-              });
+          this.searchResults = this.products.filter(product => {
+                  if (
+                    product.name
+                      .toLowerCase()
+                      .indexOf(this.search.toLowerCase()) != "-1"
+                  ) {
+                    return product;
+                  }
+                });
+
             },
     }, // -- end methods -- //
-    mounted() {
+    created() {
       // Binding Collections
       this.$binding("products", db.collection("products"))
-      .then((products) => {
+      .then(products => {
         this.products = products; // => __ob__: Observer
         console.log(this.products)
       })
     }
-    // created() {
-    //   Fire.$on('custom', () => {
-    //     console.log(this.product.images)
-    //   })
-    // }
 }
 </script>
 <style scoped>
