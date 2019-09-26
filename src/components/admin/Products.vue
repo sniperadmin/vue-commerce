@@ -12,65 +12,61 @@
           </div>
         </div>
         
-        
-          <div class="mt-2 mb-2 p-1 row justify-content-between">
-              <h3 class="d-inline-block">{{ $t('adminPage.products.list-title') }}</h3>
-              <b-button class="p-2 mt-0" variant="success" @click="createNew">{{ $t('adminPage.products.list-button') }}</b-button>
-          </div>
+        <!-- body -->
+        <div class="mt-2 mb-2 p-1 row justify-content-between">
+          <h3 class="d-inline-block">{{ $t('adminPage.products.list-title') }}</h3>
+          <b-button class="p-2 mt-0" variant="success" @click="createNew">{{ $t('adminPage.products.list-button') }}</b-button>
+        </div><!-- ./body -->
 
+          <!-- search -->
+          <b-col md="5">
           <b-form-group label="Filter" label-cols-sm="3" label-align-sm="right" label-size="sm"
                         label-for="filterInput" class="mb-0">
-
-                        <b-input-group size="sm">
-
-                            <b-form-input disabled v-model="filter" type="search" id="filterInput" placeholder="search feature under construction">
-                            </b-form-input>
-                            <b-input-group-append>
-                                <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
-                            </b-input-group-append>
-
-                        </b-input-group>
-
-                    </b-form-group><!-- ./search -->
+              <b-input-group size="sm">
+                <b-form-input @input="searchNow" v-model="search" type="search" id="filterInput" placeholder="search feature under construction">
+                  </b-form-input>
+                    <b-input-group-append>
+                      <b-button :disabled="!search" @click="search = ''">Clear</b-button>
+                        </b-input-group-append>
+              </b-input-group>
+          </b-form-group>
+          </b-col><!-- ./search -->
 
           <div class="table-responsive table-bordered text-center">
-
-          <table class="table p-0">
-            <thead class="thead-dark">
-              <tr>
-                <th>images</th>
-                <th>{{ $t('adminPage.products.table.name') }}</th>
-                <th>category</th>
-                <th>{{ $t('adminPage.products.table.price') }}</th>
-                <th>{{ $t('adminPage.products.table.modify.title') }}</th>
-              </tr>
-            </thead>
-            <tbody>
-
-              <tr v-for="product in products" :key="product.id">
-                <td>
-                  <img v-for="(image) in product.images" :key="image.id" :src="image" alt="product images" class="img-fluid" style="width:80px">
-                </td>
-                <td>{{product.name}}</td>
-                <td>
-                  <b-badge variant="dark text-warning">
-                    <h5 class="h5-responsive">
-                      <i class="fas fa-exclamation-triangle"></i>
-                      <span>
-                        under construction
-                      </span>
-                    </h5>
-                  </b-badge>
-                </td>
-                <td>{{product.price | currency}}</td>
-                <td>
-                  <b-button variant="primary" @click="editProduct(product)"><i class="fas fa-edit"></i></b-button>
-                  <b-button variant="danger" @click="deleteProduct(product)"><i class="fas fa-trash"></i></b-button>
-                </td>
-              </tr>
-              
-            </tbody>
-          </table>
+            <table class="table p-0">
+              <thead class="thead-dark">
+                <tr>
+                  <th>images</th>
+                  <th>{{ $t('adminPage.products.table.name') }}</th>
+                  <th>category</th>
+                  <th>{{ $t('adminPage.products.table.price') }}</th>
+                  <th>{{ $t('adminPage.products.table.modify.title') }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="product in searchResults? searchResults : products" :key="product.id">
+                  <td>
+                    <img v-for="(image) in product.images" :key="image.id" :src="image" alt="product images" class="img-fluid" style="width:80px">
+                  </td>
+                  <td>{{ product.name }}</td>
+                  <td>
+                    <b-badge variant="dark text-warning">
+                      <h5 class="h5-responsive">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>
+                          under construction
+                        </span>
+                      </h5>
+                    </b-badge>
+                  </td>
+                  <td>{{product.price | currency}}</td>
+                  <td>
+                    <b-button variant="primary" @click="editProduct(product)"><i class="fas fa-edit"></i></b-button>
+                    <b-button variant="danger" @click="deleteProduct(product)"><i class="fas fa-trash"></i></b-button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           <!-- loader component -->
             <bar-loader :loading="loading" :color="`#3C36D7`" :height="8" :sizeUnit="`px`" class="w-100"></bar-loader>
             <!-- ./loader component -->
@@ -241,23 +237,19 @@ export default {
         tag: '', // single tag
         loading: false,
         search: '',
+        searchResults: [],
         
       }
     },
-    firestore () {
-      return {
-        // Collection
-        products: db.collection('products'),
-      }
-    },
+    // this is a method to fetch data
+    // firestore () {
+    //   return {
+    //     // Collection
+    //     products: db.collection('products'),
+    //   }
+    // },
     computed: {
-      filter() {
-        if (this.search) {
-          this.products.filter(product => {
-            return product.name.toLowerCase().startsWith(this.search.toLowerCase())
-          })
-        }
-      },
+      // ..
     },
     methods: {
       addTag(){
@@ -390,7 +382,28 @@ export default {
         }
       })
       },
+      searchNow() {
+        // console.log(this.search);
+        // var inside = this;
+        this.searchResults = this.products.filter(product => {
+                if (
+                  product.name
+                    .toLowerCase()
+                    .indexOf(this.search.toLowerCase()) != "-1"
+                ) {
+                  return product;
+                }
+              });
+            },
     }, // -- end methods -- //
+    mounted() {
+      // Binding Collections
+      this.$binding("products", db.collection("products"))
+      .then((products) => {
+        this.products = products; // => __ob__: Observer
+        console.log(this.products)
+      })
+    }
     // created() {
     //   Fire.$on('custom', () => {
     //     console.log(this.product.images)

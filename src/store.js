@@ -10,6 +10,7 @@ const store = new Vuex.Store({
   state: {
     cart: cart ? JSON.parse(cart) : [],
     users: [],
+    products: [],
   },
   getters: {
     totalPrice: state => {

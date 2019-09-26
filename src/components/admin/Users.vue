@@ -34,7 +34,7 @@
 
                         <b-input-group size="sm">
 
-                            <b-form-input v-model="filter" type="search" id="filterInput" placeholder="Type to Search">
+                            <b-form-input v-model="filter" type="search" id="filterInput" placeholder="Search by email">
                             </b-form-input>
                             <b-input-group-append>
                                 <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
@@ -83,7 +83,7 @@
                 <template slot="status" slot-scope="row">
                     <h5>
                         <mdb-badge v-if="row.item.disabled" color="pink lighten-2">Disabled</mdb-badge>
-                        <mdb-badge v-if="!row.item.disabled" color="success">Enabled</mdb-badge>
+                        <mdb-badge v-if="!row.item.disabled" color="teal darken-2">Enabled</mdb-badge>
                     </h5>
                 </template>
 
@@ -101,9 +101,9 @@
                     </b-button>
                     
                     <!-- disable account -->
-                    <b-button data-toggle="tooltip" title="disable account" variant="warning" class="p-2" v-if="!row.item.disabled && !row.item.customClaims" @click="disableAccount(row.item.uid)">
+                    <button data-toggle="tooltip" title="disable account" class="p-2 btn btn-amber" v-if="!row.item.disabled && !row.item.customClaims" @click="disableAccount(row.item.uid)">
                         <i class="fas fa-lock fa-sm"></i>
-                    </b-button>
+                    </button>
                     
                     <!-- enable account -->
                     <b-button data-toggle="tooltip" title="enable account" variant="warning" class="p-2" v-if="row.item.disabled" @click="enableAccount(row.item.uid)">
@@ -111,10 +111,10 @@
                     </b-button>
 
                     <!-- delete user -->
-                    <b-button v-b-popover.hover="'Popover!'" variant="danger" class="p-2" v-b-tooltip.hover @click="deleteUser(row.item.uid)"
+                    <button v-b-popover.hover="'Popover!'" class="p-2 btn btn-pink" @click="deleteUser(row.item.uid)"
                         v-if="!row.item.customClaims">
                         <i class="fas fa-trash fa-sm"></i>
-                    </b-button>
+                    </button>
 
                 </template>
             </b-table><!-- ./table -->
