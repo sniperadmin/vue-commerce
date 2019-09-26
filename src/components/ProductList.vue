@@ -89,18 +89,6 @@
             </div> <!-- rating-wrap.// -->
             <hr>
             <div class="row">
-              <div class="col-sm-5">
-                <dl class="dlist-inline">
-                  <dt>Quantity: </dt>
-                  <dd>
-                    <select class="form-control form-control-sm ml-2" style="width:70px;">
-                      <option> 1 </option>
-                      <option> 2 </option>
-                      <option> 3 </option>
-                    </select>
-                  </dd>
-                </dl> <!-- item-property .// -->
-              </div> <!-- col.// -->
               <div class="col-sm-7">
                 <dl class="dlist-inline">
                   <dt>Size: </dt>
