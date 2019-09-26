@@ -138,6 +138,7 @@ import {
   mdbDropdownMenu, 
   mdbDropdownToggle,
   mdbDropdownItem,
+  mdbContainer,
   } from 'mdbvue';
 
 import register from './components/Register';
@@ -156,6 +157,7 @@ export default {
     mdbDropdownMenu, 
     mdbDropdownToggle,
     mdbDropdownItem,
+    mdbContainer
   },
   data() {
     return {

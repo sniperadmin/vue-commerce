@@ -13,7 +13,7 @@
         </div>
       </div>
 
-
+      <hr>
       <section class="text-center">
         <h3 class="h3-responsive font-weight-bold my-5">{{ $t('about.programmer') }}</h3>
     

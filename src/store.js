@@ -45,7 +45,16 @@ const store = new Vuex.Store({
       }
       this.commit('saveData');
     },
-
+    decreaseQuantity(state, item) {
+      let spotted = state.cart.find(product => 
+        product.productId == item.productId);
+      if (spotted) {
+        if (spotted.productQuantity > 1) {
+          spotted.productQuantity-- ;
+        }
+      }
+      this.commit('saveData');
+    },
     saveData(state) {
       window.localStorage.setItem('cart', JSON.stringify(state.cart));
     },
