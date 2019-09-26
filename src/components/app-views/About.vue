@@ -109,7 +109,6 @@
     mdbContainer,
     mdbRow,
     mdbCol,
-    mdbAvatar,
     mdbIcon
   } from 'mdbvue';
   export default {
@@ -121,7 +120,6 @@
       mdbContainer,
       mdbRow,
       mdbCol,
-      mdbAvatar,
       mdbIcon
     }
   };
