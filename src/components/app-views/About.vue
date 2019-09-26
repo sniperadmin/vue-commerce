@@ -15,7 +15,7 @@
 
 
       <section class="text-center">
-        <h2 class="h1-responsive font-weight-bold my-5">{{ $t('about.programmer') }}</h2>
+        <h3 class="h3-responsive font-weight-bold my-5">{{ $t('about.programmer') }}</h3>
     
         <!-- <p class="grey-text w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit,
           error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam eum porro a
@@ -48,7 +48,7 @@
         
         <hr class="mt-4">
 
-        <h2 class="h1-responsive font-weight-bold my-5">{{ $t('about.teachers') }}</h2>
+        <h3 class="h3-responsive font-weight-bold my-5">{{ $t('about.teachers') }}</h3>
         <!-- <p class="grey-text w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit,
           error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam eum porro a
           pariatur veniam.</p> -->
