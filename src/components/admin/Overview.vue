@@ -14,6 +14,16 @@
       </div>
     </div>
 
+    <b-alert show variant="info mt-2">
+    <h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> under construction</h4>
+    <hr>
+    <p>
+      this page will contain graphs and widgets to show the current business state
+    </p>
+    <p class="mb-0">
+      the new version of app is coming soon!
+    </p>
+  </b-alert>
 
   </div>
 </template>

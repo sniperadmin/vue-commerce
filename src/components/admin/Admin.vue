@@ -51,7 +51,7 @@
                             <router-link :to="`/${$i18n.locale}/admin/overview`">
                                 <i class="fa fa-tachometer-alt"></i>
                                 <span class="menu-text mx-2">{{ $t('adminPage.menu.overview') }}</span>
-                                <span class="badge badge-pill badge-warning">under construction</span>
+                                <b-badge>under construction</b-badge>
                             </router-link>
                         </li>
                         <li class="sidebar" v-if="isAdmin">
@@ -66,7 +66,7 @@
                             <router-link :to="`/${$i18n.locale}/admin/categories`">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span class="menu-text mx-2">categories</span>
-                                <span class="badge badge-pill badge-danger"> still static => 3</span>
+                                <b-badge>under construction</b-badge>
                             </router-link>
                         </li>
 
@@ -74,7 +74,7 @@
                             <router-link :to="`/${$i18n.locale}/admin/orders`">
                                 <i class="far fa-gem"></i>
                                 <span class="menu-text mx-2">{{ $t('adminPage.menu.orders') }}</span>
-                                <span class="badge badge-pill badge-warning">under construction</span>
+                                <b-badge>under construction</b-badge>
                             </router-link>
                         </li>
                         <li class="sidebar-dropdown">
@@ -87,6 +87,7 @@
                             <router-link :to="`/${$i18n.locale}/admin/users`">
                                 <i class="fas fa-users"></i>
                                 <span class="menu-text mx-2" v-if="isAdmin">{{ $t('adminPage.menu.users') }}</span>
+                                 <span class="badge badge-pill badge-primary">{{ users.length }}</span>
                             </router-link>
                         </li>
                         <li class="sidebar">
@@ -128,6 +129,10 @@
 <script>
 // global {$, jQuery}
 import { db, fbAuth } from '@/assets/js/firebase';
+import {
+        mapGetters,
+        mapState
+    } from 'vuex';
 export default {
   name: "admin",
   props: {
@@ -153,24 +158,28 @@ export default {
                 console.log(err);
             });
         },
-        toggleMenu() {
-            jQuery($ => {
-                //Pin sidebar
-                $(".page-wrapper").addClass("pinned");
+        // old way using JQuery, i keep it as a reference
+        // toggleMenu() {
+        //     jQuery($ => {
+        //         //Pin sidebar
+        //         $(".page-wrapper").addClass("pinned");
 
-                $("#sidebar").hover(
-                    () => {
-                        console.log("mouseenter");
-                        $(".page-wrapper").addClass("sidebar-hovered");
-                    },
-                    () => {
-                        console.log("mouseout");
-                        $(".page-wrapper").removeClass("sidebar-hovered");
-                    }
-                )
-            });
-        },
+        //         $("#sidebar").hover(
+        //             () => {
+        //                 console.log("mouseenter");
+        //                 $(".page-wrapper").addClass("sidebar-hovered");
+        //             },
+        //             () => {
+        //                 console.log("mouseout");
+        //                 $(".page-wrapper").removeClass("sidebar-hovered");
+        //             }
+        //         )
+        //     });
+        // },
     },
+    computed: 
+            mapState({ users: state => state.users }),
+
     created() {
         fbAuth.auth().onAuthStateChanged(user => {
           if(user) {
@@ -184,7 +193,7 @@ export default {
                       this.email = userInfo.email;
                   }
               });
-          }
+            }
         });
 
         db.collection("products").onSnapshot(snapShot => {
@@ -192,8 +201,10 @@ export default {
                 this.products.push(doc.data())
             });
         });
+
+        this.$store.dispatch('listAllUsers')
     }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

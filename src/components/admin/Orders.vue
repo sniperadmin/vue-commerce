@@ -15,9 +15,18 @@
               <img src="@/assets/img/orders.svg" class="img-fluid" alt="overview image">
           </div>
         </div>
-        
-        
           <!-- code here! -->
+          <b-alert show variant="warning">
+            <h4 class="alert-heading"> <i class="fas fa-exclamation-triangle"></i> under construction</h4>
+            <hr>
+            <p>
+              the order tracking feature is currently under construction
+            </p>
+            <hr>
+            <p class="mb-0">
+              sorry for inconvinience
+            </p>
+          </b-alert>
 
         </div>
       </div>

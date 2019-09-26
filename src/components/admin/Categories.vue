@@ -15,8 +15,21 @@
         
           <div class="mt-2 mb-2 p-1 row justify-content-between">
               <h3 class="d-inline-block">categories list</h3>
-              <b-button class="p-2 mt-0" variant="success" @click="createNew">New category</b-button>
+              <b-button class="p-2 mt-0" variant="success" disabled @click="createNew">New category</b-button>
           </div>
+
+          <b-alert show variant="warning">
+            <h4 class="alert-heading"> <i class="fas fa-exclamation-triangle"></i> under construction</h4>
+            <hr>
+            <p>
+              the categories feature is currently under construction
+            </p>
+            <hr>
+            <p class="mb-0">
+              sorry for inconvinience
+            </p>
+          </b-alert>
+
           <div class="table-responsive table-bordered text-center">
           
           <table class="table p-0">
@@ -31,10 +44,10 @@
 
               <tr>
                 <td>{{ category.name }}</td>
-                <td>{{ category.dscription }}</td>
+                <td>{{ category.description }}</td>
                 <td>
-                  <b-button variant="primary" @click="editProduct(product)">{{ $t('adminPage.products.table.modify.edit') }}</b-button>
-                  <b-button variant="danger" @click="deleteProduct(product)">{{ $t('adminPage.products.table.modify.delete') }}</b-button>
+                  <b-button variant="primary" disabled @click="editProduct(product)">{{ $t('adminPage.products.table.modify.edit') }}</b-button>
+                  <b-button variant="danger" disabled @click="deleteProduct(product)">{{ $t('adminPage.products.table.modify.delete') }}</b-button>
                 </td>
               </tr>
               

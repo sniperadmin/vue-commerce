@@ -11,7 +11,6 @@
                             temporibus expedita aliquam itaque exercitationem qui fugit
                             facere? Temporibus enim aperiam soluta ratione maxime beatae!
                         </p>
-                        <b-button id="toggle-sidebar">toggle</b-button>
                     </div>
                     <div class="col-md-6 align-content-center">
                         <img src="@/assets/img/orders.svg" class="img-fluid" alt="overview image">
@@ -112,7 +111,7 @@
                     </b-button>
 
                     <!-- delete user -->
-                    <b-button data-toggle="tooltip" title="delete account" variant="danger" class="p-2" v-b-tooltip.hover @click="deleteUser(row.item.uid)"
+                    <b-button v-b-popover.hover="'Popover!'" variant="danger" class="p-2" v-b-tooltip.hover @click="deleteUser(row.item.uid)"
                         v-if="!row.item.customClaims">
                         <i class="fas fa-trash fa-sm"></i>
                     </b-button>
@@ -241,7 +240,6 @@
                      {
                         key: 'userRole',
                         label: 'user role',
-                        sortable: true
                     },
                     {
                         key: 'metadata.creationTime',
@@ -251,7 +249,6 @@
                     {
                         key: 'status',
                         label: 'account status',
-                        sortable: true
                     },
                     {
                         key: 'metadata.lastSignInTime',
