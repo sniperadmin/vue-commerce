@@ -21,22 +21,31 @@
 
           <b-list-group>
             <b-list-group-item v-for="(item, index) in this.$store.state.cart" :key="index">
-              <img class="float-left mr-3" :src="item.productImage" width="100px" :alt="item.productName">
-              <span class="float-right" style="cursor: pointer" @click="$store.commit('removeData', item)">X</span>
-              <h3 class="h3-responsive">{{ item.productName }}</h3>
-              <p class="pt-0">{{ item.productPrice | currency }}</p>
-               <b-row>
-              <p class="pt-0 mr-5">Quantity:</p>
-              <div class="quantity">
-                    <a @click="$store.commit('decreaseQuantity', item)">
-                      <i class="fas fa-minus mr-1"></i>
+              <div class="d-flex flex-row-reverse bd-highlight">
+                <span style="cursor: pointer" @click="$store.commit('removeData', item)">X</span>
+              </div>
+
+              <div class="d-inline-flex align-items-center">
+                <img class="mr-3" :src="item.productImage" width="100px" :alt="item.productName">
+                <div>
+                  <h3 class="h3-responsive">{{ item.productName }}</h3>
+                  <p class="pt-0">{{ item.productPrice | currency }}</p>
+
+                  <div class="d-flex">
+                    <p class="pt-0">{{ $t('checkout.quantity') }} </p>
+                    <div class="mx-1">
+                    <a @click="$store.commit('addToCart', item)" class="mx-2">
+                      <i class="fas fa-plus"></i>
                     </a>
-                    <input type="text" class="text-center" style="width: 50px" disabled :value="item.productQuantity">
-                    <a @click="$store.commit('addToCart', item)">
-                      <i class="fas fa-plus ml-1"></i>
+                      <input type="text" class="text-center" style="width: 50px" disabled :value="item.productQuantity">
+                    </div>
+                    <a @click="$store.commit('decreaseQuantity', item)" class="mx-2">
+                      <i class="fas fa-minus"></i>
                     </a>
                   </div>
-               </b-row>
+                </div>
+              </div>
+
             </b-list-group-item>
           </b-list-group>
 
