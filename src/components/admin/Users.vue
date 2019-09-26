@@ -68,22 +68,22 @@
 
                 <template slot="emailVerified" slot-scope="row">
                     <h5>
-                        <b-badge variant="success" v-if="row.item.emailVerified">verified account</b-badge>
-                        <b-badge variant="danger" v-if="!row.item.emailVerified">not verified</b-badge>
+                        <mdb-badge color="success" v-if="row.item.emailVerified">verified account</mdb-badge>
+                        <mdb-badge color="pink lighten-2" v-if="!row.item.emailVerified">not verified</mdb-badge>
                     </h5>
                 </template>
 
                 <template slot="userRole" slot-scope="row">
                     <h5>
-                        <b-badge variant="primary" v-if="!row.item.customClaims">standard user</b-badge>
-                        <b-badge variant="success" v-else-if="row.item.customClaims">admin</b-badge>
+                        <mdb-badge color="primary" v-if="!row.item.customClaims">standard user</mdb-badge>
+                        <mdb-badge color="teal darken-1" v-else-if="row.item.customClaims">admin</mdb-badge>
                     </h5>
                 </template>
                 
                 <template slot="status" slot-scope="row">
                     <h5>
-                        <b-badge v-if="row.item.disabled" variant="danger">disabled</b-badge>
-                        <b-badge v-if="!row.item.disabled" variant="success">enabled</b-badge>
+                        <mdb-badge v-if="row.item.disabled" color="pink lighten-2">Disabled</mdb-badge>
+                        <mdb-badge v-if="!row.item.disabled" color="success">Enabled</mdb-badge>
                     </h5>
                 </template>
 
@@ -204,8 +204,9 @@
         BarLoader,
         ClipLoader,
         CircleLoader
-    } from '@saeris/vue-spinners'
-    import axios from 'axios'
+    } from '@saeris/vue-spinners';
+    import { mdbBadge } from 'mdbvue';
+    import axios from 'axios';
     import {
         validationMixin
     } from 'vuelidate'
@@ -218,7 +219,8 @@
         components: {
             BarLoader,
             ClipLoader,
-            CircleLoader
+            CircleLoader,
+            mdbBadge
         },
         data() {
             return {

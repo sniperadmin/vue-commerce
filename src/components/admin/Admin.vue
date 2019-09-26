@@ -51,7 +51,7 @@
                             <router-link :to="`/${$i18n.locale}/admin/overview`">
                                 <i class="fa fa-tachometer-alt"></i>
                                 <span class="menu-text mx-2">{{ $t('adminPage.menu.overview') }}</span>
-                                <b-badge>under construction</b-badge>
+                                <mdb-badge color="grey darken-3">under construction</mdb-badge>
                             </router-link>
                         </li>
                         <li class="sidebar" v-if="isAdmin">
@@ -66,7 +66,7 @@
                             <router-link :to="`/${$i18n.locale}/admin/categories`">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span class="menu-text mx-2">categories</span>
-                                <b-badge>under construction</b-badge>
+                                <mdb-badge color="grey darken-3">under construction</mdb-badge>
                             </router-link>
                         </li>
 
@@ -74,7 +74,7 @@
                             <router-link :to="`/${$i18n.locale}/admin/orders`">
                                 <i class="far fa-gem"></i>
                                 <span class="menu-text mx-2">{{ $t('adminPage.menu.orders') }}</span>
-                                <b-badge>under construction</b-badge>
+                                <mdb-badge color="grey darken-3">under construction</mdb-badge>
                             </router-link>
                         </li>
                         <li class="sidebar-dropdown">
@@ -129,6 +129,7 @@
 <script>
 // global {$, jQuery}
 import { db, fbAuth } from '@/assets/js/firebase';
+import { mdbBadge } from 'mdbvue';
 import {
         mapGetters,
         mapState
@@ -137,6 +138,9 @@ export default {
   name: "admin",
   props: {
     msg: String
+  },
+  components: {
+      mdbBadge,
   },
   data() {
       return {
