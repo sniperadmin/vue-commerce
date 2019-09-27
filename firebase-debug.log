@@ -1,0 +1,68 @@
+[debug] [2019-09-27T15:37:50.576Z] ----------------------------------------------------------------------
+[debug] [2019-09-27T15:37:50.578Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Nasr\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js login --reauth
+[debug] [2019-09-27T15:37:50.578Z] CLI Version:   7.3.2
+[debug] [2019-09-27T15:37:50.578Z] Platform:      win32
+[debug] [2019-09-27T15:37:50.578Z] Node Version:  v10.16.3
+[debug] [2019-09-27T15:37:50.579Z] Time:          Fri Sep 27 2019 17:37:50 GMT+0200 (Eastern European Standard Time)
+[debug] [2019-09-27T15:37:50.579Z] ----------------------------------------------------------------------
+[debug] 
+[info] i  Firebase optionally collects CLI usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you.
+
+[info] i  To change your data collection preference at any time, run `firebase logout` and log in again.
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=509475342&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] [2019-09-27T15:38:10.865Z] >>> HTTP REQUEST POST https://accounts.google.com/o/oauth2/token  
+
+[debug] [2019-09-27T15:38:21.040Z] Token Fetch Error: FirebaseError: Server Error. Client network socket disconnected before secure TLS connection was established
+    at Request._callback (C:\Users\Nasr\AppData\Roaming\npm\node_modules\firebase-tools\lib\api.js:30:31)
+    at self.callback (C:\Users\Nasr\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:185:22)
+    at Request.emit (events.js:198:13)
+    at Request.EventEmitter.emit (domain.js:448:20)
+    at Request.onRequestError (C:\Users\Nasr\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:881:8)
+    at ClientRequest.emit (events.js:198:13)
+    at ClientRequest.EventEmitter.emit (domain.js:448:20)
+    at TLSSocket.socketErrorListener (_http_client.js:392:9)
+    at TLSSocket.emit (events.js:198:13)
+    at TLSSocket.EventEmitter.emit (domain.js:448:20)
+[debug] [2019-09-27T15:38:57.380Z] ----------------------------------------------------------------------
+[debug] [2019-09-27T15:38:57.385Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Nasr\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --except functions
+[debug] [2019-09-27T15:38:57.385Z] CLI Version:   7.3.2
+[debug] [2019-09-27T15:38:57.385Z] Platform:      win32
+[debug] [2019-09-27T15:38:57.385Z] Node Version:  v10.16.3
+[debug] [2019-09-27T15:38:57.386Z] Time:          Fri Sep 27 2019 17:38:57 GMT+0200 (Eastern European Standard Time)
+[debug] [2019-09-27T15:38:57.386Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-09-27T15:38:57.405Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-09-27T15:38:57.406Z] > authorizing via signed-in user
+[debug] [2019-09-27T15:38:57.407Z] [iam] checking project vue-shop-e3547 for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2019-09-27T15:38:57.408Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-09-27T15:38:57.408Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-09-27T15:38:57.801Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-27T15:38:57.817Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/vue-shop-e3547:testIamPermissions  
+
+[debug] [2019-09-27T15:38:58.853Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-27T15:38:58.857Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/vue-shop-e3547  
+ 
+[debug] [2019-09-27T15:38:59.388Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'vue-shop-e3547'...
+[info] 
+[info] i  deploying storage, firestore, hosting
+[debug] [2019-09-27T15:39:02.533Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/vue-shop-e3547  
+ 
+[info] 
+
+There was an issue deploying your functions. Verify that your project has a Google App Engine instance setup at https://console.cloud.google.com/appengine and try again. If this issue persists, please contact support.
+[debug] [2019-09-27T15:39:32.151Z] Error: Client network socket disconnected before secure TLS connection was established
+    at TLSSocket.onConnectEnd (_tls_wrap.js:1095:19)
+    at Object.onceWrapper (events.js:286:20)
+    at TLSSocket.emit (events.js:203:15)
+    at TLSSocket.EventEmitter.emit (domain.js:448:20)
+    at endReadableNT (_stream_readable.js:1145:12)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+[error] 
+[error] Error: Server Error. Client network socket disconnected before secure TLS connection was established

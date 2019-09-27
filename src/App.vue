@@ -206,11 +206,11 @@ export default {
           el.style.textAlign = "left"
           el.style.textTransform = "capitalize"
         
-        let car = el.getElementsByClassName('VueCarousel-inner');
-           if (car)
-              for (var i in car){
-                car[i].style.flexDirection = "row"
-              }
+          let car = el.getElementsByClassName('VueCarousel-inner');
+          if (car)
+            for (var i in car){
+              car[i].style.flexDirection = "row"
+          }
         }
     },
   },
