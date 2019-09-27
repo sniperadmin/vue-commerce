@@ -80,13 +80,13 @@
       <b-row class="mt-3 align-items-center" align-h="center">
         <b-col md="3" lg="4" xl="3" class="mb-4">
           <h6 class="text-uppercase font-weight-bold"><strong>Vue Commerce</strong></h6>
-          <hr class="deep-purple accent-2 mb-4 mt-0 mx-auto" style="width: 60px" />
+          <hr class="deep-purple accent-1 mb-4 mt-0 mx-auto" style="width: 60px;" />
           <p>{{ $t('footer.comment') }}</p>
         </b-col>
 
         <b-col md="2" lg="2" xl="2" class="mb-4">
           <h6 class="text-uppercase font-weight-bold"><strong>{{ $t('footer.plugins') }}</strong></h6>
-          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px" />
+          <hr class="deep-purple accent-1 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px" />
           <p>
             <a href="https://mdbootstrap.com" target="_blank">
               {{ $t('footer.mdb') }}
@@ -101,14 +101,14 @@
         </b-col>
         <b-col md="3" lg="2" xl="2" class="mb-4">
           <h6 class="text-uppercase font-weight-bold"><strong>Useful links</strong></h6>
-          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px" />
+          <hr class="deep-purple accent-1 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px" />
           <p><a href="https://forums.coretabs.net" target="_blank">{{ $t('footer.coretabs') }}</a></p>
           <p><a href="https://www.arabcoders.ae/" target="_blank">{{ $t('footer.arabcoders') }}</a></p>
         </b-col>
 
         <b-col md="4" lg="3" xl="3" class="mb-4">
           <h6 class="text-uppercase font-weight-bold"><strong>{{ $t('footer.contact') }}</strong></h6>
-          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px" />
+          <hr class="deep-purple accent-1 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px" />
           <p><i class="fas fa-home mr-3 ml-3"></i> {{ $t('footer.country') }}</p>
           <p><i class="fas fa-envelope mr-3 ml-3"></i> {{ $t('footer.email') }}</p>
           <p><i class="fas fa-phone mr-3 ml-3"></i> {{ $t('footer.phone') }}</p>
