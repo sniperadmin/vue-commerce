@@ -195,22 +195,22 @@ export default {
         el.style.direction = "rtl";
         el.style.textAlign = "right"
 
-        // let car = el.getElementsByClassName('VueCarousel-inner');
-        //     if (car)
-        //       for (var i in car){
-        //         car[i].style.flexDirection = "row-reverse"
-        //       }
+        let car = el.getElementsByClassName('VueCarousel-inner');
+            if (car)
+              for (var i in car){
+                car[i].style.flexDirection = "row-reverse"
+              }
 
       } else if (i18n.locale === 'en') {
           el.style.direction = "ltr"
           el.style.textAlign = "left"
           el.style.textTransform = "capitalize"
         
-        // let car = el.getElementsByClassName('VueCarousel-inner');
-          //  if (car)
-          //     for (var i in car){
-          //       car[i].style.flexDirection = "row"
-          //     }
+        let car = el.getElementsByClassName('VueCarousel-inner');
+           if (car)
+              for (var i in car){
+                car[i].style.flexDirection = "row"
+              }
         }
     },
   },
