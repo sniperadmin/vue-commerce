@@ -7,21 +7,22 @@
       <mdb-row class="justify-content-center pt-4">
       <!-- search -->
           <mdb-col md="6">
-          <b-form-group label="Search products" label-cols-sm="3" label-align-sm="right" label-size="sm"
+          <b-form-group :label="$t('search.label')" label-cols-sm="3" label-align-sm="right" label-size="sm"
                         label-for="filterInput" class="mb-0">
               <b-input-group size="sm">
-                <b-form-input @input="searchNow()" v-model="search" type="search" id="filterInput" placeholder="search product names">
+                <b-form-input @input="searchNow()" v-model="search" type="search" id="filterInput" :placeholder="$t('search.input')">
                   </b-form-input>
                     <b-input-group-append>
-                      <b-button :disabled="!search" @click="search = ''">Clear</b-button>
+                      <b-button :disabled="!search" @click="search = ''">{{ $t('search.clear') }}</b-button>
                         </b-input-group-append>
               </b-input-group>
           </b-form-group>
           </mdb-col><!-- ./search -->
+          <!-- display total -->
           <mdb-col md="6">
-             <h5 class="h2-responsive">total products
+             <p class="h2-responsive">{{ $t('total') }}
               <b-badge>{{ !search ? products.length : searchResults.length }}</b-badge>
-            </h5>
+            </p>
           </mdb-col>
       </mdb-row>
     </mdb-col>
@@ -36,15 +37,11 @@
                   ></mdb-card-image>
               </slide>
             </carousel>
-            <mdb-card-title>
-              <mdb-row class="justify-content-between w-100">
-              <mdb-col md="8">
+            <mdb-card-title class="d-flex justify-content-between">
                 <p style="font-size: 18px" class="p-1">{{ product.name }}</p>
-              </mdb-col>
-              <mdb-col md="4">
-                <b-badge variant="warning">{{ product.price | currency }}</b-badge>
-              </mdb-col>
-              </mdb-row>
+                <div>
+                  <b-badge variant="warning">{{ product.price | currency }}</b-badge>
+                </div>
             </mdb-card-title>
             <!-- <mdb-card-text v-html="product.info"></mdb-card-text> -->
             <mdb-row class="justify-content-md-center">
@@ -63,7 +60,7 @@
     <mdb-row class="text-center">
       <mdb-col md="12" v-if="search && !searchResults.length">
         <mdb-alert color="warning">
-          no results found
+          {{ $t('search.no-res') }}
         </mdb-alert>
       </mdb-col>
     </mdb-row>

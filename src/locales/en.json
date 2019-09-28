@@ -1,5 +1,4 @@
 {
-  "message": "hello i18n !!",
   "nav" : {
     "logo" : "vue-commerce",
     "home" : "home",
@@ -17,6 +16,13 @@
     "body" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem, optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos. Odit sed qui, dolorum! ",
     "button": "view project"
   },
+  "search": {
+    "label": "search products",
+    "input": "search product names",
+    "clear": "clear",
+    "no-res": "no results found"
+  },
+  "total": "total products",
   "addToCart": "add to cart",
   "modal" : {
     "title" : "login/register",
