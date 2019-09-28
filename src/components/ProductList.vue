@@ -3,9 +3,31 @@
     <h2 class="text-center mt-5 font-weight-bold">{{ $t('intro.title') }}</h2>
     <mdb-col md="10" class="mx-auto text-center text-muted mb-5">
       <p>{{ $t('intro.body') }}</p>
+
+      <mdb-row class="justify-content-center pt-4">
+      <!-- search -->
+          <mdb-col md="6">
+          <b-form-group label="Search products" label-cols-sm="3" label-align-sm="right" label-size="sm"
+                        label-for="filterInput" class="mb-0">
+              <b-input-group size="sm">
+                <b-form-input @input="searchNow()" v-model="search" type="search" id="filterInput" placeholder="search product names">
+                  </b-form-input>
+                    <b-input-group-append>
+                      <b-button :disabled="!search" @click="search = ''">Clear</b-button>
+                        </b-input-group-append>
+              </b-input-group>
+          </b-form-group>
+          </mdb-col><!-- ./search -->
+          <mdb-col md="6">
+             <h5 class="h2-responsive">total products
+              <b-badge>{{ !search ? products.length : searchResults.length }}</b-badge>
+            </h5>
+          </mdb-col>
+      </mdb-row>
     </mdb-col>
+
     <mdb-row>
-      <mdb-col md="3" class="mb-5" v-for="(product, index) in products" :key="index">
+      <mdb-col md="3" class="mb-5" v-for="(product, index) in !search ? products : searchResults" :key="index">
         <mdb-card class="animated fadeIn">
           <mdb-card-body>
             <carousel :perPage="1">
@@ -191,8 +213,10 @@
           tags: [],
           images: [],
         },
-        clickedSrc: null,
-        clicked: false,
+        clickedSrc: null, // for modals
+        clicked: false, // for modals
+        search: '',
+        searchResults: [],
       }
     },
     directives: {
@@ -214,6 +238,12 @@
       maximize(y) {
           this.clickedSrc = y
           this.clicked = true
+      },
+      searchNow() {
+        this.searchResults = this.products.filter(product => {
+          let print = product.name.toLowerCase().indexOf(this.search.toLowerCase()) != "-1";
+            return print
+        });
       }
     },
     created() {

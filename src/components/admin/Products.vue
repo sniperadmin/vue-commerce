@@ -401,7 +401,6 @@ export default {
                     return product;
                   }
                 });
-
             },
     }, // -- end methods -- //
     created() {
