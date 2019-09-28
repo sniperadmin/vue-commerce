@@ -6,9 +6,9 @@
            
             <div class="sidebar-content">
                 <!-- sidebar-brand  -->
-                <div class="sidebar-item sidebar-brand">
-                    <a href="#">Vue-Commerce</a>
-                    <b-button variant="outline-secondary" class="text-center ml-5 p-1" @click="acting = !acting">
+                <div class=" sidebar-brand">
+                    <a>Vue-Commerce</a>
+                    <b-button variant="light" class="p-1 mt-0 float-right" @click="acting = !acting">
                       <i class="fas fa-times fa-md"></i>
                     </b-button>
                 </div>
@@ -41,6 +41,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <!-- sidebar-menu  -->
                 <div class=" sidebar-item sidebar-menu">
                     <ul>
@@ -51,7 +52,7 @@
                             <router-link :to="`/${$i18n.locale}/admin/overview`">
                                 <i class="fa fa-tachometer-alt"></i>
                                 <span class="menu-text mx-2">{{ $t('adminPage.menu.overview') }}</span>
-                                <mdb-badge color="grey darken-3">under construction</mdb-badge>
+                                <mdb-badge color="grey darken-3">{{ $t('alerts.graph-construction.title') }}</mdb-badge>
                             </router-link>
                         </li>
                         <li class="sidebar" v-if="isAdmin">
@@ -66,7 +67,7 @@
                             <router-link :to="`/${$i18n.locale}/admin/categories`">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span class="menu-text mx-2">categories</span>
-                                <mdb-badge color="grey darken-3">under construction</mdb-badge>
+                                <mdb-badge color="grey darken-3">{{ $t('alerts.graph-construction.title') }}</mdb-badge>
                             </router-link>
                         </li>
 
@@ -74,7 +75,7 @@
                             <router-link :to="`/${$i18n.locale}/admin/orders`">
                                 <i class="far fa-gem"></i>
                                 <span class="menu-text mx-2">{{ $t('adminPage.menu.orders') }}</span>
-                                <mdb-badge color="grey darken-3">under construction</mdb-badge>
+                                <mdb-badge color="grey darken-3">{{ $t('alerts.graph-construction.title') }}</mdb-badge>
                             </router-link>
                         </li>
                         <li class="sidebar-dropdown">
@@ -107,16 +108,17 @@
           <div class="container-fluid">
             <div class="row">
               <div class="form-group col-md-12">
-                  <!-- toggler -->
-            <transition name="fade">
-                <b-button class="btn btn-sm btn-dark ml-0 mt-0 position-fixed" v-if="!acting" @click="acting = !acting">
-                    <i class="fas fa-bars"></i>
-                </b-button>
-            </transition>
+                <!-- toggler -->
+                <transition name="fade">
+                    <b-button class="btn btn-sm btn-dark position-fixed d-block float-left" 
+                    v-if="!acting" @click="acting = !acting" style="left: 10px; opacity: 0.5; z-index: 1; top: 30px;">
+                        <i class="fas fa-bars"></i>
+                    </b-button>
+                </transition>
             
-            <transition name="fade">
+            <!-- <transition name="fade"> -->
                 <router-view></router-view>
-            </transition>
+            <!-- </transition> -->
               </div>
             </div>
           </div>

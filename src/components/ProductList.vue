@@ -1,29 +1,32 @@
 <template>
   <mdb-container>
+    <!-- some intro -->
     <h2 class="text-center mt-5 font-weight-bold">{{ $t('intro.title') }}</h2>
     <mdb-col md="10" class="mx-auto text-center text-muted mb-5">
       <p>{{ $t('intro.body') }}</p>
 
       <mdb-row class="justify-content-center pt-4">
-      <!-- search -->
-          <mdb-col md="6">
+        <!-- search -->
+        <mdb-col md="6">
           <b-form-group :label="$t('search.label')" label-cols-sm="3" label-align-sm="right" label-size="sm"
-                        label-for="filterInput" class="mb-0">
-              <b-input-group size="sm">
-                <b-form-input @input="searchNow()" v-model="search" type="search" id="filterInput" :placeholder="$t('search.input')">
-                  </b-form-input>
-                    <b-input-group-append>
-                      <b-button :disabled="!search" @click="search = ''">{{ $t('search.clear') }}</b-button>
-                        </b-input-group-append>
-              </b-input-group>
+            label-for="filterInput" class="mb-0">
+            <b-input-group size="sm">
+              <b-form-input @input="searchNow()" v-model="search" type="search" id="filterInput"
+                :placeholder="$t('search.input')">
+              </b-form-input>
+              <b-input-group-append>
+                <b-button :disabled="!search" @click="search = ''">{{ $t('search.clear') }}</b-button>
+              </b-input-group-append>
+            </b-input-group>
           </b-form-group>
-          </mdb-col><!-- ./search -->
-          <!-- display total -->
-          <mdb-col md="6">
-             <p class="h2-responsive">{{ $t('total') }}
-              <b-badge>{{ !search ? products.length : searchResults.length }}</b-badge>
-            </p>
-          </mdb-col>
+        </mdb-col><!-- ./search -->
+
+        <!-- display total -->
+        <mdb-col md="6">
+          <p class="h2-responsive">{{ $t('total') }}
+            <b-badge>{{ !search ? products.length : searchResults.length }}</b-badge>
+          </p>
+        </mdb-col>
       </mdb-row>
     </mdb-col>
 
@@ -33,22 +36,26 @@
           <mdb-card-body>
             <carousel :perPage="1">
               <slide v-for="(image, index) in product.images" :key="index.id">
-                <mdb-card-image :src="image" alt="Card image cap" v-if="product.images"
-                  ></mdb-card-image>
+                <mdb-card-image :src="image" alt="Card image cap" v-if="product.images"></mdb-card-image>
               </slide>
             </carousel>
             <mdb-card-title class="d-flex justify-content-between">
-                <p style="font-size: 18px" class="p-1">{{ product.name }}</p>
-                <div>
-                  <b-badge variant="warning">{{ product.price | currency }}</b-badge>
-                </div>
+              <p style="font-size: 18px" class="p-1">{{ product.name }}</p>
+              <div>
+                <b-badge variant="warning">{{ product.price | currency }}</b-badge>
+              </div>
             </mdb-card-title>
             <!-- <mdb-card-text v-html="product.info"></mdb-card-text> -->
-            <mdb-row class="justify-content-md-center">
-              <mdb-col md="auto">
-                <b-button variant="success" pill @click="info(product)">more details</b-button>
+            <mdb-row class="justify-content-center mb-2">
+              <mdb-col md="10" class="mb-2">
+                <b-button block variant="success" pill @click="info(product)">
+                  <i class="fas fa-info-circle fa-lg pl-2 pr-2"></i>
+                  <span class="h5-responsive font-weight-bold">{{ $t('card.info') }}</span>
+                </b-button>
               </mdb-col>
+              <mdb-col md="12" class="mb-2">
                 <add-to-cart :name="product.name" :price="product.price" :p-id="product.id" :image="product.images[0]"></add-to-cart>
+              </mdb-col>
             </mdb-row>
           </mdb-card-body>
         </mdb-card>
@@ -57,13 +64,13 @@
     <!-- if no search results -->
     <mdb-container>
 
-    <mdb-row class="text-center">
-      <mdb-col md="12" v-if="search && !searchResults.length">
-        <mdb-alert color="warning">
-          {{ $t('search.no-res') }}
-        </mdb-alert>
-      </mdb-col>
-    </mdb-row>
+      <mdb-row class="text-center">
+        <mdb-col md="12" v-if="search && !searchResults.length">
+          <mdb-alert color="warning">
+            {{ $t('search.no-res') }}
+          </mdb-alert>
+        </mdb-col>
+      </mdb-row>
     </mdb-container>
 
     <b-modal ref="test" id="modal-info" title="product details" size="xl" centered ok-only>
@@ -74,9 +81,10 @@
               <div><img :src="clickedSrc ? clickedSrc : chosenProduct.images[0]"></div>
             </div> <!-- slider-product.// -->
             <div class="img-small-wrap">
-                <div class="item-gallery" id="test" v-for="(image, index) in chosenProduct.images" :key="index" @click="maximize(image)">
-                  <img :src="image">
-                </div>
+              <div class="item-gallery" id="test" v-for="(image, index) in chosenProduct.images" :key="index"
+                @click="maximize(image)">
+                <img :src="image">
+              </div>
             </div> <!-- slider-nav.// -->
           </article> <!-- gallery-wrap .end// -->
         </aside>
@@ -150,8 +158,9 @@
             </div> <!-- row.// -->
             <hr>
             <div class="d-inline-block">
-              <add-to-cart :name="chosenProduct.name" :price="chosenProduct.price" :p-id="chosenProduct.id" :image="chosenProduct.images[0]">
-            </add-to-cart>
+              <add-to-cart :name="chosenProduct.name" :price="chosenProduct.price" :p-id="chosenProduct.id"
+                :image="chosenProduct.images[0]">
+              </add-to-cart>
             </div>
           </article> <!-- card-body.// -->
         </aside> <!-- col.// -->
@@ -253,13 +262,13 @@
         this.chosenProduct = x;
       },
       maximize(y) {
-          this.clickedSrc = y
-          this.clicked = true
+        this.clickedSrc = y
+        this.clicked = true
       },
       searchNow() {
         this.searchResults = this.products.filter(product => {
           let print = product.name.toLowerCase().indexOf(this.search.toLowerCase()) != "-1";
-            return print
+          return print
         });
       }
     },

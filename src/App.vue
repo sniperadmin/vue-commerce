@@ -100,7 +100,7 @@
           
         </b-col>
         <b-col md="3" lg="2" xl="2" class="mb-4">
-          <h6 class="text-uppercase font-weight-bold"><strong>Useful links</strong></h6>
+          <h6 class="text-uppercase font-weight-bold"><strong>{{ $t('footer.links') }}</strong></h6>
           <hr class="deep-purple accent-1 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px" />
           <p><a href="https://forums.coretabs.net" target="_blank">{{ $t('footer.coretabs') }}</a></p>
           <p><a href="https://www.arabcoders.ae/" target="_blank">{{ $t('footer.arabcoders') }}</a></p>
@@ -114,7 +114,6 @@
           <p><i class="fas fa-phone mr-3 ml-3"></i> {{ $t('footer.phone') }}</p>
         </b-col>
       </b-row>
-
     </mdb-container>
 
       <p class="footer-copyright mb-0 py-3 text-center">

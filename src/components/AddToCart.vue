@@ -1,6 +1,11 @@
 <template>
     <div class="add-to-cart">
-        <b-button variant="primary" pill @click="addToCart"><i class="fas fa-cart-plus"></i> {{ $t('addToCart') }}</b-button>
+        <b-button block variant="primary" pill @click="addToCart">
+          <i class="fas fa-cart-plus fa-lg pr-1 pl-1"></i> 
+          <span class="h5-responsive font-weight-bold">
+            {{ $t('card.addToCart') }}
+          </span>
+        </b-button>
     </div>
 </template>
 

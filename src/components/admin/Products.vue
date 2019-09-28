@@ -22,20 +22,20 @@
 
           <!-- search -->
           <b-col md="5">
-          <b-form-group label="Filter" label-cols-sm="3" label-align-sm="right" label-size="sm"
+          <b-form-group :label="$t('search.label')" label-cols-sm="3" label-align-sm="right" label-size="sm"
                         label-for="filterInput" class="mb-0">
               <b-input-group size="sm">
-                <b-form-input @input="searchNow()" v-model="search" type="search" id="filterInput" placeholder="search product names">
+                <b-form-input @input="searchNow()" v-model="search" type="search" id="filterInput" :placeholder="$t('search.input')">
                   </b-form-input>
                     <b-input-group-append>
-                      <b-button :disabled="!search" @click="search = ''">Clear</b-button>
+                      <b-button :disabled="!search" @click="search = ''">{{ $t('search.clear') }}</b-button>
                         </b-input-group-append>
               </b-input-group>
           </b-form-group>
           </b-col><!-- ./search -->
 
           <b-col md="5">
-            <h5 class="h2-responsive">total products
+            <h5 class="h2-responsive">{{ $t('total') }}
               <b-badge>{{ !search ? products.length : searchResults.length }}</b-badge>
             </h5>
           </b-col>
@@ -46,11 +46,11 @@
             <table class="table p-0">
               <thead class="thead-dark">
                 <tr>
-                  <th>images</th>
-                  <th>{{ $t('adminPage.products.table.name') }}</th>
-                  <th>category</th>
-                  <th>{{ $t('adminPage.products.table.price') }}</th>
-                  <th>{{ $t('adminPage.products.table.modify.title') }}</th>
+                  <th scope="col">{{ $t('adminPage.products.table.images') }}</th>
+                  <th scope="col">{{ $t('adminPage.products.table.name') }}</th>
+                  <th scope="col">{{ $t('adminPage.products.table.categories') }}</th>
+                  <th scope="col">{{ $t('adminPage.products.table.price') }}</th>
+                  <th scope="col">{{ $t('adminPage.products.table.modify.title') }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -64,7 +64,7 @@
                       <h5 class="h5-responsive">
                         <i class="fas fa-exclamation-triangle"></i>
                         <span>
-                          under construction
+                          {{ $t('alerts.graph-construction.title') }}
                         </span>
                       </h5>
                     </b-badge>
@@ -77,7 +77,7 @@
                 </tr>
                 <!-- no search results -->
                 <mdb-alert v-if="search && !searchResults.length" color="warning" class="text-center">
-                  no results found
+                  {{ $t('search.no-res') }}
                 </mdb-alert>
               </tbody>
             </table>

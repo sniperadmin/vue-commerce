@@ -23,7 +23,10 @@
     "no-res": "no results found"
   },
   "total": "total products",
-  "addToCart": "add to cart",
+  "card": {
+    "addToCart": "add to cart",
+    "info": "more info"
+  },
   "modal" : {
     "title" : "login/register",
     "tabs" : {
@@ -68,7 +71,12 @@
     "verify-button" : "verify e-mail to checkout",
     "login" : "login/signup and start buying!",
     "login-p" : "make sure that you do confirm your email, so that you can use our sevices.",
-    "login-button" : "verify e-mail to checkout"
+    "login-button" : "verify e-mail to checkout",
+    "graph-construction" : {
+      "title": "under construction",
+      "body" : "this page will contain graphs and widgets to show the current business state",
+      "p": "the new version of app is coming soon!"
+    }
   },
   "footer" : {
     "get-connected": "Get connected with us on social networks!",
@@ -158,6 +166,8 @@
       "table" : {
         "name" : "name",
         "price" : "price",
+        "images": "images",
+        "categories": "categories",
         "modify" : {
           "title": "modify",
           "edit" : "edit",

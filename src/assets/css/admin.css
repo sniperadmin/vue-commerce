@@ -97,12 +97,13 @@
   
   .sidebar-wrapper .sidebar-brand {
     padding: 1rem 1.2rem;
-    display: -webkit-box;
+    /* display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
+    display: flex; */
+    /* -webkit-box-align: center;
     -ms-flex-align: center;
-    align-items: center;
+    align-items: center; */
+    /* outline: 1px solid grey; */
     height: 55px; }
     .sidebar-wrapper .sidebar-brand > a {
       text-transform: uppercase;
@@ -112,7 +113,9 @@
       flex-grow: 1;
       overflow: hidden;
       white-space: nowrap;
-      text-overflow: ellipsis; }
+      text-overflow: ellipsis;
+      float: left;
+    }
   
   .sidebar-wrapper .sidebar-header {
     padding: 20px;

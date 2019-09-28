@@ -15,13 +15,13 @@
     </div>
 
     <b-alert show variant="info mt-2">
-    <h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> under construction</h4>
+    <h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> {{ $t('alerts.graph-construction.title') }}</h4>
     <hr>
     <p>
-      this page will contain graphs and widgets to show the current business state
+      {{ $t('alerts.graph-construction.body') }}
     </p>
     <p class="mb-0">
-      the new version of app is coming soon!
+      {{ $t('alerts.graph-construction.p') }}
     </p>
   </b-alert>
 
