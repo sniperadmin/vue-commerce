@@ -36,9 +36,15 @@
                   ></mdb-card-image>
               </slide>
             </carousel>
-            <mdb-card-title class="d-flex justify-content-between">
-              <strong>{{ product.name }}</strong>
-              <mdb-badge color="warning">{{ product.price | currency }}</mdb-badge>
+            <mdb-card-title>
+              <mdb-row class="justify-content-between w-100">
+              <mdb-col md="8">
+                <p style="font-size: 18px" class="p-1">{{ product.name }}</p>
+              </mdb-col>
+              <mdb-col md="4">
+                <b-badge variant="warning">{{ product.price | currency }}</b-badge>
+              </mdb-col>
+              </mdb-row>
             </mdb-card-title>
             <!-- <mdb-card-text v-html="product.info"></mdb-card-text> -->
             <mdb-row class="justify-content-md-center">
@@ -51,6 +57,17 @@
         </mdb-card>
       </mdb-col>
     </mdb-row>
+    <!-- if no search results -->
+    <mdb-container>
+
+    <mdb-row class="text-center">
+      <mdb-col md="12" v-if="search && !searchResults.length">
+        <mdb-alert color="warning">
+          no results found
+        </mdb-alert>
+      </mdb-col>
+    </mdb-row>
+    </mdb-container>
 
     <b-modal ref="test" id="modal-info" title="product details" size="xl" centered ok-only>
       <div class="row no-gutters">
@@ -171,6 +188,7 @@
     mdbCardBody,
     animateOnScroll,
     mdbBadge,
+    mdbAlert,
   } from 'mdbvue';
 
   import {
@@ -201,6 +219,8 @@
       Carousel,
       Slide,
       mdbBadge,
+      mdbAlert,
+
     },
     data() {
       return {

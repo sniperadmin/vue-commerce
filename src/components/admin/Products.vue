@@ -75,13 +75,17 @@
                     <b-button variant="danger" @click="deleteProduct(product)"><i class="fas fa-trash"></i></b-button>
                   </td>
                 </tr>
+                <!-- no search results -->
+                <mdb-alert v-if="search && !searchResults.length" color="warning" class="text-center">
+                  no results found
+                </mdb-alert>
               </tbody>
             </table>
           <!-- loader component -->
             <bar-loader :loading="loading" :color="`#3C36D7`" :height="8" :sizeUnit="`px`" class="w-100"></bar-loader>
             <!-- ./loader component -->
           </div> <!-- table -->
-          
+
           <!-- loader component -->
             <bar-loader :loading="loading" :color="`#3C36D7`" :height="8" :sizeUnit="`px`" class="w-100"></bar-loader>
           <!-- ./loader component -->

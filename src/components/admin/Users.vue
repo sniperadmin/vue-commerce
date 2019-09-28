@@ -115,7 +115,6 @@
                         v-if="!row.item.customClaims">
                         <i class="fas fa-trash fa-sm"></i>
                     </button>
-
                 </template>
             </b-table><!-- ./table -->
 
