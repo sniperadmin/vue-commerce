@@ -25,7 +25,7 @@
           <b-form-group label="Filter" label-cols-sm="3" label-align-sm="right" label-size="sm"
                         label-for="filterInput" class="mb-0">
               <b-input-group size="sm">
-                <b-form-input disabled @input="searchNow()" v-model="search" type="search" id="filterInput" placeholder="search feature under construction">
+                <b-form-input @input="searchNow()" v-model="search" type="search" id="filterInput" placeholder="search product names">
                   </b-form-input>
                     <b-input-group-append>
                       <b-button :disabled="!search" @click="search = ''">Clear</b-button>
@@ -36,7 +36,7 @@
 
           <b-col md="5">
             <h5 class="h2-responsive">total products
-              <b-badge>{{ products.length }}</b-badge>
+              <b-badge>{{ !search ? products.length : searchResults.length }}</b-badge>
             </h5>
           </b-col>
 
@@ -54,7 +54,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(product, index) in products" :key="index">
+                <tr v-for="(product, index) in !search ? products : searchResults" :key="index">
                   <td>
                     <img v-for="(image) in product.images" :key="image.id" :src="image" alt="product images" class="img-fluid" style="width:80px">
                   </td>
@@ -394,8 +394,7 @@ export default {
       },
       searchNow() {
           this.searchResults = this.products.filter(product => {
-                  if (
-                    product.name
+                  if (product.name
                       .toLowerCase()
                       .indexOf(this.search.toLowerCase()) != "-1"
                   ) {

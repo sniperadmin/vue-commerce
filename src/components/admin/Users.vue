@@ -64,7 +64,7 @@
             <!-- table -->
             <b-table id="my-table" class="text-center" bordered hover head-variant="dark" :items="users"
                 :fields="fields" :current-page="currentPage" :per-page="perPage" :filter="filter"
-                @filtered="onFiltered" small stacked="md" responsive striped :busy="busy" >
+                @filtered="onFiltered" small stacked="md" responsive striped :busy="busy">
 
                 <template slot="emailVerified" slot-scope="row">
                     <h5>

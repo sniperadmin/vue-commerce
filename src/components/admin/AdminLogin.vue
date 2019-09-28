@@ -141,7 +141,7 @@
                 this.$router.push(`/`);
               } else {
                   this.$Progress.start();
-                  this.$router.push(`/${i18n.locale}/admin`);
+                  this.$router.push(`/${i18n.locale}/admin/overview`);
                   this.$Progress.finish();
               }
         });

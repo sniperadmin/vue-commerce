@@ -113,6 +113,7 @@
                     <i class="fas fa-bars"></i>
                 </b-button>
             </transition>
+            
             <transition name="fade">
                 <router-view></router-view>
             </transition>
