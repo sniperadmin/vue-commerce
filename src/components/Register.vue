@@ -15,6 +15,15 @@
       <b-tabs pills align="center" justified>
           <b-tab :title="$t('modal.tabs.login.title')" active>
           <b-card-text>
+              <p class="text-center mt-3">{{ $t('modal.tabs.register.sub-heading') }}</p>
+             <p>
+                <fb-login></fb-login>
+                <google-login></google-login>
+                <github-login></github-login>
+              </p>
+              <p class="divider-text">
+                <span>{{ $t('modal.tabs.register.or') }}</span>
+              </p>
             <form @submit.prevent="login" autocomplete="off">
               <div class="grey-text">
                 
@@ -39,14 +48,14 @@
               <h4 class="card-title mt-3 text-center">{{ $t('modal.tabs.register.heading') }}</h4>
               <p class="text-center">{{ $t('modal.tabs.register.sub-heading') }}</p>
               <p>
-                <a class="btn btn-block btn-twitter white-text" href=""> <i class="fab fa-twitter"></i> &nbsp; {{ $t('modal.tabs.register.twitter') }}</a>
-                <a class="btn btn-block btn-facebook white-text" href=""> <i class="fab fa-facebook-f"></i> &nbsp; {{ $t('modal.tabs.register.facebook') }}</a>
+                <fb-login></fb-login>
+                <google-login></google-login>
+                <github-login></github-login>
               </p>
               <p class="divider-text">
                 <span>{{ $t('modal.tabs.register.or') }}</span>
               </p>
               <form @submit.stop.prevent="register" autocomplete="off">
-
                   <b-form-group id="example-input-group-1" :label="$t('modal.tabs.register.email')" label-for="email-form"
                     label-cols-sm="3"
                     label-cols-lg="3">

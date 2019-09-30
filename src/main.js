@@ -50,6 +50,9 @@ Vue.use(Vue2Filters);
 Vue.component('add-to-cart', require('./components/AddToCart.vue').default);
 Vue.component('mini-cart', require('./components/MiniCart.vue').default);
 Vue.component('product-list', require('./components/ProductList.vue').default);
+Vue.component('fb-login', require('./components/FbLogin.vue').default);
+Vue.component('google-login', require('./components/GoogleLogin.vue').default);
+Vue.component('github-login', require('./components/GithubLogin.vue').default);
 
 import Vuelidate from 'vuelidate';
 Vue.use(Vuelidate);

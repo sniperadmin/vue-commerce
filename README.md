@@ -62,9 +62,7 @@ Stripe is setup but my firebase needs a subscription and I have issues with it. 
 ### Homepage
 
 *Everything in the homepage is customizable:*
-* Navigation menu
-* Cover 
-    
+ 
 
 ## For source code operations
 
