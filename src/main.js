@@ -54,6 +54,10 @@ Vue.component('fb-login', require('./components/FbLogin.vue').default);
 Vue.component('google-login', require('./components/GoogleLogin.vue').default);
 Vue.component('github-login', require('./components/GithubLogin.vue').default);
 
+// Apex charts
+import VueApexCharts from 'vue-apexcharts'
+Vue.component('apexchart', VueApexCharts)
+
 import Vuelidate from 'vuelidate';
 Vue.use(Vuelidate);
 

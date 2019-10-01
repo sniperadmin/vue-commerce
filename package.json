@@ -11,6 +11,7 @@
     },
     "dependencies": {
         "@saeris/vue-spinners": "^1.0.8",
+        "apexcharts": "^3.8.6",
         "axios": "^0.19.0",
         "body-parser": "^1.19.0",
         "bootstrap": "^4.3.1",
@@ -31,6 +32,7 @@
         "stripe": "^7.8.0",
         "sweetalert2": "^8.15.2",
         "vue": "^2.6.10",
+        "vue-apexcharts": "^1.5.0",
         "vue-carousel": "^0.18.0",
         "vue-firestore": "^0.3.22",
         "vue-i18n": "^8.0.0",

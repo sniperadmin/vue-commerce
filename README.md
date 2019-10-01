@@ -59,10 +59,23 @@ Stripe is setup but my firebase needs a subscription and I have issues with it. 
 
 ## General notes
 
+### Vuejs plugins:
+---
+* BootstrapVue
+* VueFirestore
+* sweetalert2
+* adminLTE
+* Vue2Filters
+* progressbar
+* vuesax
+* https://vue-spinners.saeris.io/
+* vue-chartjs
+* vue2-flip-countdown.
+* apexcharts
+
 ### Homepage
 
-*Everything in the homepage is customizable:*
- 
+*Everything in the homepage is customizable:* 
 
 ## For source code operations
 

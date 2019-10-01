@@ -224,7 +224,7 @@ export default {
     });
   },
   mounted() {
-    responsiveVoice.speak('welcome too | Vue-Commerce application | This project is designed by: Nasr Galal', "UK English Male", {rate: 0.8});
+    // responsiveVoice.speak('welcome too | Vue-Commerce application | This project is designed by: Nasr Galal', "UK English Male", {rate: 0.8});
   }
 };
 
