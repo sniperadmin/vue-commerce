@@ -40,7 +40,7 @@ export default {
     return {
       products: [],
       options: {
-        chart: {
+        chart:  {
           id: 'vuechart-example',
           background: 'lightgrey',
           stacked: true,
@@ -65,7 +65,7 @@ export default {
                     }]
                   console.log(this.series)
                 }
-              },500)
+              }, 1000)
             }
           },
         },

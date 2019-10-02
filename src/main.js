@@ -88,6 +88,7 @@ import 'vuesax/dist/vuesax.css'
 Vue.use(Vuesax)
 
 import { VueSpinners } from '@saeris/vue-spinners'
+import './registerServiceWorker'
 Vue.use(VueSpinners)
 
 let app = '';
