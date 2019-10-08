@@ -145,10 +145,10 @@
 </template>
 
 <script>
-import {fbAuth, db} from '../assets/js/firebase';
+import {fbAuth, db} from '../../assets/js/firebase';
 import { validationMixin } from 'vuelidate';
 import { required, minLength, email } from 'vuelidate/lib/validators';
-import i18n from '../i18n';
+import i18n from '../../i18n';
 import {
     mdbTabs,
     mdbInput,

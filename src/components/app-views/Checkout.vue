@@ -5,6 +5,7 @@
         <div class="col-md-9 mb-4">
           <h2 class="h2-responsive">{{ $t('cart.title') }}</h2>
 
+          <!-- alerts -->
           <transition name="slide">
             <mdb-alert color="warning" v-if="logged && !verified">
               <h4 class="alert-heading">{{ $t('alerts.verify') }}</h4>
@@ -18,7 +19,7 @@
               <p class="mb-0">{{ $t('alerts.login-p') }}</p>
             </mdb-alert>
           </transition>
-
+          <!-- main content -->
           <b-list-group>
             <b-list-group-item v-for="(item, index) in this.$store.state.cart" :key="index">
               <div class="d-flex flex-row-reverse bd-highlight">

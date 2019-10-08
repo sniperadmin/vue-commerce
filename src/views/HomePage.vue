@@ -2,7 +2,7 @@
     <div>
     <mdb-card class="card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg)">
         <div class="text-white text-center py-5 px-4 my-5">
-          <flip-countdown deadline="2019-9-30 00:00:00"></flip-countdown>
+          <flip-countdown deadline="2020-5-30 00:00:00"></flip-countdown>
           <div>
             <h2 class="card-title h1-responsive pt-3 mb-5 font-bold mt-5"><strong>{{ $t('jumbotron.title') }}</strong></h2>
             <h4 class="mx-5 mb-5">{{ $t('jumbotron.body') }}</h4>

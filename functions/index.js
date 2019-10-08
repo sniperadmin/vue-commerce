@@ -1,9 +1,19 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp();
-
+const express = require('express');
 const stripe = require("stripe")("pk_test_EkgRdwSuRpwR0FUEsUSMJVCw00HJk4Sukt");
 const cors = require('cors')({origin: true});
+
+// const app = express();
+// app.get('/timestamp', (request, response) => {
+//   response.send(`${Date.now()}`);
+// });
+
+// app.get('/timestamp-cached', (request, response) => {
+//   response.set('Cache-Control', 'public, max-age=100, s-maxage=600');
+//   response.send(`${Date.now()}`);
+// })
 
 /* ---- Setting User Privilages
 

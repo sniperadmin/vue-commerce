@@ -173,8 +173,8 @@
 <script>
   import {
     db
-  } from '../assets/js/firebase';
-  import i18n from '../i18n';
+  } from '../../assets/js/firebase';
+  import i18n from '../../i18n';
   import {
     mdbContainer,
     mdbJumbotron,

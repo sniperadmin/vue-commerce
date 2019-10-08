@@ -1,3 +1,4 @@
+
 module.exports = {
   configureWebpack: {
     resolve: {
@@ -14,5 +15,5 @@ module.exports = {
       localeDir: 'locales',
       enableInSFC: false
     }
-  }
+  },
 }

@@ -48,6 +48,7 @@
                         <li class="header-menu">
                             <span>{{ $t('adminPage.menu.general') }}</span>
                         </li>
+                        <!-- overview -->
                         <li class="sidebar" v-if="isAdmin">
                             <router-link :to="`/${$i18n.locale}/admin/overview`">
                                 <i class="fa fa-tachometer-alt"></i>
@@ -55,6 +56,7 @@
                                 <mdb-badge color="grey darken-3">{{ $t('alerts.graph-construction.title') }}</mdb-badge>
                             </router-link>
                         </li>
+                        <!-- products -->
                         <li class="sidebar" v-if="isAdmin">
                             <router-link :to="`/${$i18n.locale}/admin/products`">
                                 <i class="fa fa-shopping-cart"></i>
@@ -62,7 +64,7 @@
                                 <span class="badge badge-pill badge-primary">{{ products.length }}</span>
                             </router-link>
                         </li>
-                        
+                        <!-- categories -->
                         <li class="sidebar" v-if="isAdmin">
                             <router-link :to="`/${$i18n.locale}/admin/categories`">
                                 <i class="fa fa-shopping-cart"></i>
@@ -70,7 +72,7 @@
                                 <mdb-badge color="grey darken-3">{{ $t('alerts.graph-construction.title') }}</mdb-badge>
                             </router-link>
                         </li>
-
+                        <!-- orders -->
                         <li class="sidebar" v-if="isAdmin">
                             <router-link :to="`/${$i18n.locale}/admin/orders`">
                                 <i class="far fa-gem"></i>
@@ -78,12 +80,14 @@
                                 <mdb-badge color="grey darken-3">{{ $t('alerts.graph-construction.title') }}</mdb-badge>
                             </router-link>
                         </li>
+                        <!-- profile -->
                         <li class="sidebar-dropdown">
                             <router-link :to="`/${$i18n.locale}/admin/profile`">
                                 <i class="far fa-user"></i>
                                 <span class="menu-text mx-2">{{ $t('adminPage.menu.profile') }}</span>
                             </router-link>
                         </li>
+                        <!-- users -->
                         <li class="sidebar-dropdown">
                             <router-link :to="`/${$i18n.locale}/admin/users`">
                                 <i class="fas fa-users"></i>

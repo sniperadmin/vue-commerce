@@ -9,7 +9,7 @@
     import {
         fbAuth,
         db
-    } from '../assets/js/firebase';
+    } from '../../assets/js/firebase';
     import firebase from 'firebase';
     import { mdbBtn } from 'mdbvue';
 
