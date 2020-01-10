@@ -20,19 +20,6 @@ const store = new Vuex.Store({
       });
       return total;
     },
-    // filterUsersMonthly: state => {
-    //   let months = ['jan', 'feb', 'mar', 'apr', 'may', 'Jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
-        
-    //   state.users.filter(user => {
-    //     let print = user.metadata.creationTime;
-    //     console.log(print)
-    //     for (var month in months) {
-    //       if (print.indexOf(month)) {
-    //         console.log(print)
-    //       }
-    //     }
-    //   })
-    // }
   },
   actions: {
     listAllUsers(context) {

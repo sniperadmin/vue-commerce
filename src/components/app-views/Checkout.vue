@@ -59,6 +59,9 @@
           </b-button>
           <b-button disabled="disabled" variant="warning" v-if="!logged && !verified">{{ $t('alerts.login-button') }}
           </b-button>
+
+          <paypal></paypal>
+
         </div>
       </div>
     </div>

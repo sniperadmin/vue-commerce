@@ -16,12 +16,8 @@
       <hr>
       <section class="text-center">
         <h3 class="h3-responsive font-weight-bold my-5">{{ $t('about.programmer') }}</h3>
-    
-        <!-- <p class="grey-text w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit,
-          error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam eum porro a
-          pariatur veniam.</p> -->
-          <mdb-row class="mb-4">
 
+        <mdb-row class="mb-4">
           <mdb-col md="12" class="mb-lg-0 mb-5">
             <img tag="img" src="https://forums.coretabs.net/user_avatar/forums.coretabs.net/sniperadmin/120/2258_2.png"
               class="z-depth-1 rounded-circle" alt="Sample avatar" />
@@ -33,29 +29,23 @@
                 <mdb-icon fab icon="facebook" class="blue-text" data-toggle="tooltip" title="facebook" />
               </a>
               <a class="p-2 fa-lg" href="https://forums.coretabs.net/u/sniperadmin" target="_blank">
-                <img src="https://firebasestorage.googleapis.com/v0/b/vue-shop-e3547.appspot.com/o/products%2Fcoretabs.png?alt=media&token=efd8b904-1d4d-4dee-b265-40e046528df8" 
-                  alt="coretabs link" 
-                  style="width: 23px"
-                  data-toggle="tooltip" title="coretabs"
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/vue-shop-e3547.appspot.com/o/products%2Fcoretabs.png?alt=media&token=efd8b904-1d4d-4dee-b265-40e046528df8"
+                  alt="coretabs link" style="width: 23px" data-toggle="tooltip" title="coretabs"
                   class="blue-text rounded-circle" />
               </a>
-              <!-- <a class="p-2 fa-lg">
-                <mdb-icon fab icon="instagram" class="blue-text" />
-              </a> -->
             </ul>
           </mdb-col>
         </mdb-row>
-        
+
         <hr class="mt-4">
 
         <h3 class="h3-responsive font-weight-bold my-5">{{ $t('about.teachers') }}</h3>
-        <!-- <p class="grey-text w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit,
-          error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam eum porro a
-          pariatur veniam.</p> -->
 
         <mdb-row>
           <mdb-col md="6" class="mb-lg-0 mb-5">
-            <img tag="img" src="https://forums.coretabs.net/user_avatar/forums.coretabs.net/yaseralnajjar/120/1862_2.png"
+            <img tag="img"
+              src="https://forums.coretabs.net/user_avatar/forums.coretabs.net/yaseralnajjar/120/1862_2.png"
               class="z-depth-1 rounded-circle" alt="Sample avatar" />
             <h5 class="font-weight-bold mt-4 mb-3">{{ $t('about.yaser') }}</h5>
             <p class="text-uppercase blue-text">{{ $t('about.yaser-job') }}</p>
@@ -65,15 +55,11 @@
                 <mdb-icon fab icon="facebook" class="blue-text" data-toggle="tooltip" title="facebook" />
               </a>
               <a class="p-2 fa-lg" href="https://forums.coretabs.net/u/yaseralnajjar" target="_blank">
-                <img src="https://firebasestorage.googleapis.com/v0/b/vue-shop-e3547.appspot.com/o/products%2Fcoretabs.png?alt=media&token=efd8b904-1d4d-4dee-b265-40e046528df8" 
-                  alt="coretabs link" 
-                  style="width: 23px"
-                  data-toggle="tooltip" title="coretabs"
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/vue-shop-e3547.appspot.com/o/products%2Fcoretabs.png?alt=media&token=efd8b904-1d4d-4dee-b265-40e046528df8"
+                  alt="coretabs link" style="width: 23px" data-toggle="tooltip" title="coretabs"
                   class="blue-text rounded-circle" />
               </a>
-              <!-- <a class="p-2 fa-lg">
-                <mdb-icon fab icon="instagram" class="blue-text" />
-              </a> -->
             </ul>
 
           </mdb-col>
@@ -88,15 +74,14 @@
                 <mdb-icon fab icon="facebook" class="blue-text" />
               </a>
               <a class="p-2 fa-lg" href="https://forums.coretabs.net/u/Alhakem" target="_blank">
-                <img src="https://firebasestorage.googleapis.com/v0/b/vue-shop-e3547.appspot.com/o/products%2Fcoretabs.png?alt=media&token=efd8b904-1d4d-4dee-b265-40e046528df8" 
-                  alt="coretabs link" 
-                  style="width: 23px"
-                  data-toggle="tooltip" title="coretabs"
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/vue-shop-e3547.appspot.com/o/products%2Fcoretabs.png?alt=media&token=efd8b904-1d4d-4dee-b265-40e046528df8"
+                  alt="coretabs link" style="width: 23px" data-toggle="tooltip" title="coretabs"
                   class="blue-text rounded-circle" />
               </a>
             </ul>
           </mdb-col>
-          
+
         </mdb-row>
       </section>
 

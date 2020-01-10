@@ -73,6 +73,7 @@
       </mdb-row>
     </mdb-container>
 
+    <!-- modal -->
     <b-modal ref="test" id="modal-info" title="product details" size="xl" centered ok-only>
       <div class="row no-gutters">
         <aside class="col-sm-5 border-right">

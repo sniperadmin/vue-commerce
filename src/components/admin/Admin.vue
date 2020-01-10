@@ -3,7 +3,7 @@
   <div  class="page-wrapper default-theme sidebar-bg bg1" :class="{ active : isActive, 'toggled' : acting}" v-if="isAdmin">
             
         <nav id="sidebar" class="sidebar-wrapper">
-           
+
             <div class="sidebar-content">
                 <!-- sidebar-brand  -->
                 <div class=" sidebar-brand">
@@ -169,24 +169,6 @@ export default {
                 console.log(err);
             });
         },
-        // old way using JQuery, i keep it as a reference
-        // toggleMenu() {
-        //     jQuery($ => {
-        //         //Pin sidebar
-        //         $(".page-wrapper").addClass("pinned");
-
-        //         $("#sidebar").hover(
-        //             () => {
-        //                 console.log("mouseenter");
-        //                 $(".page-wrapper").addClass("sidebar-hovered");
-        //             },
-        //             () => {
-        //                 console.log("mouseout");
-        //                 $(".page-wrapper").removeClass("sidebar-hovered");
-        //             }
-        //         )
-        //     });
-        // },
     },
     computed: 
             mapState({ users: state => state.users }),

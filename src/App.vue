@@ -162,6 +162,13 @@ export default {
             this.name = username;
         }
     });
+    this.$bvToast.toast('This project is no longer supported!', {
+      title: 'Sad News',
+      variant: 'danger',
+      solid: true,
+      noAutoHide: true,
+      toaster: 'b-toaster-bottom-right'
+    });
   },
   mounted() {
     // responsiveVoice.speak('welcome too | Vue-Commerce application | This project is designed by: Nasr Galal', "UK English Male", {rate: 0.8});

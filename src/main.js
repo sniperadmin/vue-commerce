@@ -11,13 +11,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 import './assets/css/admin.css';
 
-import './assets/css/sidebar-themes.css';
-
-import './assets/css/ui.css';
-
-import './assets/css/responsive.css';
-
-import 'mdbvue/build/css/mdb.css';
+import 'mdbvue/lib/css/mdb.min.css';
 
 import Vue from 'vue';
 
@@ -55,9 +49,6 @@ import VueFirestore from 'vue-firestore';
 Vue.use(VueFirestore);
 
 Vue.config.productionTip = false;
-
-// import js for admin interface
-require('./assets/js/admin');
 
 // sweetalert2
 import Swal from 'sweetalert2'
@@ -103,11 +94,9 @@ Vue.use(VueProgressBar, {
 import i18n from './i18n'
 
 // Vuesax
-import Vuesax from 'vuesax'
-
-import 'vuesax/dist/vuesax.css'
-
-Vue.use(Vuesax)
+// import Vuesax from 'vuesax'
+// import 'vuesax/dist/vuesax.css'
+// Vue.use(Vuesax)
 
 // VueSpinners
 import { VueSpinners } from '@saeris/vue-spinners'
@@ -128,14 +117,55 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-// Registestering custom components globally
-Vue.component('add-to-cart', require('./components/AddToCart.vue').default);
-Vue.component('mini-cart', require('./components/MiniCart.vue').default);
-Vue.component('product-list', require('./components/app-views/ProductList.vue').default);
-Vue.component('fb-login', require('./components/logins/FbLogin.vue').default);
-Vue.component('google-login', require('./components/logins/GoogleLogin.vue').default);
-Vue.component('github-login', require('./components/logins/GithubLogin.vue').default);
-Vue.component('custom-footer', require('./components/Footer.vue').default);
+// Registestering custom components globally and Asyncronously
+Vue.component('add-to-cart', resolve => {
+  import('./components/AddToCart.vue')
+    .then(AddToCart => {
+      resolve(AddToCart.default)
+    });
+});
+Vue.component('mini-cart', resolve => {
+  import('./components/MiniCart.vue')
+    .then(MiniCart => {
+      resolve(MiniCart.default)
+    });
+});
+Vue.component('product-list', resolve => {
+  import('./components/app-views/ProductList.vue')
+    .then(ProductList => {
+      resolve(ProductList.default)
+    });
+});
+Vue.component('fb-login', resolve => {
+  import('./components/logins/FbLogin.vue')
+    .then(FbLogin => {
+      resolve(FbLogin.default)
+    });
+});
+Vue.component('google-login', resolve => {
+  import('./components/logins/GoogleLogin.vue')
+    .then(GoogleLogin => {
+      resolve(GoogleLogin.default)
+    });
+});
+Vue.component('github-login', resolve => {
+  import('./components/logins/GithubLogin.vue')
+    .then(GithubLogin => {
+      resolve(GithubLogin.default)
+    });
+});
+Vue.component('custom-footer', resolve => {
+  import('./components/Footer.vue')
+    .then(Footer => {
+      resolve(Footer.default)
+    });
+});
+Vue.component('paypal', resolve => {
+  import('./components/PayPal.vue')
+    .then(PayPal => {
+      resolve(PayPal.default)
+    });
+});
 
 // creating new Vue instance for firing custom events
 window.Fire = new Vue();
