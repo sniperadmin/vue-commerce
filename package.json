@@ -8,7 +8,9 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'",
-    "start": "vue-cli-service serve --open"
+    "start": "vue-cli-service serve --open",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "@saeris/vue-spinners": "^1.0.8",
@@ -48,7 +50,8 @@
     "vuefire": "^2.2.1",
     "vuelidate": "^0.7.4",
     "vuesax": "^3.11.6",
-    "vuex": "^3.1.2"
+    "vuex": "^3.1.2",
+    "snyk": "^1.349.0"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.12.0",
@@ -73,5 +76,6 @@
     "vue-cli-plugin-i18n": "^0.6.0",
     "vue-cli-plugin-mdb": "^2.0.3",
     "vue-template-compiler": "^2.6.11"
-  }
+  },
+  "snyk": true
 }
