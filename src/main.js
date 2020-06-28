@@ -118,6 +118,7 @@ router.beforeEach((to, from, next) => {
 });
 
 // Registestering custom components globally and Asyncronously
+// this will be a dynamic import => Boosts performance
 Vue.component('add-to-cart', resolve => {
   import('./components/AddToCart.vue')
     .then(AddToCart => {
@@ -155,7 +156,7 @@ Vue.component('github-login', resolve => {
     });
 });
 Vue.component('custom-footer', resolve => {
-  import('./components/Footer.vue')
+  import('./components/shared/Footer.vue')
     .then(Footer => {
       resolve(Footer.default)
     });
