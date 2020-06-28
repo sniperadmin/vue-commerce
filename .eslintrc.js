@@ -6,7 +6,9 @@ module.exports = {
     'commonjs': true,
     'es6': true
   },
+
   'extends': ['plugin:vue-libs/recommended'],
+
   'parserOptions': {
     'ecmaVersion': 7,
     'ecmaFeatures': {
@@ -16,20 +18,24 @@ module.exports = {
     },
     'sourceType': 'module'
   },
+
   'globals': {
     'Tether': true,
     'Promise': true,
     'google': true
   },
+
   'plugins': [
     'html', 'vue'
   ],
+
   'settings': {
     'html/html-extensions': [
       '.html',
       '.vue'
     ]
   },
+
   'rules': {
     'accessor-pairs': 'error',
     'array-bracket-spacing': [
@@ -279,5 +285,17 @@ module.exports = {
       'error',
       'never'
     ]
-  }
+  },
+
+  overrides: [
+    {
+      files: [
+        '**/__tests__/*.{j,t}s?(x)',
+        '**/tests/unit/**/*.spec.{j,t}s?(x)'
+      ],
+      env: {
+        jest: true
+      }
+    }
+  ]
 };
