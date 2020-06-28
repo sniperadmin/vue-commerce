@@ -1,5 +1,14 @@
 # Vue-Commerce App
-
+### Checked by:
+[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=acorn&package-manager=npm_and_yarn&previous-version=6.4.0&new-version=6.4.1)](https://help.github.com/articles/configuring-automated-security-fixes)
+![Website](https://img.shields.io/website?url=https%3A%2F%2Fvue-shop-e3547.firebaseapp.com%2F)
+![shields.io](https://img.shields.io/david/dev/sniperadmin/vue-commerce?style=plastic)
+![Security Headers](https://img.shields.io/security-headers?style=plastic&url=https%3A%2F%2Fvue-shop-e3547.firebaseapp.com%2F)
+![GitHub top language](https://img.shields.io/github/languages/top/sniperadmin/vue-commerce)
+![W3C Validation](https://img.shields.io/w3c-validation/html?targetUrl=https%3A%2F%2Fvue-shop-e3547.firebaseapp.com%2F)
+![GitHub issues](https://img.shields.io/github/issues/sniperadmin/vue-commerce)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/sniperadmin/vue-commerce/master)
+<!-- cover -->
 ![alt text](/src/assets/img/screenshot.png "site screenshot")
 
 ---
