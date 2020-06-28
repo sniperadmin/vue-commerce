@@ -59,7 +59,7 @@
     </mdb-container>
 
       <p class="footer-copyright mb-0 py-3 text-center">
-         {{new Date().getFullYear()}} &copy; {{ $t('footer.copyright')}}: <a href="https://forums.coretabs.net/sniperadmin"> {{ $t('footer.name') }} </a>
+        {{new Date().getFullYear()}} &copy; {{ $t('footer.copyright')}}: <a href="https://forums.coretabs.net/sniperadmin"> {{ $t('footer.name') }} </a>
       </p>
     </mdb-footer>
 </template>

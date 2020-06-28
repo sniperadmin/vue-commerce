@@ -137,7 +137,7 @@
                 <!-- <span class="input-group-text" v-if="product.price" slot="prepend">{{product.price}}</span>
                 <span class="input-group-text" v-else slot="prepend">0.00</span> -->
               </mdb-input>
-                          
+
               <!-- <mdb-input label="Product Tags" type="text" v-model="product.tags" @keyup.enter="addTag"></mdb-input> -->
               <div class="form-group">
                 <label for="example1">{{ $t('adminPage.products.add-product.tags') }}</label>
@@ -157,7 +157,7 @@
                   <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                 </div> --> 
                 
-                 <b-form-file @change="uploadImage" class="mb-3" accept="image/*" multiple
+                <b-form-file @change="uploadImage" class="mb-3" accept="image/*" multiple
                       :placeholder="$t('adminPage.products.add-product.choose')"
                       drop-placeholder="Drop file here..."
                     >
@@ -188,7 +188,7 @@
               <b-button variant="danger" @click="cancel()">{{ $t('adminPage.products.add-product.cancel') }}</b-button>
             </template>
           </b-modal>
-           <b-modal id="add" size="sm" title="create category" centered ok-only>
+          <b-modal id="add" size="sm" title="create category" centered ok-only>
             <div class="row justify-content-center">
               
               <b-badge variant="dark text-warning">

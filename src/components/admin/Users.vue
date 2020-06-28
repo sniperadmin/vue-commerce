@@ -238,7 +238,7 @@
                         label: 'email verified',
                         sortable: true
                     },
-                     {
+                    {
                         key: 'userRole',
                         label: 'user role',
                     },

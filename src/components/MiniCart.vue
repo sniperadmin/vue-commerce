@@ -27,11 +27,11 @@
           </b-list-group>
 
           <template slot="modal-footer" slot-scope="{ cancel }">
-             <b-button @click="checkOut()" variant="success">
+            <b-button @click="checkOut()" variant="success">
                 Checkout
             </b-button>
 
-             <b-button @click="cancel()">
+            <b-button @click="cancel()">
               Continue Shopping
             </b-button>
           </template>

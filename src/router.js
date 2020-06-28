@@ -166,7 +166,7 @@ export default new Router({
         },
         {
           path: "*",
-          // name: "home",
+          name: "not-found",
           component: NotFound,
           meta: {
             hideNavigation: true,
