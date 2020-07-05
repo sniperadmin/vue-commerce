@@ -1,21 +1,17 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
-import Profile from '@/components/Profile.vue'
+import PayPal from '@/components/PayPal.vue'
 import BootstrapVue from 'bootstrap-vue'
 
 let wrapper
 
-describe('Profile.vue', () => {
+describe('Paypal.vue', () => {
   const localVue = createLocalVue()
 
   localVue.use(BootstrapVue)
 
   beforeEach(() => {
-    wrapper = shallowMount(Profile, {
-      localVue,
-      mocks: {
-        $t: jest.fn(),
-      },
-      firestore: jest.fn()
+    wrapper = shallowMount(PayPal, {
+      localVue
     })
   })
 
@@ -27,4 +23,11 @@ describe('Profile.vue', () => {
   it('should be vue', () => {
     expect(wrapper.vm).toBeTruthy()
   })
+
+  it('should test loading setLoaded()', () => {
+    setTimeout(() => {
+      const mocksetLoaded = jest.spyOn(wrapper.vm, 'setLoaded')
+      expect(mocksetLoaded).toHaveBeenCalled()
+    }, 2000);
+  });
 })

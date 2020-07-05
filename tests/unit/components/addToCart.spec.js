@@ -4,7 +4,7 @@ import BootstrapVue from 'bootstrap-vue'
 
 let wrapper
 
-describe('MiniCart.vue', () => {
+describe('AddToCart.vue', () => {
   const localVue = createLocalVue()
 
   localVue.use(BootstrapVue)
