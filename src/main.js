@@ -156,7 +156,7 @@ Vue.component('github-login', resolve => {
     });
 });
 Vue.component('custom-footer', resolve => {
-  import('./components/shared/Footer.vue')
+  import('./components/shared/AppFooter.vue')
     .then(Footer => {
       resolve(Footer.default)
     });

@@ -15,7 +15,8 @@
           
         <!-- cart -->
         <mdb-nav-item :to="`/${$i18n.locale}/checkout`"><i class="fas fa-cart-plus"></i><strong>{{ $t('nav.cart') }}</strong></mdb-nav-item>
-        
+
+        <!-- TODO: this is left for reference -->
         <!-- <div class="locale-changer">
           <select v-model="$i18n.locale">
             <option v-for="(lang, i) in $i18n.availableLocales" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
@@ -43,9 +44,9 @@
           <mdb-dropdown-item @click="logout"><i class="fas fa-power-off mr-2"></i> {{ $t('nav.dropdown.logout') }}</mdb-dropdown-item>
         </mdb-dropdown-menu>
         </mdb-dropdown><!-- ./dropdown -->
-      
+
         <mdb-nav-item class="list" waves waves-fixed :to="`/${$i18n.locale}/adminlogin`"><strong class="text-white">{{ $t('nav.admin') }}</strong></mdb-nav-item>
-      
+
     </mdb-navbar-toggler>
   </mdb-navbar>
 </template>
@@ -75,6 +76,11 @@
       mdbDropdownMenu,
       mdbDropdownToggle,
       mdbDropdownItem,
+    },
+    methods: {
+      logout() {
+        console.log('should logout')
+      }
     }
   }
 </script>
