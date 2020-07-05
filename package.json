@@ -27,7 +27,6 @@
     "firebase": "^7.15.5",
     "jest": "^26.1.0",
     "jquery": "^3.5.0",
-    "jsdom-global": "^3.0.2",
     "mdbvue": "6.2.0",
     "moment": "^2.24.0",
     "nodemon": "^2.0.3",
@@ -85,5 +84,5 @@
     "vue-cli-plugin-mdb": "^2.0.3",
     "vue-template-compiler": "^2.6.11"
   },
-  "snyk": true
+  "snyk": false
 }
