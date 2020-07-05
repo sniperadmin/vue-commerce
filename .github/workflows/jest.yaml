@@ -23,13 +23,10 @@ jobs:
     - name: Run Jest
       uses: stefanoeb/jest-action@1.0.4
 
-    - name: list coverage directory
-      run: ls
-
     - name: Monitor coverage
-        uses: slavcodev/coverage-monitor-action@1.1.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          clover_file: "./coverage/clover.xml"
-          threshold_alert: 70
-          threshold_warning: 80
+      uses: slavcodev/coverage-monitor-action@1.1.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        clover_file: "./coverage/clover.xml"
+        threshold_alert: 70
+        threshold_warning: 80
