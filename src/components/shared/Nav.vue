@@ -50,7 +50,7 @@
   </mdb-navbar>
 </template>
 
-<script lang="ts">
+<script>
   import {
     mdbNavbar,
     mdbNavItem,
