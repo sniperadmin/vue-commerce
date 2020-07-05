@@ -27,6 +27,7 @@
     "firebase": "^7.15.5",
     "jest": "^26.1.0",
     "jquery": "^3.5.0",
+    "jsdom-global": "^3.0.2",
     "mdbvue": "6.2.0",
     "moment": "^2.24.0",
     "nodemon": "^2.0.3",
@@ -79,6 +80,7 @@
     "eslint-plugin-vue-libs": "^4.0.0",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.1",
+    "typescript": "^3.9.5",
     "vue-cli-plugin-i18n": "^0.6.0",
     "vue-cli-plugin-mdb": "^2.0.3",
     "vue-template-compiler": "^2.6.11"
