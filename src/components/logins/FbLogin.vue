@@ -6,7 +6,7 @@
 </template>
 
 <script>
-    import {fbAuth, db} from '../../assets/js/firebase';
+    import { fbAuth, db } from '../../assets/js/firebase';
     import firebase from 'firebase';
     export default {
         name: 'fb-login',
