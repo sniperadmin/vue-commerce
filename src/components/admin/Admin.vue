@@ -3,14 +3,13 @@
 		<div class="page-wrapper default-theme sidebar-bg bg1" :class="{ active : isActive, 'toggled' : acting}"
 			v-if="isAdmin">
 			<nav id="sidebar" class="sidebar-wrapper">
-
 				<div class="sidebar-content">
 					<!-- sidebar-brand  -->
-					<SidebarBrand @click="acting = !acting" />
+					<sidebar-brand @click="acting = !acting" />
 					<!-- sidebar-header  -->
-					<SidebarHeader :email="email" />
+					<sidebar-header :email="email" />
 					<!-- sidebar-search  -->
-					<SidebarSearch />
+					<sidebar-search />
 					<!-- sidebar-menu  -->
 					<sidebar-menu
 						@logout="logout"

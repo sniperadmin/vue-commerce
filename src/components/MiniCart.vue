@@ -1,8 +1,6 @@
 <template>
   <div class="mini-cart">
-    
         <b-modal id="my-cart" title="My Shopping Cart">
-          
           <b-list-group>
             <b-list-group-item v-for="(item, index) in this.$store.state.cart" :key="index">
               <img class="float-left mr-3" :src="item.productImage" width="105px" :alt="item.productName">

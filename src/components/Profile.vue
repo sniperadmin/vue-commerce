@@ -92,23 +92,6 @@
                   </b-col><!-- ./col-2 -->
                 </b-row><!-- row-1 second tab [Account Settings] -->
 
-                <!-- <b-row>
-                  <b-col md="6">
-                    <b-form-group id="fieldset-horizontal"
-                      description="New password"
-                      label-for="input-horizontal">
-                      <b-form-input id="input-horizontal"></b-form-input>
-                    </b-form-group>
-                  </b-col>
-
-                  <b-col md="6">
-                    <b-form-group id="fieldset-horizontal"  
-                      description="Confirm password">
-                      <b-form-input id="input2-horizontal"></b-form-input>
-                    </b-form-group>
-                  </b-col>
-                </b-row> -->
-
                 <b-row><!-- row-3 second tab [Account Settings] -->
                   <b-col md="5"><!-- col-1 -->
                     <!-- Styled -->
@@ -137,9 +120,11 @@
 <script>
 import { fbAuth, db } from '../assets/js/firebase';
 import { mdbAlert } from 'mdbvue';
+import { updateProfile, resetPassword, verify } from '@/mixins'
 
   export default {
-    name: "users",
+    name: "Profile",
+    mixins: [updateProfile, resetPassword, verify],
     components: {
       mdbAlert
     },
@@ -164,59 +149,23 @@ import { mdbAlert } from 'mdbvue';
     firestore() {
       const user = fbAuth.auth().currentUser;
       return {
-        // profiles: db.collection('profiles'),
-        profile: db.collection('profiles').doc(user.uid)
+        profile: db.collection('profiles').doc(user.uid).then().catch()
       }
     },
-    methods:{
-      updateProfile() {
-        const user = fbAuth.auth().currentUser;
-          db.collection('profiles').doc(user.uid).update(this.profile).then(() => {
-             toast.fire({
-                  type: 'success',
-                  title: 'Updated successfully'
-              });
-        }).catch(err => {
-          toast.fire({
-                type: 'error',
-                title: 'Something wrong!'
-            });
-          });
-      },
-      resetPassword() {
-        const auth = fbAuth.auth();
-        console.log(auth.currentUser.email)
-        auth.sendPasswordResetEmail(auth.currentUser.email).then(() => {
-          toast.fire({
-                  type: 'success',
-                  title: 'Check your email!'
-              });
-        }).catch(() => {
-          toast.fire({
-                  type: 'error',
-                  title: 'Something wrong!'
-              });
-        });
-      },
-      verify() {
-        fbAuth.auth().currentUser.sendEmailVerification().then(() => {
-          alert('Verification sent')
-        }).catch(error => {
-            console.log(error)
-        });
-      }
-    },
+    methods: {},
     created() {
-      this.$vs.loading({
-        type: 'material'
-      })
-      setTimeout( ()=> {
-        this.$vs.loading.close()
-      }, 1000);
+      // this.$vs.loading({
+      //   type: 'material'
+      // })
+      // setTimeout(()=> {
+      //   this.$vs.loading.close()
+      // }, 1000)
 
-      fbAuth.auth().onAuthStateChanged(user => { 
-        this.verified = user.emailVerified;
-      });
-    }
+      setTimeout(() => {
+        fbAuth.auth().onAuthStateChanged(user => { 
+          this.verified = user.emailVerified;
+        })
+      }, 2000)
   }
+}
 </script>

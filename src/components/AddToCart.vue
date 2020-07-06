@@ -35,7 +35,6 @@ export default {
     addToCart() {
       this.$bvModal.show('my-cart');
       this.$store.commit('addToCart', this.item);
-      console.log(this.item)
     }
   },
 };

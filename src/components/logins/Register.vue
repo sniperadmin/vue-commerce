@@ -16,14 +16,14 @@
           <b-tab :title="$t('modal.tabs.login.title')" active>
           <b-card-text>
               <p class="text-center mt-3">{{ $t('modal.tabs.register.sub-heading') }}</p>
-             <p>
-                <fb-login></fb-login>
-                <google-login></google-login>
-                <github-login></github-login>
-              </p>
-              <p class="divider-text">
-                <span>{{ $t('modal.tabs.register.or') }}</span>
-              </p>
+            <p>
+              <fb-login></fb-login>
+              <google-login></google-login>
+              <github-login></github-login>
+            </p>
+            <p class="divider-text">
+              <span>{{ $t('modal.tabs.register.or') }}</span>
+            </p>
             <form @submit.prevent="login" autocomplete="off">
               <div class="grey-text">
                 
@@ -68,7 +68,7 @@
                     >
                     </b-form-input>
                     <b-form-invalid-feedback id="email-live-feedback" v-if="$v.email.email">
-                         {{ $t('modal.tabs.register.email-invalid-1') }}
+                        {{ $t('modal.tabs.register.email-invalid-1') }}
                       </b-form-invalid-feedback>
                     <b-form-invalid-feedback id="email-live-feedback" v-if="$v.email.required">
                           {{ $t('modal.tabs.register.email-invalid-2') }}
@@ -100,10 +100,10 @@
                     <option>Accaunting</option>
                   </select>
                 </div> form-group end.// -->
-               
-               <b-form-group id="example-input-group-1" :label="$t('modal.tabs.register.password')" label-for="password-form"
-                label-cols-sm="3"
-                label-cols-lg="3">
+
+                <b-form-group id="example-input-group-1" :label="$t('modal.tabs.register.password')" label-for="password-form"
+                  label-cols-sm="3"
+                  label-cols-lg="3">
                     <b-form-input
                       id="password-form"
                       name="password-form"
@@ -114,7 +114,7 @@
                     >
                     </b-form-input>
                     <b-form-invalid-feedback id="password-live-feedback" v-if="$v.password.minLength">
-                         {{ $t('modal.tabs.register.password-invalid-1') }}
+                        {{ $t('modal.tabs.register.password-invalid-1') }}
                       </b-form-invalid-feedback>
                     <b-form-invalid-feedback id="password-live-feedback" v-if="$v.password.required">
                         {{ $t('modal.tabs.register.password-invalid-2') }} {{ $v.password.$params.minLength.min }} {{ $t('modal.tabs.register.characters') }}

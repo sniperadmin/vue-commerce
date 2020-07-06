@@ -67,7 +67,7 @@
 <script>
     import { mdbContainer, mdbFooter } from 'mdbvue';
 export default {
-    name: 'footer',
+    name: 'AppFooter',
     components: {
         mdbContainer,
         mdbFooter
