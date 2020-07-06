@@ -27,7 +27,8 @@ describe('Register.vue', () => {
           email: 'test@me.com',
           password: '123456',
         }
-      }
+      },
+      stubs: ['fb-login', 'google-login', 'github-login']
     })
   })
 
