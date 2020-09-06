@@ -71,7 +71,7 @@
     "eslint-plugin-html": "^6.0.0",
     "eslint-plugin-vue": "^6.1.2",
     "eslint-plugin-vue-libs": "^4.0.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "sass-loader": "^8.0.1",
     "vue-cli-plugin-i18n": "^0.6.0",
     "vue-cli-plugin-mdb": "^2.0.3",
