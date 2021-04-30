@@ -10,7 +10,6 @@
     </main>
 
     <custom-footer></custom-footer>
-
   </div>
 </template>
 
