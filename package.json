@@ -15,7 +15,7 @@
   "dependencies": {
     "@saeris/vue-spinners": "^1.0.8",
     "apexcharts": "^3.13.2",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.2.0",
