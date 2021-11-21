@@ -14,8 +14,8 @@
             <mdb-card-body class="mx-4 mt-4">
               <b-alert show variant="success">
                 <h4 class="alert-heading">Demo</h4>
-                 <p>email: vue-commerce-admin@me.com</p>
-                 <p>password: 12345678</p>
+                <p>email: vue-commerce-admin@me.com</p>
+                <p>password: 12345678</p>
               </b-alert>
               <!-- form starts here -->
               <form method="POST" @submit.prevent="login">

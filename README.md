@@ -1,4 +1,11 @@
 # Vue-Commerce App
+<!-- Importing Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+<div class="alert alert-warning" role="alert">
+  I will migrate to Vuetify as the official CSS framework soon.
+</div>
+
 ### Checked by:
 [![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=acorn&package-manager=npm_and_yarn&previous-version=6.4.0&new-version=6.4.1)](https://help.github.com/articles/configuring-automated-security-fixes)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fvue-shop-e3547.firebaseapp.com%2F)
