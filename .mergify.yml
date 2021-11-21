@@ -1,17 +1,18 @@
 pull_request_rules:
-  - name: Automatic merge on approval
-    conditions:
-      - "#approved-reviews-by>=1"
-    actions:
-      merge:
-        method: squash
-
-pull_request_rules:
   - name: automatic merge for Dependabot pull requests
     conditions:
       - author~=^dependabot(|-preview)\[bot\]$
       - check-success=GitGuardian Security Checks
       - check-success=CodeFactor
+    actions:
+      merge:
+        method: squash
+        
+  - name: automatic merge for Snyk pull requests
+    conditions:
+      - title~=^\[Snyk\]
+      - head~=^snyk-fix
+      - check-success~=^security/snyk
     actions:
       merge:
         method: squash
