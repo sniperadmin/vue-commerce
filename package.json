@@ -24,7 +24,7 @@
     "express": "^4.17.1",
     "firebase": "^7.6.2",
     "jquery": "^3.5.0",
-    "mdbvue": "6.2.0",
+    "mdbvue": "6.7.3",
     "moment": "^2.24.0",
     "nodemon": "^2.0.3",
     "nuxt": "^2.15.0",
