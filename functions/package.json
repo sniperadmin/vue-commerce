@@ -14,7 +14,7 @@
     "node": "10"
   },
   "dependencies": {
-    "@google-cloud/storage": "^5.0.0",
+    "@google-cloud/storage": "^5.17.0",
     "@paypal/checkout-server-sdk": "^1.0.1",
     "child-process-promise": "^2.2.1",
     "express": "^4.17.1",
